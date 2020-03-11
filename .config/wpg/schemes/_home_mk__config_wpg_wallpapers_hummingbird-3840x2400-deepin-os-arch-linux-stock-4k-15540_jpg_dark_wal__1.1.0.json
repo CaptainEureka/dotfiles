@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/mk/.config/wpg/wallpapers/hummingbird-3840x2400-deepin-os-arch-linux-stock-4k-15540.jpg",
+    "alpha": "70",
+
+    "special": {
+        "background": "#222436",
+        "foreground": "#c8d3f5",
+        "cursor": "#c8d3f5"
+    },
+    "colors": {
+        "color0": "#222436",
+        "color1": "#ff757f",
+        "color2": "#71f0b8",
+        "color3": "#ff966c",
+        "color4": "#82aaff",
+        "color5": "#c099ff",
+        "color6": "#86e1fc",
+        "color7": "#f3f6fd",
+        "color8": "#2f334d",
+        "color9": "#ff5370",
+        "color10": "#18e389",
+        "color11": "#fc7b7b",
+        "color12": "#4976eb",
+        "color13": "#a166ff",
+        "color14": "#50c4fa",
+        "color15": "#c8d3f5"
+    }
+}

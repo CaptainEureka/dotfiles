@@ -1,0 +1,88 @@
+configuration {
+  show-icons: true;
+  font: "Hack Nerd Font Mono 60";
+  drun-display-format: "{name}";
+  dpi: 192;
+}
+
+* {
+  background-color: transparent;
+}
+
+@import "~/.cache/wal/colors-rofi-dark.rasi"
+
+window {
+  fullscreen: false;
+  transparency: "real";
+  background-color: @background;
+  location: center;
+  anchor: center;
+  border-radius: 10;
+  padding: 20px;
+}
+
+prompt {
+  enabled: false;
+}
+
+entry {
+  expand: true;
+  margin: 20px 0px 0px 0px;
+  border-radius: 25;
+  padding: 20px;
+  location: center;
+  background-color: @background-select;
+  border-color: @primary;
+  font: "JetBrains Mono 14";
+}
+
+mainbox {
+  children: [ inputbar, listview ];
+}
+
+inputbar {
+  enabled: false;
+}
+
+listview {
+  columns: 5;
+  lines: 1;
+  fixed-height: 0;
+  spacing: 20px;
+}
+
+element {
+  background-color: @background-select;
+  border-radius: 10;
+  padding: 10px -25px 10px;
+}
+
+element normal.urgent,
+element alternate.urgent {
+  background-color: @urgent;
+}
+
+element normal.active,
+element alternate.active {
+  background-color: @background;
+  color: @selected-text-color;
+}
+
+element selected {
+  background-color: @primary;
+  color: @text-color;
+  border-radius: 10px;
+}
+
+element selected.urgent {
+  background-color: @urgent;
+}
+
+element selected.active {
+  background-color: @background;
+  color: @selected-text-color;
+}
+
+/* element-text {
+  horizontal-align: 0.5;
+} */

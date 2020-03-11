@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='/home/mk/.oh-my-zsh/themes'
+let g:netrw_dirhist_4='/home/mk/.oh-my-zsh'
+let g:netrw_dirhist_3='/home/mk/.config'
+let g:netrw_dirhist_2='/home/mk'
+let g:netrw_dirhist_1='/home/mk/Dev/Python/TicTacToe'
+let g:netrw_dirhist_0='/home/mk/Dev/Python'
+let g:netrw_dirhist_9='/home/mk/Dev/Python/Skillshare - Data Science'
+let g:netrw_dirhist_8='/home/mk/Dev/Python'
+let g:netrw_dirhist_7='/home/mk/Dev'
+let g:netrw_dirhist_6='/home/mk/.oh-my-zsh/themes'

@@ -1,0 +1,109 @@
+configuration {
+  modi: "drun";
+  show-icons: true;
+  icon-theme: "Papirus";
+  font: "JetBrains Mono 14";
+  display-drun: "Applications";
+  dpi: 192;
+  theme: "~/.cache/wal/colors-rofi-dark.rasi";
+}
+
+* {
+  background-color: transparent;
+  background: rgba(26,26,26,0.75);
+  background-alt: rgba(86,87,245,0.75);
+  background-select: rgba(255, 255, 255, 0.075);
+  text-color: #ffffff;
+  selected-text-color: #ffffff;
+  primary: #5657f5;
+  urgent: #ffffff;
+}
+
+window {
+  fullscreen: false;
+  transparency: "real";
+  background-color: @background;
+  height: 90%;
+  width: 30%;
+  location: north west;
+  anchor: north west;
+  x-offset: 0;
+  y-offset: 4%;
+  border-top-right-radius: 25%;
+  border-bottom-right-radius: 25%;
+}
+
+entry {
+  expand: true;
+  margin: 5% 2%;
+  border-radius: 25%;
+  padding: 1.3%;
+  location: center;
+  background-color: @background-select;
+  border-color: @primary;
+  font: "JetBrains Mono 14";
+}
+
+prompt {
+  enabled: false;
+  location: center;
+  margin: 5% 2%;
+}
+
+mainbox {
+  children: [ inputbar, listview ];
+  padding: 0%;
+  margin: 1%;
+  spacing: 100;
+}
+
+listview {
+  columns: 3;
+  margin: 0% 2%;
+  layout: vertical;
+}
+
+element {
+  width: 200px;
+  height: 400px;
+  orientation: vertical;
+  border-radius: 25px;
+  padding: 2% 1%;
+}
+
+element normal.urgent,
+element alternate.urgent {
+  background-color: @urgent;
+}
+
+element normal.active,
+element alternate.active {
+  background-color: @background-alt;
+  color: @selected-text-color;
+}
+
+element selected {
+  background-color: @background-select;
+  color: @text-color;
+  border-radius: 25px;
+  padding: 1% 1%;
+}
+
+element selected.urgent {
+  background-color: @urgent;
+}
+
+element selected.active {
+  background-color: @background-alt;
+  color: @selected-text-color;
+}
+
+element-icon {
+  size: 6%;
+}
+
+element-text {
+  padding: 10 0 0 0;
+  text-color: inherit;
+  horizontal-align: 0.5;
+}

@@ -1,0 +1,68 @@
+/**
+ * This theme is intended for a 8 items list menu with a headerbar.
+ */
+configuration {
+  show-icons: false;
+  columns: 1;
+  dpi: 192;
+}
+@import "~/.cache/wal/colors-rofi-dark.rasi"
+* {
+  background-color: transparent;
+  font: "Hack Nerd Font Mono 14";
+}
+#window {
+  background-color: @background;
+  padding: 20px;
+  border-radius: 10px;
+}
+inputbar,
+prompt,
+textbox-prompt-colon,
+entry {
+  background-color: transparent;
+}
+#inputbar {
+  children: [ prompt, textbox-prompt-colon, entry ];
+  margin: 10px;
+  border-radius: 10px;
+}
+#prompt {
+  padding: 10px 20px;
+  background-color: transparent;
+  color: @text-color;
+  border-radius: 10px;
+}
+#textbox-prompt-colon {
+  expand: false;
+  str: "";
+  color: @text-color;
+  padding: 10px 20px;
+  font: "Hack Nerd Font Mono 14";
+}
+#listview {
+  /* lines: 10; */
+  columns: 1;
+}
+
+#entry {
+  background-color: transparent;
+  color: @primary;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+#element {
+  padding: 20px;
+  margin: 5px;
+  border: 0px;
+  border-color: @background;
+  border-radius: 10px;
+}
+#element.selected {
+  background-color: @alt-primary;
+  color: @text-color;
+  border: 3px solid;
+  border-color: @primary;
+  border-radius: 10px;
+}
+

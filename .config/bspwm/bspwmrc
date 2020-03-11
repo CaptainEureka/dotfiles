@@ -1,0 +1,34 @@
+#! /bin/sh
+
+# Auto Start
+sxhkd &
+$HOME/.config/polybar/launch.sh
+wal -R &
+compton --dbus &
+
+# bspwm
+bspc monitor -d 1 2 3 4 
+
+bspc config border_width         0
+bspc config window_gap          28
+bspc config border_radius       20
+
+xsetroot -cursor_name left_ptr
+bspc config pointer_modifier mod1
+
+bspc config split_ratio             0.5
+bspc config borderless_monocle      true
+bspc config gapless_monocle         true
+bpsc config focus_follows_pointer   true
+bspc config pointer_folows_focus    false
+
+bspc rule -a Gimp desktop='^4' state=floating follow=on
+bspc rule -a Firefox desktop='^2'
+bspc rule -a Chromium desktop='^2'
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+bspc rule -a feh desktop='^4' state=floating
+bspc rule -a Thunar desktop='^4' state=floating
+bspc rule -a sxiv state=floating
+bspc rule -a dolphin desktop='^4' state=floating

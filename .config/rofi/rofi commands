@@ -1,0 +1,5 @@
+launch rofi using this command:
+
+
+
+rofi -show-icons -drun-display-format {name} -me-select-entry '' -me-accept-entry 'MousePrimary' -show drun | /PATH/TO/rofiblur.sh
