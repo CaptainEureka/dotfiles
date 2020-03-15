@@ -1,19 +1,21 @@
 #i3 CONFIG
 set $mod Mod4
 set $alt Mod1
+
 # FONT
 font pango:cascadia code 12
 
 # STARTUP
-exec_always --no-startup-id wal -R
-exec_always --no-startup-id compton --dbus
+exec_always --no-startup-id wal -Rqn
+exec_always --no-startup-id nitrogen --restore
+exec_always --no-startup-id picom --dbus --experimental-backends --backend glx
+# exec_always --no-startup-id compton --dbus
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id dunst
 
 # MY SHORTCUTS
 bindsym $mod+shift+w exec wal-switch 
 bindsym $mod+shift+z exec rofi-config-menu
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -33,9 +35,9 @@ bindsym $mod+Shift+s exec $HOME/.config/rofi/scripts/rofi-search.sh
 bindsym $mod+grave exec rofi-alt-tab
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1f.3.analog-stereo +6% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1f.3.analog-stereo -6% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute alsa_output.pci-0000_00_1f.3.analog-stereo toggle # mute sound
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
@@ -124,6 +126,10 @@ bindsym $mod+Shift+1 move container to workspace number $ws1
 bindsym $mod+Shift+2 move container to workspace number $ws2
 bindsym $mod+Shift+3 move container to workspace number $ws3
 bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
 
 # reload the configuration file
 bindsym $mod+Shift+c reload

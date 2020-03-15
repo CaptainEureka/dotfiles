@@ -33,8 +33,18 @@ call plug#begin(g:plugged_home)
   " Vim Cheatsheet
   Plug 'liuchengxu/vim-which-key'
 
+  " Vim multi-cursor
+  Plug 'terryma/vim-multiple-cursors'
+
+  " UltiSnips vim snippets
+  Plug 'SirVer/ultisnips'
+
+  " Devicon glyphs for Nerdtree
+  Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
+
+set encoding=UTF-8
 
 filetype plugin indent on
 
@@ -85,6 +95,11 @@ set shiftwidth=4
 " vim-autoformat
 noremap <F3> :Autoformat<CR>
 
+" NERDTree configs
+map <C-,> :NERDTreeToggle<CR>
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
 " NCM2
 augroup NCM2
   autocmd!
@@ -125,3 +140,15 @@ let g:airline_theme = 'wal'
 
 " .rasi syntax
 au BufNewFile,BufRead /*.rasi setf css
+
+" UltiSnips config
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsEditSplit="vertical"
+
+" Control vim window splits with Alt + Arrow
+nmap <silent> <A-Up> :wincmd k<CR>
+nmap <silent> <A-Down> :wincmd j<CR>
+nmap <silent> <A-Left> :wincmd h<CR>
+nmap <silent> <A-Right> :wincmd l<CR>
