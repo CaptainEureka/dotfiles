@@ -1,43 +1,68 @@
-#i3 CONFIG
+# ██╗██████╗░  ░█████╗░░█████╗░███╗░░██╗███████╗██╗░██████╗░
+# ██║╚════██╗  ██╔══██╗██╔══██╗████╗░██║██╔════╝██║██╔════╝░
+# ██║░█████╔╝  ██║░░╚═╝██║░░██║██╔██╗██║█████╗░░██║██║░░██╗░
+# ██║░╚═══██╗  ██║░░██╗██║░░██║██║╚████║██╔══╝░░██║██║░░╚██╗
+# ██║██████╔╝  ╚█████╔╝╚█████╔╝██║░╚███║██║░░░░░██║╚██████╔╝
+# ╚═╝╚═════╝░  ░╚════╝░░╚════╝░╚═╝░░╚══╝╚═╝░░░░░╚═╝░╚═════╝░
+
+
 set $mod Mod4
 set $alt Mod1
-
-# FONT
-font pango:cascadia code 12
-
-# STARTUP
-exec_always --no-startup-id wal -Rqn
-exec_always --no-startup-id nitrogen --restore
-exec_always --no-startup-id picom --dbus --experimental-backends --backend glx
-# exec_always --no-startup-id compton --dbus
-exec_always --no-startup-id ~/.config/polybar/launch.sh
-exec_always --no-startup-id dunst
-
-# MY SHORTCUTS
-bindsym $mod+shift+w exec wal-switch 
-bindsym $mod+shift+z exec rofi-config-menu
-
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# DEFAULT SHORTCUTS
+#############
+# AUTOSTART #
+#############
+
+exec_always --no-startup-id wal -Rqn
+exec_always --no-startup-id nitrogen --restore
+exec_always --no-startup-id picom -b --dbus --experimental-backends --backend glx
+# exec_always --no-startup-id compton --dbus
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id dunst
+exec --no-startup-id nm-applet
+
+###################
+# CUSTOM KEYBINDS #
+###################
+
+# Open terminal
 bindsym $mod+Return exec kitty
+
+# Close focused window
 bindsym $mod+Shift+q kill
+
+# Fullscreen application launcher
 bindsym $mod+Shift+Return exec rofi -show drun
+
+# Lock screen
 bindsym $mod+Shift+e exec betterlockscreen -l blur 
-bindsym $mod+Shift+ctrl+e exec cacheblck
+
+# Update lockscreen wallpaper
+bindsym $mod+Shift+Ctrl+e exec cacheblck
+
+# Rofi power menu [shutdown, reboot, lock, suspend, logout]
 bindsym $mod+Shift+p exec ./.config/rofi/scripts/powermenu.sh
+
+# Search DuckDuckGo with Rofi
 bindsym $mod+Shift+s exec $HOME/.config/rofi/scripts/rofi-search.sh
-bindsym $mod+grave exec rofi-alt-tab
+
+# Rofi window control switcher
+bindsym $mod+Tab exec rofi-alt-tab
+
+# Set wallpaper with Rofi and generate/set theme with pywal
+bindsym $mod+shift+w exec wal-switch 
+
+# Menu for quick navigation to common configs
+bindsym $mod+shift+z exec rofi-config-menu
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1f.3.analog-stereo +6% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1f.3.analog-stereo -6% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute alsa_output.pci-0000_00_1f.3.analog-stereo toggle # mute sound
+# Change alsa_output.pci-0000_00_1f.3.analog-stereo to your sink
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1f.3.analog-stereo +5%  # increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1f.3.analog-stereo -5%  # decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute alsa_output.pci-0000_00_1f.3.analog-stereo toggle        # mute sound
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
@@ -49,7 +74,10 @@ bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
-# i3 KEYBINDS
+#######################
+# DEFAULT i3 KEYBINDS #
+#######################
+
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -75,10 +103,9 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+b split h
-
-# split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+g split h; exec dunstify 'tile horizontally'
+bindsym $mod+v split v; exec dunstify 'tile vertically'
+bindsym $mod+p split toggle
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -122,21 +149,39 @@ bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace number $ws1
-bindsym $mod+Shift+2 move container to workspace number $ws2
-bindsym $mod+Shift+3 move container to workspace number $ws3
-bindsym $mod+Shift+4 move container to workspace number $ws4
-bindsym $mod+Shift+5 move container to workspace number $ws5
-bindsym $mod+Shift+6 move container to workspace number $ws6
-bindsym $mod+Shift+7 move container to workspace number $ws7
-bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+1 move container to workspace number $ws1; workspace $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2; workspace $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3; workspace $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4; workspace $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5; workspace $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6; workspace $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7; workspace $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8; workspace $ws8
+
+# Move to workspace with focused container
+bindsym $mod+Ctrl+1 move container to workspace $ws1; workspace $ws1
+bindsym $mod+Ctrl+2 move container to workspace $ws2; workspace $ws2
+bindsym $mod+Ctrl+3 move container to workspace $ws3; workspace $ws3
+bindsym $mod+Ctrl+4 move container to workspace $ws4; workspace $ws4
+bindsym $mod+Ctrl+5 move container to workspace $ws5; workspace $ws5
+bindsym $mod+Ctrl+6 move container to workspace $ws6; workspace $ws6
+bindsym $mod+Ctrl+7 move container to workspace $ws7; workspace $ws7
+bindsym $mod+Ctrl+8 move container to workspace $ws8; workspace $ws8
+
+#navigate workspaces next / previous
+bindsym $mod+Ctrl+Right workspace next 
+bindsym $mod+Ctrl+Left workspace prev
+
+# workspace back and forth (with/without active container) 
+workspace_auto_back_and_forth yes
+bindsym $mod+b workspace back_and_forth
+bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
 
-# exit i3 (logs you out of your X session)
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Ctrl+r restart
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -165,28 +210,26 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+###########
+# BORDERS #
+###########
+
 # Remove window border
 for_window [class=".*"] border pixel 0
 
+# change borders
+bindsym $mod+u border none
+bindsym $mod+y border pixel 2 
+bindsym $mod+n border normal
+
 # COLORS
-set_from_resource $pm i3wm.color1
-set_from_resource $sd i3wm.color0
+set $sd #82aaffE6 
+set $pm #82aaffE6
  
 # window colors                 border  backgr text indicator child_border                                                                    
 client.focused_inactive         $sd     $sd    $pm  $sd       $sd
 client.unfocused                $sd     $sd    $pm  $sd       $sd
 client.focused                  $pm     $pm    $sd  $pm       $pm           
-
-# GAPS
-gaps left 2
-gaps right 2
-gaps bottom 2
-gaps top 2
-gaps inner 16
-
-
-# ROUNDED
-border_radius 10
 
 # MY STUFF
 for_window [class="[sS]xiv"] floating enable
@@ -198,3 +241,71 @@ assign [class="[fF]irefox"] $ws2
 assign [class="Whatsapp"] $ws4
 assign [class="code-oss"] $ws3
 assign [class="Mailspring"] $ws4
+
+#####################################
+### settings for i3-gaps-rounded: ###
+#####################################
+
+# Set inner/outer gaps
+gaps inner 8
+gaps left 1
+gaps right 1
+gaps bottom 1
+gaps top 28
+
+# Corner radius
+border_radius 8
+
+# Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
+# gaps inner|outer current|all set|plus|minus <px>
+# gaps inner all set 10
+# gaps outer all plus 5
+
+# Smart gaps (gaps used if only more than one container on the workspace)
+smart_gaps off 
+
+# Smart borders (draw borders around container only if it is not the only container on this workspace) 
+# on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
+smart_borders off
+
+# Press $mod+Shift+g to enter the gap mode. 
+# Choose o or i for modifying outer/inner gaps.
+# Press one of + / - (in-/decrement for current workspace) 
+# or 0 (remove gaps for current workspace). If you also press Shift 
+# with these keys, the change will be global for all workspaces.
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
