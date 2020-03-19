@@ -23,6 +23,7 @@ exec_always --no-startup-id picom -b --dbus --experimental-backends --backend gl
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id dunst
 exec --no-startup-id nm-applet
+exec_always --no-startup-id libinput-gestures
 
 ###################
 # CUSTOM KEYBINDS #
@@ -35,7 +36,7 @@ bindsym $mod+Return exec kitty
 bindsym $mod+Shift+q kill
 
 # Fullscreen application launcher
-bindsym $mod+Shift+Return exec rofi -show drun
+bindsym $mod+Shift+Return exec rofi -no-config -show drun -theme ~/.config/rofi/themes/appsmenu.rasi
 
 # Lock screen
 bindsym $mod+Shift+e exec betterlockscreen -l blur 
@@ -223,8 +224,8 @@ bindsym $mod+y border pixel 2
 bindsym $mod+n border normal
 
 # COLORS
-set $sd #82aaffE6 
-set $pm #82aaffE6
+set $sd #494e75E6
+set $pm #222436E6  
  
 # window colors                 border  backgr text indicator child_border                                                                    
 client.focused_inactive         $sd     $sd    $pm  $sd       $sd
@@ -248,10 +249,12 @@ assign [class="Mailspring"] $ws4
 
 # Set inner/outer gaps
 gaps inner 8
-gaps left 1
-gaps right 1
-gaps bottom 1
-gaps top 28
+gaps outer 0
+#gaps top 32
+#gaps left 1
+#gaps right 1
+#gaps bottom 1
+#gaps top 32
 
 # Corner radius
 border_radius 8

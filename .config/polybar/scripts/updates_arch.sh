@@ -13,10 +13,12 @@ if ! updates_aur=$(yay -Qum 2> /dev/null | wc -l); then
 fi
 
 updates=$(("$updates_arch" + "$updates_aur"))
-
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m'
 if [ "$updates" -gt 0 ]; then
-    echo " $updates"
+    echo -e "  $updates_arch, $updates_aur"
 else
-    echo " No Updates"
+    echo -e "  No Updates"
 fi
 

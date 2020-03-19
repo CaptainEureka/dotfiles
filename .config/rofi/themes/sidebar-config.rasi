@@ -5,7 +5,7 @@ configuration {
   font: "JetBrains Mono 14";
   display-drun: "Applications";
   dpi: 192;
-  theme: "~/.cache/wal/colors-rofi-dark.rasi";
+  theme: "~/.cache/wal/rofi-wal.rasi";
 }
 
 * {

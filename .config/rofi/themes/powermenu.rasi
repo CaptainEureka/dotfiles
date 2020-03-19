@@ -9,15 +9,16 @@ configuration {
   background-color: transparent;
 }
 
-@import "~/.cache/wal/colors-rofi-dark.rasi"
+@import "~/.cache/wal/rofi-wal.rasi"
 
 window {
-  fullscreen: false;
   transparency: "real";
   background-color: @background;
   location: center;
   anchor: center;
   border-radius: 10;
+  border: 2px;
+  border-color: @border-color;
   padding: 20px;
 }
 
@@ -52,7 +53,7 @@ listview {
 }
 
 element {
-  background-color: @background-select;
+  background-color: @background-alt;
   border-radius: 10;
   padding: 10px -25px 10px;
 }

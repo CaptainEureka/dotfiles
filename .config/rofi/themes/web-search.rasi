@@ -17,7 +17,7 @@ configuration {
 	font:						 "Lato Bold 11";
 }
 
-@import "~/.cache/wal/colors-rofi-dark.rasi"
+@import "~/.cache/wal/rofi-wal.rasi"
 
 window {
     background-color:   @background;

@@ -6,7 +6,7 @@ configuration {
   columns: 1;
   dpi: 192;
 }
-@import "~/.cache/wal/colors-rofi-dark.rasi"
+@import "~/.cache/wal/rofi-wal.rasi"
 * {
   background-color: transparent;
   font: "Hack Nerd Font Mono 14";
@@ -15,6 +15,8 @@ configuration {
   background-color: @background;
   padding: 20px;
   border-radius: 10px;
+  border: 2px;
+  border-color: @border-color;
 }
 inputbar,
 prompt,

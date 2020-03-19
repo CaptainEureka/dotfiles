@@ -9,7 +9,7 @@ configuration {
   background-color: transparent;
 }
 
-@import "~/.cache/wal/colors-rofi-dark.rasi"
+@import "~/.cache/wal/rofi-wal.rasi"
 
 window {
   fullscreen: false;

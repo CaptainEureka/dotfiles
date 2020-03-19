@@ -1,12 +1,9 @@
-/**
- * This theme is intended for a 8 items list menu with a headerbar.
- */
 configuration {
   show-icons: false;
   columns: 1;
   dpi: 192;
 }
-@import "~/.cache/wal/colors-rofi-dark.rasi"
+@import "~/.cache/wal/rofi-wal.rasi"
 * {
   background-color: transparent;
   font: "Hack Nerd Font Mono 14";
@@ -15,6 +12,9 @@ configuration {
   background-color: @background;
   padding: 20px;
   border-radius: 10px;
+  border: 2px;
+  border-color: @border-color;
+  dynamic: true;
 }
 inputbar,
 prompt,
@@ -41,7 +41,8 @@ entry {
   font: "Hack Nerd Font Mono 14";
 }
 #listview {
-  /* lines: 10; */
+  lines: 10;
+  dynamic: true;
   columns: 1;
 }
 

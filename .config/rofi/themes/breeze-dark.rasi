@@ -46,6 +46,7 @@ configuration {
 #mainbox {
     border:  0;
     padding: 0;
+    dynamic: true;
 }
 
 #message {
@@ -64,6 +65,7 @@ configuration {
     spacing: 2;
     scrollbar: false;
     padding: 2 0 0;
+    dynamic: true;
 }
 
 #element {
