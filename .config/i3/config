@@ -160,14 +160,14 @@ bindsym $mod+Shift+7 move container to workspace number $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8; workspace $ws8
 
 # Move to workspace with focused container
-bindsym $mod+Ctrl+1 move container to workspace $ws1; workspace $ws1
-bindsym $mod+Ctrl+2 move container to workspace $ws2; workspace $ws2
-bindsym $mod+Ctrl+3 move container to workspace $ws3; workspace $ws3
-bindsym $mod+Ctrl+4 move container to workspace $ws4; workspace $ws4
-bindsym $mod+Ctrl+5 move container to workspace $ws5; workspace $ws5
-bindsym $mod+Ctrl+6 move container to workspace $ws6; workspace $ws6
-bindsym $mod+Ctrl+7 move container to workspace $ws7; workspace $ws7
-bindsym $mod+Ctrl+8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+Ctrl+1 move container to workspace $ws1 
+bindsym $mod+Ctrl+2 move container to workspace $ws2 
+bindsym $mod+Ctrl+3 move container to workspace $ws3 
+bindsym $mod+Ctrl+4 move container to workspace $ws4 
+bindsym $mod+Ctrl+5 move container to workspace $ws5
+bindsym $mod+Ctrl+6 move container to workspace $ws6
+bindsym $mod+Ctrl+7 move container to workspace $ws7
+bindsym $mod+Ctrl+8 move container to workspace $ws8
 
 #navigate workspaces next / previous
 bindsym $mod+Ctrl+Right workspace next 
@@ -248,16 +248,15 @@ assign [class="Mailspring"] $ws4
 #####################################
 
 # Set inner/outer gaps
-gaps inner 8
+gaps inner 10
 gaps outer 0
-#gaps top 32
-#gaps left 1
-#gaps right 1
-#gaps bottom 1
+#gaps left 0
+#gaps right 0
+#gaps bottom 15
 #gaps top 32
 
 # Corner radius
-border_radius 8
+border_radius 10
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>
