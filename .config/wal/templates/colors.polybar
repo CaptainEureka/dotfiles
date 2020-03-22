@@ -1,6 +1,6 @@
 [colors]
 background = {background}
-background-alt = #CC{background.strip}
+background-alt = #B3{background.strip}
 foreground = {color7}
 primary = {color4}
 secondary = {color2}

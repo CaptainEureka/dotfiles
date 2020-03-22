@@ -1,6 +1,14 @@
+#  ______  ___   _ _  ______  
+# / ___\ \/ / | | | |/ /  _ \ 
+# \___ \\  /| |_| | ' /| | | |
+#  ___) /  \|  _  | . \| |_| |
+# |____/_/\_\_| |_|_|\_\____/ 
 #
-# wm independent hotkeys
-#
+# --- Autho: CaptainEureka
+# --- GitHub: https://github.com/CaptainEureka
+# --- A customized sxhkdrc for bspwm
+
+#### WM INDEPENDENT HOTKEYS ####
 
 # terminal emulator
 super + Return
@@ -8,12 +16,15 @@ super + Return
 
 # program launcher
 super + shift + Return 
-	rofi -show drun
+	rofi -no-config -show drun -theme ~/.config/rofi/themes/appsmenu.rasi
+
+# slim launcher
+super + shift + d
+    rofi -no-config -show drun -theme ~/.config/rofi/themes/appslist.rasi
 
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
-
 
 # powermenu
 super + shift + p
