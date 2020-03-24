@@ -42,7 +42,13 @@ call plug#begin(g:plugged_home)
   " Devicon glyphs for Nerdtree
   Plug 'ryanoasis/vim-devicons'
 
-call plug#end()
+  " YAML support
+  Plug 'stephpy/vim-yaml'
+
+  " Extended CSS support
+  Plug 'hail2u/vim-css3-syntax'
+
+  call plug#end()
 
 set encoding=UTF-8
 

@@ -21,14 +21,16 @@ configuration {
 
 window {
     background-color:   @background;
-	location:	        south west;
-	anchor:		        south west;
-	x-offset:           10px;
-	/*height:		        97%;*/
-	/*width:		        22%;*/
+	location:	        center;
+	anchor:		        center;
+	x-offset:           0px;
+	height:		        25%;
+	width:		        25%;
 	margin-right:       60px;
 	orientation:        horizontal;
-    border-radius:      0px 25px 25px 25px;
+    border-radius:      10px;
+    border:             2px solid;
+    border-color:       @border-color;
 	children:	        [mainbox];
 }
 
@@ -73,13 +75,15 @@ element {
 
 entry {
 	expand:         			true;
+    location:                   center;
 	text-color:					@text-color;
-	background-color:		 	@background-select;
+	background-color:		 	@background-selected;
 	vertical-align: 			0.5;
 	padding:        			14px;
 	font:            			"Lato Bold 12";
 	margin:						16 16 16 16;
 	border-radius:				8;
+    horizontal-align:           0.5;
 	placeholder:                "Web search";
 	placeholder-color:          @text-color;
 	blink:                      true;
@@ -102,11 +106,11 @@ element alternate.active {
 }
 
 element selected.normal {
-	background-color:   @alt-primary;
+	background-color:   @alpha-black-bold;
 	text-color:      	@text-color;
 	padding:            16px;
 	border:             2px solid;
-	border-color:	    @primary;
+	border-color:	    @black-bold;
 }
 
 element-icon {

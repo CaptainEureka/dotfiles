@@ -5,10 +5,10 @@ I'm currently using Manjaro with `i3-gaps-rounded` and KDE/Plasma
 
 Some details about my setup:
 
-- **WM**: [i3-gaps-rounded](https://github.com/resloved/i3/)
+- **WM**: [i3-gaps-rounded](https://github.com/resloved/i3/) ([AUR](https://aur.archlinux.org/packages/i3-gaps-rounded-git/))
 - **DE**: [KDE/Plasma](https://kde.org/plasma-desktop)
 - **Compositor**: [picom]() (with `dual-kawase` blur)
-- **OS**: Manjaro 19.02
+- **OS**: Manjaro
 - **Shell**: [zsh](https://wiki.archlinux.org/index.php/Zsh)
   - Using: [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh) with the [pi](https://github.com/tobyjamesthomas/pi) theme
 - **Terminal Emulator**: [kitty](https://github.com/kovidgoyal/kitty/) / `Konsole`
@@ -31,3 +31,11 @@ Some details about my setup:
 ##### Fonts
 
 ##### Keybinds
+
+##### To-Do:
+
+- Implement **u/adi1090x** Rofi dummy window for background blur effect.
+- Implement theme-switcher
+  - Input should be YAML
+  - Should use `Jinja2` engine or just use `Pywal`?
+

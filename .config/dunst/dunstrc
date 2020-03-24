@@ -31,7 +31,7 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "640x360-54-54"
+    geometry = "320x320+1440+69"
     #geometry = "230x0-20+67"
     #79  geometry = "100x150-17+17"
 
@@ -45,7 +45,7 @@
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing window manager is
     # present (e.g. xcompmgr, compiz, etc.).
-    transparency = 0
+    transparency = 10
 
     # The height of the entire notification.  If the height is smaller
     # than the font height and padding combined, it will be raised
@@ -65,10 +65,10 @@
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
-    frame_width = 0
+    frame_width = 2
 
     # Defines color of the frame around the notification window.
-    frame_color = "#000000"
+    frame_color = "#7a88cf"
 
     # Define a color for the separator.
     # possible values are:
@@ -251,7 +251,7 @@
 
 
 [urgency_normal]
-    background = "#292d32"
+    background = "#222436"
     foreground = "#f3f6fd"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
@@ -260,7 +260,7 @@
 [urgency_critical]
     background = "#222436"
     foreground = "#f3f6fd"
-    frame_color = "#222436"
+    frame_color = "#ff757f"
     timeout = 0
     # Icon for notifications with critical urgency, uncomment to enable
     icon = /usr/share/icons/Papirus/16x16/devices 

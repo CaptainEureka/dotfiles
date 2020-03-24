@@ -96,7 +96,7 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 # Pfetch Configuration
-export PF_INFO="ascii title os host kernel uptime pkgs memory"
+export PF_INFO="ascii os host kernel uptime pkgs memory"
 export PF_SEP=" >"
 export PF_ASCII="manjaro"
 
@@ -106,7 +106,7 @@ export PF_COL2=7
 export PF_COL3=1
 
 # Ranger stop default
-export RANGER_LOAD_DEFAULT_RC=false
+export RANGER_LOAD_DEFAULT_RC=true
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -118,6 +118,7 @@ alias zshconfig="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias br="br -dhp"
 alias ls="exa -l"
+alias la="exa -la"
 alias vim="nvim"
 alias vi="nvim"
 alias pacman="pacman --color=always"

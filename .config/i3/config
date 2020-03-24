@@ -41,6 +41,9 @@ bindsym $mod+Shift+q kill
 # Fullscreen application launcher
 bindsym $mod+Shift+Return exec rofi -no-config -show drun -theme ~/.config/rofi/themes/appsmenu.rasi
 
+# Application launcher
+bindsym $mod+Shift+d exec rofi -no-config -show drun -theme ~/.config/rofi/themes/appslist.rasi
+
 # Lock screen
 bindsym $mod+Shift+e exec betterlockscreen -l blur 
 
@@ -223,12 +226,12 @@ for_window [class=".*"] border pixel 0
 
 # change borders
 bindsym $mod+u border none
-bindsym $mod+y border pixel 2 
+bindsym $mod+y border pixel 1 
 bindsym $mod+n border normal
 
 # COLORS
-set $sd #494e75E6
-set $pm #222436E6  
+set $sd #222436B3
+set $pm #7a88cfB3  
  
 # window colors                 border  backgr text indicator child_border                                                                    
 client.focused_inactive         $sd     $sd    $pm  $sd       $sd

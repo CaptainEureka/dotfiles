@@ -61,10 +61,10 @@ entry {
   border-radius: 10px;
 }
 #element.selected {
-  background-color: @alt-primary;
+  background-color: @alpha-black-bold;
   color: @text-color;
   border: 3px solid;
-  border-color: @primary;
+  border-color: @black-bold;
   border-radius: 10px;
 }
 

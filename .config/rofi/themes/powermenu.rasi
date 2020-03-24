@@ -33,7 +33,7 @@ entry {
   padding: 20px;
   location: center;
   background-color: @background-select;
-  border-color: @primary;
+  border-color: @black-bold;
   font: "JetBrains Mono 14";
 }
 
@@ -53,7 +53,6 @@ listview {
 }
 
 element {
-  background-color: @background-alt;
   border-radius: 10;
   padding: 10px -25px 10px;
 }
@@ -70,10 +69,10 @@ element alternate.active {
 }
 
 element selected {
-  background-color: @alt-primary;
+  background-color: @alpha-black-bold;
   color: @text-color;
   border: 3px solid;
-  border-color: @primary;
+  border-color: @black-bold;
   border-radius: 10px;
 }
 
