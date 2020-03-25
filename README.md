@@ -1,7 +1,7 @@
 #### CaptainEureka's personal config files
 ---
 This is a collection of my personal configuration files.
-I'm currently using Manjaro with `i3-gaps-rounded` and KDE/Plasma
+I'm currently using Manjaro with `i3-gaps-rounded` and KDE/Plasma (until I properly configure multi-monitor support in `i3`.)
 
 Some details about my setup:
 
@@ -21,21 +21,28 @@ Some details about my setup:
 ---
 
 ##### Notable features
+---
 
 - Rofi menus: scrot, power, web-search, wifi, appmenu (fullscreen), applist, wallpaper-switcher
 
 ##### Screenshots
+---
 
 *Some scrots*
 
 ##### Fonts
+---
 
 ##### Keybinds
+---
 
 ##### To-Do:
-
+---
 - [x] Implement **u/adi1090x** Rofi dummy window for background blur effect.
 - [ ] Implement theme-switcher
   - [ ] Input should be YAML/JSON
   - [ ] Should use `Jinja2` engine or just use `Pywal`? -> decided to just use 'pywal' for templating (might try out 'wpg')
-
+- [ ] Refactor `rofi` and `polybar` configs to get rid of duplicated code
+      eg. `rofi` configs contain `theme.rasi` files which themselves contain much that can be placed in a 
+          `base.rasi` file which unifies all. Making the `-no-config` flag in most `rofi` scripts unnecessary.
+      eg. for `polybar` would like a more elegant solution for handling bars over multiple wms.
