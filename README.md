@@ -34,8 +34,8 @@ Some details about my setup:
 
 ##### To-Do:
 
-- Implement **u/adi1090x** Rofi dummy window for background blur effect.
-- Implement theme-switcher
-  - Input should be YAML
-  - Should use `Jinja2` engine or just use `Pywal`?
+- [x] Implement **u/adi1090x** Rofi dummy window for background blur effect.
+- [ ] Implement theme-switcher
+  - [ ] Input should be YAML/JSON
+  - [ ] Should use `Jinja2` engine or just use `Pywal`? -> decided to just use 'pywal' for templating (might try out 'wpg')
 
