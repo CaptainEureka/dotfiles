@@ -1,4 +1,4 @@
-#### CaptainEureka's personal config files
+## CaptainEureka's personal config files
 ---
 This is a collection of my personal configuration files.
 I'm currently using Manjaro with `i3-gaps-rounded` and KDE/Plasma (until I properly configure multi-monitor support in `i3`.)
@@ -20,23 +20,23 @@ Some details about my setup:
 
 ---
 
-##### Notable features
+### Notable features
 ---
 
 - Rofi menus: scrot, power, web-search, wifi, appmenu (fullscreen), applist, wallpaper-switcher
 
-##### Screenshots
+### Screenshots
 ---
 
 *Some scrots*
 
-##### Fonts
+### Fonts
 ---
 
-##### Keybinds
+### Keybinds
 ---
 
-##### To-Do:
+### To-Do:
 ---
 - [x] Implement **u/adi1090x** Rofi dummy window for background blur effect.
 - [ ] Implement theme-switcher
