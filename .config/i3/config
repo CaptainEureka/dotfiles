@@ -19,11 +19,11 @@ floating_modifier $mod
 # AUTOSTART #
 #############
 
-exec_always --no-startup-id wal -Rqn
 exec_always --no-startup-id nitrogen --restore
+exec_always --no-startup-id wal -Rq
 exec_always --no-startup-id picom -b --dbus --experimental-backends --backend glx
 # exec_always --no-startup-id compton --dbus
-exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id launch-polybar
 exec_always --no-startup-id dunst
 exec --no-startup-id nm-applet
 exec_always --no-startup-id libinput-gestures
@@ -42,7 +42,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+Shift+Return exec rofi -no-config -show drun -theme ~/.config/rofi/themes/appsmenu.rasi
 
 # Application launcher
-bindsym $mod+Shift+d exec rofi -no-config -show drun -theme ~/.config/rofi/themes/appslist.rasi
+bindsym $mod+d exec rofi -no-config -show drun -theme ~/.config/rofi/themes/appslist.rasi
 
 # Lock screen
 bindsym $mod+Shift+e exec betterlockscreen -l blur 
@@ -51,7 +51,7 @@ bindsym $mod+Shift+e exec betterlockscreen -l blur
 bindsym $mod+Shift+Ctrl+e exec cacheblck
 
 # Rofi power menu [shutdown, reboot, lock, suspend, logout]
-bindsym $mod+Shift+p exec ./.config/rofi/scripts/powermenu.sh
+bindsym $mod+Shift+p exec $HOME/.config/rofi/scripts/powermenu.sh
 
 # Search DuckDuckGo with Rofi
 bindsym $mod+Shift+s exec $HOME/.config/rofi/scripts/rofi-search.sh

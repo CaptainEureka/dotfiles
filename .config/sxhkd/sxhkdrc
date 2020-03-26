@@ -31,7 +31,7 @@ super + shift + p
     ./.config/rofi/scripts/powermenu.sh
 
 # rofi web search
-supe + shift + s
+super + shift + s
     $HOME/.config/rofi/scripts/rofi-search.sh
 
 # rofi alt tab
@@ -41,6 +41,10 @@ super + shift + tab
 # rofi-config-menu
 super + shift + z
     rofi-config-menu
+
+# rofi pywal theme switch
+super + shift + w
+    rofi-wal
 
 #
 # bspwm hotkeys
