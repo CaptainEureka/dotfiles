@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-wpg -nrs 'Magnetar_1300Lede.jpg' 'Magnetar_1300Lede.jpg'
+wpg -rs 'misc-0002.jpg' 'misc-0002.jpg'

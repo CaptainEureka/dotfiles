@@ -1,0 +1,43 @@
+* {{
+    /* Special values */
+    background: rgba({background.rgb}, 0.7);
+    background-selected: rgba({foreground.rgb}, 0.075);
+    border-color: rgba({color8.rgb},0.3);
+    text-color: {foreground};
+    
+    /* All term colors */
+    black-normal: {color0};
+    red-normal: {color1};
+    green-normal: {color2};
+    yellow-normal: {color3};
+    blue-normal: {color4};
+    magenta-normal: {color5};
+    cyan-normal: {color6};
+    white-normal: {color7};
+    black-bold: {color8};
+    red-bold: {color9};
+    green-bold: {color10};
+    yellow-bold: {color11};
+    blue-bold: {color12};
+    magenta-bold: {color13};
+    cyan-bold: {color14};
+    white-bold: {color15};
+
+    /* Term colors with transparency */
+    alpha-black-normal: rgba({color0.rgb},0.5);
+    alpha-red-normal: rgba({color1.rgb},0.5);
+    alpha-green-normal: rgba({color2.rgb},0.5);
+    alpha-yellow-normal: rgba({color3.rgb},0.5);
+    alpha-blue-normal: rgba({color4.rgb},0.5);
+    alpha-magenta-normal: rgba({color5.rgb},0.5);
+    alpha-cyan-normal: rgba({color6.rgb},0.5);
+    alpha-white-normal: rgba({color7.rgb},0.5);
+    alpha-black-bold: rgba({color8.rgb},0.5);
+    alpha-red-bold: rgba({color9.rgb},0.5);
+    alpha-green-bold: rgba({color10.rgb},0.5);
+    alpha-yellow-bold: rgba({color11.rgb},0.5);
+    alpha-blue-bold: rgba({color12.rgb},0.5);
+    alpha-magenta-bold: rgba({color13.rgb},0.5);
+    alpha-cyan-bold: rgba({color14.rgb},0.5);
+    alpha-white-bold: rgba({color15.rgb},0.5);
+}}

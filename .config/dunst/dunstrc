@@ -31,7 +31,7 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "320x320+1440+69"
+    geometry = "640x360+1280+69"
     #geometry = "230x0-20+67"
     #79  geometry = "100x150-17+17"
 
@@ -45,12 +45,12 @@
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing window manager is
     # present (e.g. xcompmgr, compiz, etc.).
-    transparency = 10
+    transparency = 30
 
     # The height of the entire notification.  If the height is smaller
     # than the font height and padding combined, it will be raised
     # to the font height and padding.
-    notification_height = 54
+    notification_height = 120
 
     # Draw a line of "separator_height" pixel height between two
     # notifications.
@@ -61,7 +61,7 @@
     padding = 5
 
     # Horizontal padding.
-    horizontal_padding = 5
+    horizontal_padding = 10
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
@@ -327,4 +327,20 @@
 #    summary = *twitter.com*
 #    urgency = normal
 #
+[Spotify]
+	appname = Spotify
+	frame_color = "#222436"
+	timeout = 5
+
+[Firefox]
+    appname = Firefox
+    frame_color = "#222436"
+    timeout = 5
+
+[Ferdi]
+    appname = Ferdi
+    frame_color = "#222436"
+    timeout = 5
+
+
 # vim: ft=cfg

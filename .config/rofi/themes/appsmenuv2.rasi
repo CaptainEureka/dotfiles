@@ -1,0 +1,112 @@
+configuration {
+  show-icons: true;
+  icon-theme: "Papirus Dark";
+  font: "Fantasque Sans Mono 14";
+  drun-display-format: "{icon} {name}";
+  location: 2;
+  fullscreen: true;
+  bw: 0;
+  fake-transparency: false;
+  dpi: 192;
+}
+
+@import "~/.cache/wal/rofi-wal.rasi"
+
+* {
+  background-color: transparent;
+}
+
+#window {
+    transparency: "real";
+    fullscreen: true;
+}
+
+#mainbox {
+  children: [ inputbar , listview ];
+  background-color: @background;
+  margin: 15% 15%;
+  /*height: 55%;
+  width: 30%;
+  location: center;
+  anchor: center;
+  x-offset: 0;
+  y-offset: 0;*/
+  border-radius: 12;
+}
+
+#inputbar {
+  children: [ entry ];
+  padding: 4;
+  background-color: @black-normal;
+}
+
+#prompt {
+  enabled: false;
+}
+
+#entry {
+  expand: true;
+  border-radius: 12;
+  padding: 1% 0 1% 0;
+  location: center;
+  horizontal-align: 0.5;
+  vertical-align: 0.5;
+  placeholder: "Search Applications";
+  placeholder-color: @text-color;
+  blink: true;
+}
+
+#listview {
+  columns: 6;
+  padding: 8;
+  spacing: 0;
+  dynamic: true;
+}
+
+#element {
+  border-radius: 12;
+  padding: 12;
+  orientation: vertical;
+}
+
+element normal.urgent,
+element alternate.urgent {
+  background-color: @urgent;
+}
+
+element normal.active,
+element alternate.active {
+  background-color: @background;
+  color: @text-color;
+}
+
+element selected {
+  background-color: @alpha-black-bold;
+  color: @text-color;
+  border: 3px solid;
+  border-color: @black-bold;
+}
+
+element selected.urgent {
+  background-color: @alpha-red-normal;
+  padding: 10px -25px 10px -25px;
+  margin: 10px;
+}
+
+element selected.active {
+  background-color: @background;
+  color: @text-color;
+}
+
+element-icon {
+  size: 7%;
+  horizontal-align: 0.5;
+  vertical-align: 0.0;
+}
+
+element-text {
+  padding: 10 0 10 0;
+  text-color: rgba(0,0,0,0); 
+  horizontal-align: 0.0;
+  vertical-align: 0.0;
+}
