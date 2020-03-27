@@ -1,5 +1,5 @@
 ## CaptainEureka's personal config files
----
+
 This is a collection of my personal configuration files.
 I'm currently using Manjaro with `i3-gaps-rounded` and KDE/Plasma (until I properly configure multi-monitor support in `i3`.)
 
@@ -17,31 +17,31 @@ Some details about my setup:
 - **Launcher/run**: [rofi](https://github.com/davatorium/rofi)
 - **Bar**: [polybar](https://github.com/polybar/polybar)
 - **Browser**: Firefox (with my personal [userChrome.css](https://github.com/CaptainEureka/firefox-vibrancy))
----
+
 
 ### Notable features
----
+
 **Rofi menus**:
 | websearch | powermenu   | appdrawer | configs quick access  | pywal/theme-switcher  |
 | --- | --- | --- | --- | --- |
-| "websearch" | "powermenu" | ![](Screenshots/2604-i3-rofi-full_001.png)| ![](Screenshots/2604-i3-rofi-configs.png)| "theme switcher" |
+| "websearch" | ![](Screenshots/2604-i3-rofi-power.png) | ![](Screenshots/2604-i3-rofi-full_001.png)| ![](Screenshots/2604-i3-rofi-configs.png)| "theme switcher" |
 
 ###  Screenshots
----
+
 ![](Screenshots/2604-i3.png)
 
 ### Fonts
----
+
 - **Terminal**: `Fantasque Sans Mono`
 - **Polybar**: `Fantasque Sans Mono`, `Hack Nerd Font Mono`
 - **System**: `Lato`
 
 ### Keybinds
----
+
 Coming soon!
 
 ### To-Do:
----
+
 - [ ] Implement theme-switcher script
   - [ ] Theme files should be YAML/JSON 
   - [ ] Should use `Jinja2` engine or just use `Pywal`? -> decided to just use 'pywal' for templating (might try out 'wpg')
