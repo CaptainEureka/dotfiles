@@ -15,12 +15,15 @@ set $alt Mod1
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
 
+# Font
+font pango:Fantasque Sans Mono Regular 14
+
 #############
 # AUTOSTART #
 #############
 
-exec_always --no-startup-id nitrogen --restore
 exec_always --no-startup-id wal -Rq
+exec_always --no-startup-id nitrogen --restore
 exec_always --no-startup-id picom -b --dbus --experimental-backends --backend glx
 # exec_always --no-startup-id compton --dbus
 exec_always --no-startup-id launch-polybar
@@ -270,11 +273,11 @@ border_radius 10
 # gaps outer all plus 5
 
 # Smart gaps (gaps used if only more than one container on the workspace)
-smart_gaps off 
+# smart_gaps on
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace) 
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-smart_borders off
+# smart_borders off
 
 # Press $mod+Shift+g to enter the gap mode. 
 # Choose o or i for modifying outer/inner gaps.
