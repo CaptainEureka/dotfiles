@@ -16,8 +16,7 @@ Some details about my setup:
 - **File Manager**: [nnn](https://github.com/jarun/nnn/) / [thunar](https://git.xfce.org/xfce/thunar/)
 - **Launcher/run**: [rofi](https://github.com/davatorium/rofi)
 - **Bar**: [polybar](https://github.com/polybar/polybar)
-- **Browser**: Firefox (with my personal [userChrome.css](https://github.com/CaptainEureka/)) Coming Soon!
-
+- **Browser**: Firefox (with my personal [userChrome.css](https://github.com/CaptainEureka/firefox-vibrancy))
 ---
 
 ### Notable features
