@@ -16,31 +16,35 @@ Some details about my setup:
 - **File Manager**: [nnn](https://github.com/jarun/nnn/) / [thunar](https://git.xfce.org/xfce/thunar/)
 - **Launcher/run**: [rofi](https://github.com/davatorium/rofi)
 - **Bar**: [polybar](https://github.com/polybar/polybar)
-- **Browser**: Firefox (with my personal [userChrome.css](https://github.com/CaptainEureka/))
+- **Browser**: Firefox (with my personal [userChrome.css](https://github.com/CaptainEureka/)) Coming Soon!
 
 ---
 
 ### Notable features
 ---
+**Rofi menus**:
+| websearch | powermenu   | appdrawer | configs quick access  | pywal/theme-switcher  |
+| --- | --- | --- | --- | --- |
+| "websearch" | "powermenu" | ![](Screenshots/2604-i3-rofi-full_001.png)| ![](Screenshots/2604-i3-rofi-configs.png)| "theme switcher" |
 
-- Rofi menus: scrot, power, web-search, wifi, appmenu (fullscreen), applist, wallpaper-switcher
-
-### Screenshots
+###  Screenshots
 ---
-
-*Some scrots*
+![](Screenshots/2604-i3.png)
 
 ### Fonts
 ---
+- **Terminal**: `Fantasque Sans Mono`
+- **Polybar**: `Fantasque Sans Mono`, `Hack Nerd Font Mono`
+- **System**: `Lato`
 
 ### Keybinds
 ---
+Coming soon!
 
 ### To-Do:
 ---
-- [x] Implement **u/adi1090x** Rofi dummy window for background blur effect.
-- [ ] Implement theme-switcher
-  - [ ] Input should be YAML/JSON
+- [ ] Implement theme-switcher script
+  - [ ] Theme files should be YAML/JSON 
   - [ ] Should use `Jinja2` engine or just use `Pywal`? -> decided to just use 'pywal' for templating (might try out 'wpg')
 - [ ] Refactor `rofi` and `polybar` configs to get rid of duplicated code
       eg. `rofi` configs contain `theme.rasi` files which themselves contain much that can be placed in a 
