@@ -17,6 +17,7 @@ configuration {
   border-radius: 10px;
   border: 2px;
   border-color: @border-color;
+  width: 20%;
 }
 inputbar,
 prompt,

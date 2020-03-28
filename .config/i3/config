@@ -22,8 +22,8 @@ font pango:Fantasque Sans Mono Regular 14
 # AUTOSTART #
 #############
 
-exec_always --no-startup-id wal -Rq
 exec_always --no-startup-id nitrogen --restore
+exec_always --no-startup-id wal -Rq
 exec_always --no-startup-id picom -b --dbus --experimental-backends --backend glx
 # exec_always --no-startup-id compton --dbus
 exec_always --no-startup-id launch-polybar
@@ -58,12 +58,13 @@ bindsym $mod+Shift+p exec $HOME/.config/rofi/scripts/powermenu.sh
 
 # Search DuckDuckGo with Rofi
 bindsym $mod+Shift+s exec $HOME/.config/rofi/scripts/rofi-search.sh
+bindsym XF86Search exec $HOME/.config/rofi/scripts/rofi-search.sh
 
 # Rofi window control switcher
 bindsym $mod+Tab exec rofi-alt-tab
 
 # Set wallpaper with Rofi and generate/set theme with pywal
-bindsym $mod+shift+w exec wal-switch 
+bindsym $mod+shift+w exec theme-switcher 
 
 # Menu for quick navigation to common configs
 bindsym $mod+shift+z exec rofi-config-menu
@@ -83,6 +84,9 @@ bindsym XF86AudioPlay exec playerctl play
 bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
+
+# Rofi Screenshot Utility
+bindsym Print exec rofi-screenshot
 
 #######################
 # DEFAULT i3 KEYBINDS #

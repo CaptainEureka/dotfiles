@@ -108,6 +108,9 @@ export PF_COL3=1
 # Ranger stop default
 export RANGER_LOAD_DEFAULT_RC=true
 
+# NNN plugins
+export NNN_PLUG='o:fzopen;g:getplugs;i:imgview;t:imgthumb;w:wall'
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -116,7 +119,6 @@ export RANGER_LOAD_DEFAULT_RC=true
 # Example aliases
 alias zshconfig="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
-alias br="br -dhp"
 alias ls="exa -l"
 alias la="exa -la"
 alias vim="nvim"
@@ -139,5 +141,3 @@ alias wtcfg="vim ~/.config/wal/templates"
 alias kittycfg="vim ~/.config/kitty/kitty.conf"
 alias mozcfg="vim ~/.mozilla/firefox/"
 alias config='/usr/bin/git --git-dir=/home/mk/.dotfiles/ --work-tree=/home/mk'
-
-source /home/mk/.config/broot/launcher/bash/br

@@ -11,22 +11,24 @@
 
 #### AUTO START ####
 sxhkd &
+dunst -config $HOME/.config/dunst/dunstrc & 
+dunstify "Dunst" 'Dunst started successfully' &
 launch-polybar &
 wal -Rq &
-# nitrogen --restore &
+nitrogen --restore &
 picom --dbus --experimental-backends --backend glx &
 
 #### MONITORS ####
 bspc monitor -d 1 2 3 4 5 6 7 8 
 
 #### BSPWM CONFIG ####
-bspc config border_width        0
+bspc config border_width        3
 bspc config window_gap          20
 bspc config top_padding         0
 bspc config bottom_padding      0
 bspc config right_padding       0
 bspc config left_padding        0
-bspc config border_radius       10
+# bspc config border_radius       20
 
 xsetroot -cursor_name left_ptr
 bspc config pointer_modifier mod4
@@ -44,7 +46,7 @@ bspc config pointer_follows_focus   false
 
 # source pywal colors
 . "${HOME}/.cache/wal/colors.sh"
-bspc config normal_border_color     "$color7"
+bspc config normal_border_color     "$color0"
 bspc config active_border_color     "$color8"
 bspc config focused_border_color    "$color4"
 bspc config presel_feeback_color    "$color4"
