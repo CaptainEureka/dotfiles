@@ -22,7 +22,6 @@ font pango:Fantasque Sans Mono Regular 14
 # AUTOSTART #
 #############
 
-exec_always --no-startup-id nitrogen --restore
 exec_always --no-startup-id wal -Rq
 exec_always --no-startup-id picom -b --dbus --experimental-backends --backend glx
 # exec_always --no-startup-id compton --dbus

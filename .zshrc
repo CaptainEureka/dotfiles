@@ -123,8 +123,7 @@ alias ls="exa -l"
 alias la="exa -la"
 alias vim="nvim"
 alias vi="nvim"
-alias pacman="pacman --color=always"
-alias yay="yay --color=always"
+alias yay="yay --aur"
 
 # shortcuts
 alias i3cfg="vim ~/.config/i3/config"
