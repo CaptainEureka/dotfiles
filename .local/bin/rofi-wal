@@ -1,0 +1,30 @@
+#!/bin/bash
+rofi_cmd="rofi -no-config -theme ~/.config/rofi/themes/rofi-wal.rasi -dmenu -p pywal"
+
+wal_func () {
+    wals_path=$HOME/Pictures/wallpapers
+
+    my_choice="$( exa -l $wals_path | awk '{print $7}' | $rofi_cmd -lines 5)"
+
+    theme_path=$(find "$wals_path/$my_choice" -iregex '.*.\(jpg\|jpeg\|png\)' -type f  | shuf | sxiv -otbi )
+    
+    $wal_cmd $theme_path \
+        && dunstify 'wal-switch' 'Pywal: wallpaper changed, colors updated' \
+        || dunstify 'wal-switch' 'Pywal: no wallpaper given, aborting...'
+}
+
+theme_type=$(echo -e "dark\nlight" | $rofi_cmd -lines 2)
+
+case $theme_type in
+    dark)
+        wal_cmd="wal --saturate 0.3 -q -i"
+        wal_func
+        ;;
+    light)
+        wal_cmd="wal --saturate 0.3 -l -q -i"
+        wal_func 
+        ;;
+    *)
+        echo "No command given, quitting."
+        ;;
+esac

@@ -1,0 +1,12 @@
+#!/bin/sh
+
+height="$2"
+width="$1"
+
+screenw=$(xdpyinfo | awk -F'[ x]+' '/dimensions:/{print $3}')
+screenh=$(xdpyinfo | awk -F'[ x]+' '/dimensions:/{print $4}')
+
+windowx=$(("$screenw"/2-"$width"/2))
+windowy=$(("$screenh"/2-"$height"/2))
+
+echo "$width"x"$height"+"$windowx"+"$windowy"

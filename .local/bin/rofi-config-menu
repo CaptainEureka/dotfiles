@@ -1,0 +1,45 @@
+#!/bin/bash
+
+## OPTIONS ##
+my_options="i3\nawesome\nbspwm\nsxhkd\npolybar\nrofi\npicom\nwal\nkitty\nfirefox-beta\nfirefox-dev\nfirefox-default"
+
+choice="$(echo -e "$my_options" | rofi -no-config -theme ~/.config/rofi/themes/rofi-config-menu.rasi -dmenu -p Configs)"
+
+case "$choice" in
+    i3)
+        kitty -e nvim ~/.config/i3/config 
+        ;;
+    awesome)
+        kitty -e nvim ~/.config/awesome
+        ;;
+    bspwm)
+        kitty -e nvim ~/.config/bspwm/bspwmrc
+        ;;
+    sxhkd)
+        kitty -e nvim ~/.config/sxhkd/sxhkdrc
+        ;;
+    polybar)
+        kitty -e nvim ~/.config/polybar/config.ini
+        ;;
+    rofi)
+        kitty -e nvim ~/.config/rofi
+        ;;
+    picom)
+        kitty -e nvim ~/.config/picom/picom.conf
+        ;;
+    wal)
+        kitty -e nvim ~/.config/wal
+        ;;
+    firefox-beta)
+        kitty -e nvim ~/.mozilla/firefox/g5hz6bnm.default-beta/chrome
+        ;;
+    firefox-default)
+        kitty -e nvim ~/.mozilla/firefox/5679d2dz.default-release/chrome
+        ;;
+    firefox-dev)
+        kitty -e nvim ~/.mozilla/firefox/89h219s6.dev-edition-default/chrome   
+        ;;
+    kitty)
+        kitty -e nvim ~/.config/kitty
+        ;;
+esac

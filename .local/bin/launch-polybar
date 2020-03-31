@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Terminate already running bar instances
+killall -q polybar
+
+# Wait until the processes have been shut down
+while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+
+# Launch Polybar, using default config location ~/.config/polybar/config
+
+# Check which wm is running and launch appropriate bar
+current_session=$(echo $DESKTOP_SESSION | cut -d '/' -f 5)
+
+case $current_session in
+    bspwm)
+        polybar mybar -c ~/.config/polybar/config-bspwm.ini &
+        echo "Polybar launched..."
+        ;;
+    i3)
+        polybar mybar -c ~/.config/polybar/config.ini &
+        echo "Polybar launched..."
+        ;;
+    *)
+        echo "X session unknown! Aborting..."
+        ;;
+esac

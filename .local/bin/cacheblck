@@ -1,0 +1,3 @@
+#!/usr/bin/sh
+CACHE_DIR=$(cat $HOME/.cache/wal/wal)
+betterlockscreen -u $CACHE_DIR

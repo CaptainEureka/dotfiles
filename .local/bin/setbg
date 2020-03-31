@@ -1,0 +1,10 @@
+#!/bin/bash
+
+[ -f "$1" ] && xwallpaper --zoom "$1" && dunstify 'wallpaper changed ...'
+
+[ -d "$1" ] \
+    && find "$1" -iregex '.*.\(jpg\|jpeg\|png\)' -type f | shuf | sxiv -otbi | xwallpaper --zoom \
+    && dunstify 'wallpaper changed...'
+
+[ "$1" = "-wal" ] \
+    && wal -i "$@"

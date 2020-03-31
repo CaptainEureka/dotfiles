@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# commands
+rofi_cmd="rofi -no-config -theme ~/.config/rofi/themes/rofi-wal.rasi -dmenu -p theme"
+
+themes="moonlightII\npalenight\nmanta\nbubbles\npywal\n"
+
+theme_choice=$(echo -e $themes | $rofi_cmd -lines 5)
+
+case $theme_choice in
+    moonlightII)
+        wal -qf "$HOME/terminal-themes/moonlightII/moonlightII.json"
+        ;;
+    palenight)
+        wal -qf "$HOME/terminal-themes/palenight/palenight.json" \
+            && nitrogen --set-scaled "$HOME/terminal-themes/palenight/palenight.jpg"
+        ;;
+    bubbles)
+        wal -qf "$HOME/terminal-themes/bubbles/bubbles.json"
+        ;;
+    manta)
+        wal -qf "$HOME/terminal-themes/manta/manta.json" \
+            && nitrogen --set-scaled "$HOME/terminal-themes/manta/manta.jpg"
+        ;;
+    pywal)
+        rofi-wal
+        ;;
+    *)
+        echo 'No command given, quitting...'
+        ;;
+esac
+
+# post-commands
+relaunch-dunst

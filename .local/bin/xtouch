@@ -1,0 +1,5 @@
+#!/bin/bash
+touch "$1"
+chmod +x "$1"
+echo "$0: file $1 created with exec permissions"
+echo -e '#!/bin/bash' > "$1"
