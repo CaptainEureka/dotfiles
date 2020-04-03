@@ -26,6 +26,10 @@ super + Escape
 super + shift + { p, s, a, z, w}
     rofi-{powermenu,search,alt-tab,config-menu,themer}
 
+# description: Rofi bw menu
+super + shift + b
+	bwmenu
+
 # description: Rofi maim utility
 Print
     rofi-maim
