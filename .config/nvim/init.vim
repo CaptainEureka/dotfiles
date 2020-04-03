@@ -12,8 +12,12 @@ call plug#begin(g:plugged_home)
   " Better Visual Guide
   Plug 'Yggdroot/indentLine'
 
-  " syntax check
+  " Syntax
   Plug 'w0rp/ale'
+  Plug 'hail2u/vim-css3-syntax'
+  Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+  Plug 'vim-python/python-syntax'
+  Plug 'kovetskiy/sxhkd-vim'
 
   " Autocomplete
   Plug 'ncm2/ncm2'
@@ -29,7 +33,8 @@ call plug#begin(g:plugged_home)
   Plug 'drewtempelmeyer/palenight.vim'
   Plug 'dylanaraps/wal.vim'
   Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
-  
+  Plug 'CaptainEureka/moonlight.vim'
+
   " Vim Cheatsheet
   Plug 'liuchengxu/vim-which-key'
 
@@ -45,8 +50,20 @@ call plug#begin(g:plugged_home)
   " YAML support
   Plug 'stephpy/vim-yaml'
 
-  " Extended CSS support
-  Plug 'hail2u/vim-css3-syntax'
+   " Hexokinase
+   Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
+
+  " Commentary (auto comment)
+  Plug 'tpope/vim-commentary'
+
+  " Tabular (easy vertical alignment)
+  Plug  'godlygeek/tabular' 
+  
+  " QuickScope easy hoirzontal motions
+  Plug 'unblevable/quick-scope'
+
+  " Goyo minimal distraction free writing (고요)
+  Plug 'junegunn/goyo.vim'
 
   call plug#end()
 
@@ -60,22 +77,22 @@ filetype plugin indent on
 syntax on
 syntax enable
 
+" True Color Support if it's avaiable in terminal
+if has("termguicolors")
+   set termguicolors
+endif
+
 " colorscheme
 set background=dark
-colorscheme wal
+" colorscheme wal
+colorscheme moonlight
+
+" Italics for moonlight
+let g:moonlight_terminal_italics = 1
 
 " Italics for palenight
 "let g:palenight_terminal_italics = 1
 
-" True Color Support if it's avaiable in terminal
-"if has("termguicolors")
-"    set termguicolors
-"endif
-"if has("gui_running")
-"  set guicursor=n-v-c-sm:block,i-ci-ve:block,r-cr-o:blocks
-"endif
-
-"set termguicolors
 set number
 set relativenumber
 set hidden
@@ -142,7 +159,7 @@ let g:airline_right_sep = ''
 let g:airline#extensions#ale#enabled = 1
 let airline#extensions#ale#error_symbol = 'E:'
 let airline#extensions#ale#warning_symbol = 'W:'
-let g:airline_theme = 'wal' 
+let g:airline_theme = 'moonlight' 
 
 " .rasi syntax
 au BufNewFile,BufRead /*.rasi setf css
@@ -158,3 +175,50 @@ nmap <silent> <A-Up> :wincmd k<CR>
 nmap <silent> <A-Down> :wincmd j<CR>
 nmap <silent> <A-Left> :wincmd h<CR>
 nmap <silent> <A-Right> :wincmd l<CR>
+
+" Hexokinase configuration
+let g:Hexokinase_highlighters = ['backgroundfull']
+" let g:Hexokinase_highlighters = [ 'virtual' ]
+let g:Hexokinase_optInPatterns = 'full_hex,rgb,rgba,hsl,hsla,colour_names'
+
+" vim-python/python syntax
+let g:python_highlight_all = 1
+
+" Semshi semantic python syntax
+let g:semshi#filetypes = ['python']
+let g:semshi#excluded_hl_groups = ['local']
+let g:semshi#mark_selected_nodes = 1
+let g:semshi#no_default_builtin_highlight = v:true
+let g:semshi#simplify_markip = v:true
+let g:semshi#error_sign = v:true
+let g:semshi#error_sign_delay = 1.5
+let g:semshi#always_update_all_highlights = v:false
+let g:semshi#tolerate_syntax_errors = v:true
+let g:semshi#update_delat_factor = 0.0
+
+function MyCustomSemshiHighlights()
+    hi semshiLocal           ctermfg=209 guifg=#ff757f
+	hi semshiGlobal          ctermfg=214 guifg=#ff995e
+	hi semshiImported        ctermfg=214 guifg=#ff995e cterm=bold gui=bold
+	hi semshiParameter       ctermfg=75  guifg=#82aaff
+	hi semshiParameterUnused ctermfg=117 guifg=#86e1fc cterm=underline gui=underline
+	hi semshiFree            ctermfg=218 guifg=#fca7ea
+	hi semshiBuiltin         ctermfg=207 guifg=#c597f9
+	hi semshiAttribute       ctermfg=49  guifg=#4fd6be
+	hi semshiSelf            ctermfg=249 guifg=#a9b8e8
+	hi semshiUnresolved      ctermfg=226 guifg=#c3e88d cterm=underline gui=underline
+	hi semshiSelected        ctermfg=231 guifg=#ffffff ctermbg=161 guibg=#ff5370
+
+	hi semshiErrorSign       ctermfg=231 guifg=#ffffff ctermbg=160 guibg=#ff2046
+	hi semshiErrorChar       ctermfg=231 guifg=#ffffff ctermbg=160 guibg=#ff2046
+    sign define semshiError text=E> texthl=semshiErrorSign
+endfunction
+autocmd FileType python call MyCustomSemshiHighlights()
+
+" QuickScope configuration
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+augroup qs_colors
+  autocmd!
+  autocmd ColorScheme * highlight QuickScopePrimary guifg='#c3e88d' gui=underline ctermfg=155 cterm=underline
+  autocmd ColorScheme * highlight QuickScopeSecondary guifg='#86e1fc' gui=underline ctermfg=81 cterm=underline
+augroup END
