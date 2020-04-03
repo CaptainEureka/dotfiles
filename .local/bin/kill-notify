@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# quit/kill process then notify
+
+pkill "$@" && dunstify 'Killed '"$@"

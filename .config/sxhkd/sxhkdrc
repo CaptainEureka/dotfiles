@@ -1,8 +1,8 @@
-#  ______  ___   _ _  ______  
-# / ___\ \/ / | | | |/ /  _ \ 
+#  ______  ___   _ _  ______
+# / ___\ \/ / | | | |/ /  _ \
 # \___ \\  /| |_| | ' /| | | |
 #  ___) /  \|  _  | . \| |_| |
-# |____/_/\_\_| |_|_|\_\____/ 
+# |____/_/\_\_| |_|_|\_\____/
 #
 # --- Autho: CaptainEureka
 # --- GitHub: https://github.com/CaptainEureka
@@ -12,39 +12,39 @@
 
 # description: terminal emulator
 super + Return
-    kitty	
+	kitty	
 
-# description: rofi runner 
-super + shift + {Return,d} 
+# description: rofi runner
+super + shift + {Return,d}
 	rofi-{appsmenu,appslist}
 
-# description: make sxhkd reload its configuration files:
+# description: reload sxhkd config
 super + Escape
 	pkill -USR1 -x sxhkd
 
-# description: Rofi menu scripts
-super + shift + { p, s, a, z, w}
-    rofi-{powermenu,search,alt-tab,config-menu,themer}
+# description: rofi-{powermenu,search,config-menu,themer,bwmenu}
+super + shift + { p, s, z, w, b }
+	{rofi-powermenu,rofi-search,rofi-config-menu,rofi-themer,bwmenu}
 
-# description: Rofi bw menu
-super + shift + b
-	bwmenu
-
-# description: Rofi maim utility
+# description: Screenshot
 Print
-    rofi-maim
+	rofi-maim
 
-# description: Screen brightness controls
+# description: bindings cheatsheet
+super + shift + o
+	sxhkd-bindings
+
+# Brightness controls
 {_,super + ,super + shift + }XF86MonBrightness{Up,Down}
-    light{ -A 10, -A 5, -S 100, -U 10, -U 5, -S 10 }
+	light{ -A 10, -A 5, -S 100, -U 10, -U 5, -S 10 }
 
-# description: Audio controls
+# Audio controls
 {_,super + }XF86Audio{Mute,RaiseVolume,LowerVolume}
-    amixer sset Master {toggle, mute, 5%+, 1%+, 5%-, 1%-}
+	amixer sset Master {toggle, mute, 5%+, 1%+, 5%-, 1%-}
 
-# description: Media player controls
+# Media player controls
 XF86Audio{Play,Pause,Next,Prev}
-    playerctl {play,pause,next,previous}
+	playerctl {play,pause,next,previous}
 
 #
 # bspwm specific hotkeys
@@ -54,19 +54,19 @@ XF86Audio{Play,Pause,Next,Prev}
 super + shift + {Escape,r}
 	bspc {quit,wm -r}
 
-# description: close and kill
+# description: close or kill
 super + {_,shift + }q
-    bspc node -{c,k}
+	bspc node -{c,k}
 
-# description: alternate between the tiled and monocle layout
+# description: toggle monocle layout
 super + m
 	bspc desktop -l next
 
-# description: send the newest marked node to the newest preselected node
+# description: newest marked node -> newest preselected node
 super + y
 	bspc node newest.marked.local -n newest.!automatic.local
 
-# description: swap the current node and the biggest node
+# description: current node <-> biggest node
 super + g
 	bspc node -s biggest
 
@@ -74,19 +74,19 @@ super + g
 # state/flags
 #
 
-# description: set the window state
+# description: set window state
 super + {t,shift + t}
 	bspc node -t {tiled,pseudo_tiled}
 
-# description: toggle floating window and center
+# description: toggle floating
 super + shift + space
-    bspc node focused.floating -t tiled || (bspc node focused.tiled -t floating && xdo resize -w 1600 -h 900 && xdo move -x 800 -y 450)
+	bspc node focused.floating -t tiled || (bspc node focused.tiled -t floating && xdo resize -w 1600 -h 900 && xdo move -x 800 -y 450)
 
 # description: toggle fullscreen
 super + f
 	bsp-fullscreen
 
-# description: set the node flags
+# description: set node flags (marked,locked,sticky,private)
 super + ctrl + {m,x,y,z}
 	bspc node -g {marked,locked,sticky,private}
 
@@ -94,33 +94,33 @@ super + ctrl + {m,x,y,z}
 # focus/swap
 #
 
-# description: focus the node in the given direction
+# description: focus node in given direction
 super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
-# description: focus the node for the given path jump
+# description: focus node for given path jump (parent,brother,first,second) 
 super + {p,b,comma,period}
 	bspc node -f @{parent,brother,first,second}
 
-# description: focus the next/previous node in the current desktop
+# description: focus next/previous node
 super + {_,shift + }c
 	bspc node -f {next,prev}.local
 
-# description: focus the next/previous desktop in the current monitor
+# description: focus next/previous desktop
 super + bracket{left,right}
 	bspc desktop -f {prev,next}.local
 
-# description: focus the last node/desktop
+# description: focus last node/desktop
 super + {grave,Tab}
 	bspc {node,desktop} -f last
 
-# description: focus the older or newer node in the focus history
+# description: focus older or newer node in history
 super + {o,i}
 	bspc wm -h off; \
 	bspc node {older,newer} -f; \
 	bspc wm -h on
 
-# description: focus or send to the given desktop
+# description: focus/send to given desktop
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
@@ -128,19 +128,19 @@ super + {_,shift + }{1-9,0}
 # preselect
 #
 
-# description: preselect the direction
+# description: preselect direction
 super + ctrl + {h,j,k,l}
 	bspc node -p {west,south,north,east}
 
-# description: preselect the ratio
+# description: preselect ratio
 super + ctrl + {1-9}
 	bspc node -o 0.{1-9}
 
-# description: cancel the preselection for the focused node
+# description: cancel preselection for focused node
 super + ctrl + space
 	bspc node -p cancel
 
-# description: cancel the preselection for the focused desktop
+# description: cancel preselection for focused desktop
 super + ctrl + shift + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
@@ -148,14 +148,14 @@ super + ctrl + shift + space
 # move/resize
 #
 
-# description: expand a window by moving one of its side outward
+# description: expand window outward
 super + alt + {h,j,k,l}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
-# description: contract a window by moving one of its side inward
+# description: contract window inward
 super + alt + shift + {h,j,k,l}
 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
-# description: move a floating window
+# description: move floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}

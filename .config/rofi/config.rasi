@@ -19,9 +19,9 @@ configuration {
 }
 
 #mainbox {
-  children: [ inputbar , listview ];
+  children: [ inputbar, listview ];
   background-color: @background;
-  margin: 25% 35%;
+  margin: 25% 15%;
   border-radius: 12;
 }
 

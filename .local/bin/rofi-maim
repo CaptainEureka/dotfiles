@@ -1,32 +1,40 @@
 #!/bin/sh
+# This is a modified version of Luke Smith's maim script to work with rofi
+# Credit: https://github.com/voidrice/dotfiles
 
-# This is bound to Shift+PrintScreen by default, requires maim. It lets you
+# This is bound to PrintScreen by default, requires maim. It lets you
 # choose the kind of screenshot to take, including copying the image or even
-# highlighting an area to copy. scrotcucks on suicidewatch right now.
+# highlighting an area to copy. 
 
-dest_dir=$HOME/Screenshots
+dest_dir="$HOME/Screenshots"
 
-options="selection\ncurrent window\nfull screen\nselection (copy)\ncurrent window (copy)\nfull screen (copy)"
+options="selection\nactive window\nfull screen\nselection (copy)\nactive window (copy)\nfull screen (copy)"
 
 choice=$( echo -e $options | rofi -no-config -theme ~/.config/rofi/themes/rofi-screenshot.rasi -l 6 -dmenu -i -fuzzy -p "Screenshot" )
 
 case $choice in
     "selection")
-        maim -s $dest_dir/pic-selected-"$(date '+%y%m%d-%H%M-%S').png"
+        maim -s $dest_dir/pic-selected-"$(date '+%y%m%d-%H%M-%S').png" \
+            && dunstify -t 10 "Screenshot taken..." 'saving to '$dest_dir
         ;;
 	"active window") 
-        maim -i "$(xdotool getactivewindow)" $dest_dir/pic-window-"$(date '+%y%m%d-%H%M-%S').png" 
+        maim -i $(xdotool getactivewindow) $dest_dir/pic-window-"$(date '+%y%m%d-%H%M-%S').png" \
+            && dunstify -t 10 "Screenshot taken..." 'saving to '$dest_dir
         ;;
 	"full screen") 
-        maim $dest_dir/pic-full-"$(date '+%y%m%d-%H%M-%S').png" 
+        maim $dest_dir/pic-full-"$(date '+%y%m%d-%H%M-%S').png" \
+            && dunstify -t 10 "Screenshot taken..." 'saving to '$dest_dir
         ;;
 	"selection (copy)")
-        maim -s | xclip -selection clipboard -t image/png
+        maim -s | xclip -selection clipboard -t image/png \
+            && dunstify -t 10 "Screenshot taken..." 'copied to clipboard'
         ;;
 	"active window (copy)")
-        maim -i "$(xdotool getactivewindow)" | xclip -selection clipboard -t image/png
+        maim -i "$(xdotool getactivewindow)" | xclip -selection clipboard -t image/png \
+            && dunstify -t 10 "Screenshot taken..." 'copied to clipboard'
         ;;
 	"full screen (copy)")
-        maim | xclip -selection clipboard -t image/png
+        maim | xclip -selection clipboard -t image/png \
+            && dunstify -t 10 "Screenshot taken..." 'copied to clipboard'
         ;;
 esac
