@@ -11,9 +11,10 @@
 
 #### AUTO START ####
 sxhkd &
-dunst -config $HOME/.config/dunst/dunstrc & 
-launch-polybar
-wal -Rq &
+pkill dunst &
+launch-dunst &
+launch-polybar &
+wpg -s melanie-dretvic-wtVgiTlUAU4-unsplash.jpg &
 picom --dbus --experimental-backends --backend glx &
 libinput-gestures &
 
@@ -44,12 +45,13 @@ bspc config gapless_monocle         false
 bpsc config focus_follows_pointer   true
 bspc config click_to_focus          button1 
 bspc config single_monocle          true
+
 #### BSPWM COLORS ####
 
 # source pywal colors
 . "${HOME}/.cache/wal/colors.sh"
-bspc config normal_border_color     "$color0"
-bspc config active_border_color     "$color0"
+bspc config normal_border_color     "#363855"
+bspc config active_border_color     "#363855"
 bspc config focused_border_color    "$color4"
 bspc config presel_feedback_color   "$color4"
 bspc config urgent_border_color     "$color9"

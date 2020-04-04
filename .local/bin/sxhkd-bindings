@@ -1,6 +1,10 @@
 #!/bin/bash
 
 # A rofi based utility to show sxhkd keybinding
-# extend with xdotool
+# extend with xdotool to run the given hotkey
 
-grep -i -A 1 description "$HOME/.config/sxhkd/sxhkdrc" | sed -e 's/--/\ /g' -e 's/# description:\ //gI' | awk '!(NR%3==0)' | awk 'NR%2{printf "%s: ",$0;next;}1' "$1" | column -t -s':' | rofi -dmenu -p 'Hotkeys'
+grep -i -A 1 description .config/sxhkd/sxhkdrc | \
+    sed '/--/d;s/# description:\ //gI' | \
+        awk 'NR%2{printf "%s: ",$0;next;}1' "$1" | \
+            column -t -s':' | \
+                rofi -dmenu "HotKeys"

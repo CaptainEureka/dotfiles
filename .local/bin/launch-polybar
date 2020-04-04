@@ -13,7 +13,13 @@ current_session=$(echo $DESKTOP_SESSION | cut -d '/' -f 5)
 
 case $current_session in
     bspwm)
-        polybar mybar -c ~/.config/polybar/config-bspwm.ini &
+        if type "xrandr"; then
+            for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+                MONITOR=$m polybar --reload mybar -c ~/.config/polybar/config-bspwm.ini &
+            done
+        else
+            polybar mybar -c ~/.config/polybar/config-bspwm.ini &
+        fi
         echo "Polybar launched..."
         ;;
     i3)

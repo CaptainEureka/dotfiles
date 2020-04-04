@@ -12,29 +12,44 @@ options="selection\nactive window\nfull screen\nselection (copy)\nactive window 
 
 choice=$( echo -e $options | rofi -no-config -theme ~/.config/rofi/themes/rofi-screenshot.rasi -l 6 -dmenu -i -fuzzy -p "Screenshot" )
 
+countdown() {
+    dunstify -t 600 "Screenshot" "... in 3 seconds"
+    sleep 1  
+    dunstify -t 600 "Screenshot" "... in 2 seconds"
+    sleep 1
+    dunstify -t 600 "Screenshot" "... in 1 second"
+    sleep 1
+}
+
 case $choice in
     "selection")
+        countdown
         maim -s $dest_dir/pic-selected-"$(date '+%y%m%d-%H%M-%S').png" \
-            && dunstify -t 10 "Screenshot taken..." 'saving to '$dest_dir
+            && dunstify -t 1500 "Screenshot taken..." 'saving to '$dest_dir
         ;;
 	"active window") 
+        countdown
         maim -i $(xdotool getactivewindow) $dest_dir/pic-window-"$(date '+%y%m%d-%H%M-%S').png" \
-            && dunstify -t 10 "Screenshot taken..." 'saving to '$dest_dir
+            && dunstify -t 1500 "Screenshot taken..." 'saving to '$dest_dir
         ;;
 	"full screen") 
+        countdown
         maim $dest_dir/pic-full-"$(date '+%y%m%d-%H%M-%S').png" \
-            && dunstify -t 10 "Screenshot taken..." 'saving to '$dest_dir
+            && dunstify -t 1500 "Screenshot taken..." 'saving to '$dest_dir
         ;;
 	"selection (copy)")
+        countdown
         maim -s | xclip -selection clipboard -t image/png \
-            && dunstify -t 10 "Screenshot taken..." 'copied to clipboard'
+            && dunstify -t 1500 "Screenshot taken..." 'copied to clipboard'
         ;;
 	"active window (copy)")
+        countdown
         maim -i "$(xdotool getactivewindow)" | xclip -selection clipboard -t image/png \
-            && dunstify -t 10 "Screenshot taken..." 'copied to clipboard'
+            && dunstify -t 1500 "Screenshot taken..." 'copied to clipboard'
         ;;
 	"full screen (copy)")
+        countdown
         maim | xclip -selection clipboard -t image/png \
-            && dunstify -t 10 "Screenshot taken..." 'copied to clipboard'
+            && dunstify -t 1500 "Screenshot taken..." 'copied to clipboard'
         ;;
 esac
