@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Terminate all running dunst instances
+if [ $(pgrep dunst) ] 
+then
+    killall -q dunst
+    # Wait for the processes to shut down
+    while pgrep -u $UID -x dunst >/dev/null; do sleep 1; done
+fi
+
+# (Re)launch dunst server
+dunst -config ~/.config/dunst/dunstrc &
+dunstify 'Dunst' 'Dunst started successfully'
