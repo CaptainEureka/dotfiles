@@ -119,7 +119,7 @@ set shiftwidth=4
 noremap <F3> :Autoformat<CR>
 
 " NERDTree configs
-map <C-,> :NERDTreeToggle<CR>
+map <F2> :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
