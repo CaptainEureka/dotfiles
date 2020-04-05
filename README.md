@@ -26,6 +26,6 @@ Some details about my setup:
 
 ###  Screenshots
 
-| `i3-gaps-rounded` | ![i3wm](Screenshots/2604-i3.png) |
-| -----------------------  | -------------------------------------|
+| `i3-gaps-rounded` | ![i3wm](Screenshots/2604-i3.png)                  |
+| :---------------- | ------------------------------------------------- |
 | `bspwm-rounded`   | ![bspwm](Screenshots/pic-full-200405-1205-35.png) |

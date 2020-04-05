@@ -31,8 +31,12 @@ Print
 	rofi-maim
 
 # description: bindings cheatsheet
-super + shift + o
+super + F1
 	sxhkd-bindings
+
+# description: show/hide notification center
+super + shift + n
+	toggle-notifc
 
 # Brightness controls
 {_,super + ,super + shift + }XF86MonBrightness{Up,Down}
