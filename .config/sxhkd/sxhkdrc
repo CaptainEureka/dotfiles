@@ -44,7 +44,8 @@ super + shift + n
 
 # Audio controls
 {_,super + }XF86Audio{Mute,RaiseVolume,LowerVolume}
-	amixer sset Master {toggle, mute, 5%+, 1%+, 5%-, 1%-}
+	changeVol {toggle, mute, 5%+, 1%+, 5%-, 1%-}
+	# amixer sset Master {toggle, mute, 5%+, 1%+, 5%-, 1%-}
 
 # Media player controls
 XF86Audio{Play,Pause,Next,Prev}

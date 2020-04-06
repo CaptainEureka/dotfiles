@@ -32,7 +32,7 @@ configuration {
 }
 
 #prompt {
-  enabled: true;
+  enabled: false;
 }
 
 #entry {
