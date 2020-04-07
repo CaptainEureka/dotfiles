@@ -12,10 +12,10 @@ volume="$(amixer sget Master | tail -1 | awk '{print $5}' | sed 's/[^0-9]*//g')"
 mute="$(amixer sget Master | tail -1 | awk '{print $6}' | sed 's/[^a-z]*//g')"
 if [[ $volume == 0 || "$mute" == "off" ]]; then
     # Show the sound muted notification
-    dunstify -a "changeVolume" -u low -i "~/.config/dunst/volume-full-w.png" -r "$msgId" "Volume muted" 
+    dunstify -a "changeVolume" -u low -i "~/.config/dunst/volume-mute-w.png" -r "$msgId" "Volume muted" 
 else
     # Show the volume notification
-    dunstify -a "changeVolume" -u low -i "~/.config/dunst/volume-mute-w.png" -r "$msgId" \
+    dunstify -a "changeVolume" -u low -i "~/.config/dunst/volume-full-w.png" -r "$msgId" \
     "Volume: ${volume}%" "$(getProgressString 10 "<b> </b>" " " $volume)"
 fi
 
