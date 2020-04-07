@@ -3,7 +3,7 @@
 ## OPTIONS ##
 my_options="i3\nawesome\nbspwm\nsxhkd\npolybar\nrofi\npicom\nwal\nkitty\nfirefox-beta\nfirefox-dev\nfirefox-default"
 
-choice="$(echo -e "$my_options" | rofi -no-config -theme $HOME/config/rofi/themes/rofi-config-menu.rasi -dmenu -p Configs)"
+choice="$(echo -e "$my_options" | rofi -no-config -theme $HOME/.config/rofi/themes/rofi-config-menu.rasi -dmenu -p Configs)"
 
 case "$choice" in
     i3)
