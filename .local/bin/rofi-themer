@@ -3,7 +3,7 @@
 theme_dir="$HOME/terminal-themes"
 
 # commands
-rofi_cmd="rofi -no-config -theme ~/.config/rofi/themes/rofi-wal.rasi -dmenu -p theme"
+rofi_cmd="rofi -no-config -theme $HOME/.config/rofi/themes/rofi-wal.rasi -dmenu -p theme"
 
 get_themes () {
     echo "pywal"
