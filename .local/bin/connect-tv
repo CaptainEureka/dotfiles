@@ -1,0 +1,20 @@
+#!/bin/bash
+
+case "$1" in
+    "HD")
+        xrandr --output DP1 --mode 1920x1080 --rate 60 --right-of eDP1
+        pactl set-card-profile 0 output:hdmi-stereo
+        ;;
+    "4K")
+        xrandr --output DP1 --mode 3840x2160 --rate 30 --right-of eDP1
+        pactl set-card-profile 0 output:hdmi-stereo
+        ;;
+    "--duplicate")
+        xrandr --output DP1 --auto --same-as eDP1
+        ;;
+    "-d")
+        xrandr --output DP1 --off --output eDP1 --auto
+        pactl set-card-profile 0 output:analog-stereo
+        ;;
+esac
+

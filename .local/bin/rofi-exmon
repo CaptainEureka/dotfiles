@@ -1,0 +1,26 @@
+#!/bin/sh
+
+options="4K\n"
+options+="HD\n"
+options+="Duplicate\n"
+options+="Disconnect"
+
+uchoice=$(echo -e $options | rofi -no-config -dmenu "Ex Mon")
+
+case $uchoice in
+    "4K")
+        connect-tv 4K
+        ;;
+    "HD")
+        connect-tv HD
+        ;;
+    "Duplicate")
+        connect_tv --duplicate
+        ;;
+    "Disconnect")
+        connect-tv -d
+        ;;
+    *)
+        dunstify "rofi-exmon" "No command given, quitting..."
+        ;;
+esac

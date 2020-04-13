@@ -34,10 +34,6 @@ Print
 super + shift + o
 	sxhkd-bindings
 
-# description: show/hide notification center
-super + shift + n
-	toggle-notifc
-
 # Brightness controls
 {_,super + ,super + shift + }XF86MonBrightness{Up,Down}
 	changeBright{ -A 10, -A 5, -S 100, -U 10, -U 5, -S 10 }
@@ -77,7 +73,7 @@ super + g
 
 # description: dynamic padding
 super + {minus, equal}
-	bsp_gaps {-, +}
+	bsp-gaps {-, +}
 #
 # state/flags
 #
