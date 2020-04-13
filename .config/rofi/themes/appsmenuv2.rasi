@@ -25,12 +25,6 @@ configuration {
   children: [ inputbar , listview ];
   background-color: @background;
   margin: 15% 15%;
-  /*height: 55%;
-  width: 30%;
-  location: center;
-  anchor: center;
-  x-offset: 0;
-  y-offset: 0;*/
   border-radius: 12;
 }
 
@@ -69,33 +63,11 @@ configuration {
   orientation: vertical;
 }
 
-element normal.urgent,
-element alternate.urgent {
-  background-color: @urgent;
-}
-
-element normal.active,
-element alternate.active {
-  background-color: @background;
-  color: @text-color;
-}
-
 element selected {
   background-color: @alpha-black-bold;
   color: @text-color;
   border: 3px solid;
   border-color: @black-bold;
-}
-
-element selected.urgent {
-  background-color: @alpha-red-normal;
-  padding: 10px -25px 10px -25px;
-  margin: 10px;
-}
-
-element selected.active {
-  background-color: @background;
-  color: @text-color;
 }
 
 element-icon {
@@ -106,7 +78,7 @@ element-icon {
 
 element-text {
   padding: 10 0 10 0;
-  text-color: rgba(0,0,0,0); 
+  text-color: rgba(200, 211, 245, 0.5); 
   horizontal-align: 0.0;
   vertical-align: 0.0;
 }

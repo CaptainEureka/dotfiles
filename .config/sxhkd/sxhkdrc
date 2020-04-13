@@ -31,7 +31,7 @@ Print
 	rofi-maim
 
 # description: bindings cheatsheet
-super + F1
+super + shift + o
 	sxhkd-bindings
 
 # description: show/hide notification center
@@ -40,7 +40,7 @@ super + shift + n
 
 # Brightness controls
 {_,super + ,super + shift + }XF86MonBrightness{Up,Down}
-	light{ -A 10, -A 5, -S 100, -U 10, -U 5, -S 10 }
+	changeBright{ -A 10, -A 5, -S 100, -U 10, -U 5, -S 10 }
 
 # Audio controls
 {_,super + }XF86Audio{Mute,RaiseVolume,LowerVolume}
@@ -75,6 +75,9 @@ super + y
 super + g
 	bspc node -s biggest
 
+# description: dynamic padding
+super + {minus, equal}
+	bsp_gaps {-, +}
 #
 # state/flags
 #

@@ -8,6 +8,7 @@ call plug#begin(g:plugged_home)
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'scrooloose/nerdtree'
+  Plug '~/.vim/plugged/base16-wal'
 
   " Better Visual Guide
   Plug 'Yggdroot/indentLine'
@@ -122,6 +123,9 @@ noremap <F3> :Autoformat<CR>
 map <F2> :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
+
+" Auto open NERDTree on open
+autocmd vimenter * NERDTree
 
 " NCM2
 augroup NCM2

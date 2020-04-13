@@ -3,17 +3,13 @@ configuration {
   icon-theme: "Papirus Dark";
   font: "Fantasque Sans Mono Nerd Font 14";
   drun-display-format: "{name}";
-  location: 2;
-  fullscreen: true;
-  bw: 0;
-  fake-transparency: false;
   dpi: 192;
 }
 
 @import "~/.cache/wal/rofi-wal.rasi"
 
 * {
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(0,0,0,0);
 }
 
 #window {
@@ -26,6 +22,8 @@ configuration {
   background-color: @background;
   margin: 25% 35%;
   border-radius: 12;
+  border: 1px; 
+  border-color: @black-normal;
 }
 
 #inputbar {
@@ -40,7 +38,7 @@ configuration {
 
 #textbox-prompt-colon {
     expand: false;
-    str: "";
+    str: " ";
     padding: 1% 1%;
     font: "Fantasque Sans Mono Nerd Font 12";
 }

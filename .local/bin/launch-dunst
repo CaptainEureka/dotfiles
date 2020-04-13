@@ -1,11 +1,14 @@
 #!/bin/bash
 
 # Terminate all running dunst instances
-if [ $(pgrep dunst) ] 
+if [[ $(pgrep dunst) ]] 
 then
+    echo "dunst is running, killing..."
     killall -q dunst
     # Wait for the processes to shut down
     while pgrep -u $UID -x dunst >/dev/null; do sleep 1; done
+else
+    echo "dunst is not running"
 fi
 
 # (Re)launch dunst server
