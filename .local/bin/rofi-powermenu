@@ -1,19 +1,18 @@
 #!/bin/bash
 
-rofi_command="rofi -no-config -theme $HOME/.config/rofi/themes/powermenu.rasi"
+rofi_command="rofi -theme powermenu"
 
 ### Options ###
-power_off=""
-reboot=""
-lock=""
-suspend="⏾"
-log_out="﫼"
-# Variable passed to rofi
-options="$power_off\n$reboot\n$lock\n$suspend\n$log_out"
+power_off=""
+reboot=""
+lock=""
+log_out=""
+
+options="$power_off\n$reboot\n$lock\n$log_out"
 
 current_session=$(echo $DESKTOP_SESSION | cut -d '/' -f 5)
 
-chosen="$(echo -e "$options" | $rofi_command -dmenu -selected-row 2)"
+chosen="$(echo -e "$options" | $rofi_command -dmenu -selected-row 2 -l 4)"
 case $chosen in
     $power_off)
         systemctl poweroff
@@ -23,11 +22,6 @@ case $chosen in
         ;;
     $lock)
         betterlockscreen -l blur
-        ;;
-    $suspend)
-        mpc -q pause
-        amixer set Master mute
-        systemctl suspend
         ;;
     $log_out)
         if [ $current_session = 'i3' ]
@@ -40,5 +34,3 @@ case $chosen in
         fi
         ;;
 esac
-
-# echo $DESKTOP_SESSION

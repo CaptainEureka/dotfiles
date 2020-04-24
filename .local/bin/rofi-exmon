@@ -5,7 +5,7 @@ options+="HD\n"
 options+="Duplicate\n"
 options+="Disconnect"
 
-uchoice=$(echo -e $options | rofi -no-config -dmenu "Ex Mon")
+uchoice=$(echo -e $options | rofi -theme appslist -dmenu "Ex Mon")
 
 case $uchoice in
     "4K")

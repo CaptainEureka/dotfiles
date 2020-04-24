@@ -15,15 +15,15 @@ case $current_session in
     bspwm)
         if type "xrandr"; then
             for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-                MONITOR=$m polybar --reload mybar -c ~/.config/polybar/config-bspwm.ini &
+                MONITOR=$m polybar --reload bspwm-bar -c ~/.config/polybar/config.ini &
             done
         else
-            polybar mybar -c ~/.config/polybar/config-bspwm.ini &
+            polybar bspwm-bar -c ~/.config/polybar/config.ini &
         fi
         echo "Polybar launched..."
         ;;
     i3)
-        polybar mybar -c ~/.config/polybar/config.ini &
+        polybar i3-bar -c ~/.config/polybar/config.ini &
         echo "Polybar launched..."
         ;;
     *)

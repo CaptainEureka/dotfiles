@@ -10,7 +10,7 @@ dest_dir="$HOME/Screenshots"
 
 options="selection\nactive window\nfull screen\nselection (copy)\nactive window (copy)\nfull screen (copy)"
 
-choice=$( echo -e $options | rofi -no-config -theme $HOME/.config/rofi/themes/rofi-screenshot.rasi -l 6 -dmenu -i -fuzzy -p "Screenshot" )
+choice=$( echo -e $options | rofi -theme rofi-maim -l 6 -dmenu -i -fuzzy -p "Screenshot" )
 
 countdown() {
     dunstify -t 600 "Screenshot" "... in 3 seconds"

@@ -1,13 +1,19 @@
 #!/usr/bin/env bash
 
-if [[ "$1" = "+" ]]; then
-	bspc config -d focused left_padding $((`bspc config -d focused left_padding ` + 16 ))
-	bspc config -d focused right_padding $((`bspc config -d focused right_padding ` + 16 ))
-	bspc config -d focused top_padding $((`bspc config -d focused top_padding ` + 9 ))
-	bspc config -d focused bottom_padding $((`bspc config -d focused bottom_padding ` + 9 ))
-else
-	bspc config -d focused left_padding $((`bspc config -d focused left_padding ` - 16 ))
-	bspc config -d focused right_padding $((`bspc config -d focused right_padding ` - 16 ))
-	bspc config -d focused top_padding $((`bspc config -d focused top_padding ` - 9 ))
-	bspc config -d focused bottom_padding $((`bspc config -d focused bottom_padding ` - 9 ))
-fi
+cur_gap=$(bspc config -d focused window_gap)
+def_gap=$(bspc config window_gap)
+
+case "$1" in
+    "-P")
+        bspc config -d focused window_gap $((${cur_gap} + "$2"))
+        ;;
+    "-M")
+        bspc config -d focused window_gap $((${cur_gap} - "$2"))
+        ;;
+    "-S")
+        bspc config -d focused window-gap "$2"
+        ;;
+    *)
+        bspc config -d focused window_gap $def_gap 
+        ;;
+esac

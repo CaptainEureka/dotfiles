@@ -5,7 +5,7 @@ NODES=$(bspc query -N -n .hidden -d focused)
 
 # Show bar if it's running
 if pgrep "polybar"; then
-  polybar-msg cmd show
+    xdo show -N Polybar
 fi
 
 for node in $NODES; do

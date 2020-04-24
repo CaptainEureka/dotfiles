@@ -1,3 +1,0 @@
-#!/bin/bash
-
-rofi -show-icons -no-config -theme $HOME/.config/rofi/themes/rofi-alt-tab.rasi -show window -lines 5

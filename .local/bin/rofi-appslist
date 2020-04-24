@@ -1,4 +1,4 @@
 #!/bin/sh
 
-rofi -no-config -no-lazy-grab -show drun -theme $HOME/.config/rofi/themes/appslist.rasi
+rofi -show drun -theme appslist
 

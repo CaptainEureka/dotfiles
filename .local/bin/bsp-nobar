@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+polybar_show() {
+    xdo show -N Polybar
+    bspc config top_padding 64
+}
+
+polybar_hide() {
+    xdo hide -N Polybar
+    bspc config top_padding 0
+}
+
+
+if [[ $(pgrep "polybar") ]]; then
+    case "$1" in
+        "show")
+            polybar_show
+            ;;
+        "hide")
+            polybar_hide
+            ;;
+        "toggle")
+            if [[ $(bspc config top_padding) != 0 ]]; then
+                polybar_hide
+            else
+                polybar_show
+            fi
+            ;;
+        *)
+            echo "No command given, exiting..."
+            exit 1
+            ;;
+    esac
+else
+    echo "Polybar is not running, exiting..."
+fi

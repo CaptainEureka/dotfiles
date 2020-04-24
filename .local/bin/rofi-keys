@@ -7,4 +7,4 @@ grep -i -A 1 description .config/sxhkd/sxhkdrc | \
     sed '/--/d;s/# description:\ //gI' | \
         awk 'NR%2{printf "%s: ",$0;next;}1' "$1" | \
             column -t -s':' | \
-                rofi -no-config -theme $HOME/.config/rofi/themes/rofi-sxhkd.rasi -dmenu -p "Keybinds"
+                rofi -theme rofi-keys -dmenu -p "Keybinds"
