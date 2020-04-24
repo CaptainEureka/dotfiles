@@ -1,93 +1,15 @@
 configuration {
-  font: "Fantasque Sans Mono 14";
-  location: 2;
-  fullscreen: true;
-  bw: 0;
-  fake-transparency: false;
+  font: "Lato 14";
+  icon-theme: "Papirus Dark";
+  drun-display-format: "{name}";
   dpi: 192;
+  show-icons: true;
+  modi: "drun";
+  fixed-num-lines: true;
 }
 
 @import "~/.cache/wal/rofi-wal.rasi"
 
 * {
   background-color: transparent;
-}
-
-#window {
-    transparency: "real";
-    fullscreen: true;
-}
-
-#mainbox {
-  children: [ inputbar, listview ];
-  background-color: @background;
-  margin: 25% 15%;
-  border-radius: 12;
-}
-
-#inputbar {
-  children: [ entry ];
-  padding: 4;
-  background-color: @black-normal;
-}
-
-#prompt {
-  enabled: false;
-}
-
-#entry {
-  expand: true;
-  border-radius: 12;
-  padding: 1%;
-  blink: true;
-}
-
-#listview {
-  padding: 1%;
-  spacing: 2;
-  dynamic: true;
-}
-
-#element {
-  border-radius: 12;
-  padding: 12;
-}
-
-element normal.urgent,
-element alternate.urgent {
-  background-color: @urgent;
-}
-
-element normal.active,
-element alternate.active {
-  background-color: @background;
-  color: @text-color;
-}
-
-element selected {
-  background-color: @alpha-black-bold;
-  color: @text-color;
-  border: 3px solid;
-  border-color: @black-bold;
-}
-
-element selected.urgent {
-  background-color: @alpha-red-normal;
-  padding: 10px -25px 10px -25px;
-  margin: 10px;
-}
-
-element selected.active {
-  background-color: @background;
-  color: @text-color;
-}
-
-element-icon {
-  size: 3%;
-}
-
-element-text {
-  padding: 10 0 10 0;
-  text-color: @text-color; 
-  vertical-align: 0.5;
 }

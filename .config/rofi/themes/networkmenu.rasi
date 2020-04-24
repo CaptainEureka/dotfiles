@@ -1,70 +1,68 @@
-/**
- * This theme is intended for a 8 items list menu with a headerbar.
- */
-configuration {
-  show-icons: false;
-  columns: 1;
-  dpi: 192;
-}
-@import "~/.cache/wal/rofi-wal.rasi"
 * {
-  background-color: transparent;
-  font: "Hack Nerd Font Mono 14";
+    background-color: transparent;
 }
+
 #window {
-  background-color: @background;
-  padding: 20px;
-  border-radius: 10px;
-  border: 2px;
-  border-color: @border-color;
+    transparency: "real";
+    fullscreen: true;
 }
-inputbar,
-prompt,
-textbox-prompt-colon,
-entry {
-  background-color: transparent;
+
+#mainbox {
+    children: [ inputbar, listview ];
+    background-color: @background;
+    margin: 23% 35%;
+    border-radius: 12px;
+    border: 1px;
+    border-color: @black-normal;
 }
+
 #inputbar {
-  children: [ prompt, textbox-prompt-colon, entry ];
-  margin: 10px;
-  border-radius: 10px;
+    children: [ prompt, textbox-prompt-colon, entry ];
+    padding: 4;
+    background-color: @black-normal;
 }
+
 #prompt {
-  padding: 10px 20px;
-  background-color: transparent;
-  color: @text-color;
-  border-radius: 10px;
+    enabled: false;    
 }
+
 #textbox-prompt-colon {
-  expand: false;
-  str: " 直 ";
-  color: @text-color;
-  padding: 10px 20px;
-  font: "Hack Nerd Font Mono 14";
-}
-#listview {
-  lines: 9;
-  columns: 1;
+    expand: false;
+    str: "  ";
+    padding: 1% 1%;
+    font: "Fantasque Sans Mono Nerd Font 14";
 }
 
 #entry {
-  background-color: transparent;
-  color: @black-bold;
-  padding: 10px 20px;
-  border-radius: 10px;
-}
-#element {
-  padding: 20px;
-  margin: 5px;
-  border: 0px;
-  border-color: @background;
-  border-radius: 10px;
-}
-#element.selected {
-  background-color: @alpha-black-bold;
-  color: @text-color;
-  border: 3px solid;
-  border-color: @black-bold;
-  border-radius: 10px;
+    expand: true;
+    border-radius: 12px;
+    padding: 0.88% 0.5% ;
+    location: center;
+    horizontal-align: 0.45;
+    vertical-align: 0.5;
+    placeholder: "Network Manager";
+    blink: false;
 }
 
+#listview {
+    lines: 9;
+    columns: 1;
+    margin: 1.78% 1%;
+    spacing: 2;
+    dynamic: true;
+}
+
+#element {
+    padding: 12px;
+    border-radius: 12px;
+}
+
+#element.selected {
+    background-color: @background-selected;
+    color: @text-color;
+}
+
+element-text {
+    padding: 10 0 10 0;
+    vertical-align: 0.5;
+}

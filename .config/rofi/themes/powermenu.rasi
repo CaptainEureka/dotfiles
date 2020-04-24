@@ -1,90 +1,44 @@
-configuration {
-  show-icons: true;
-  font: "Hack Nerd Font Mono 60";
-  drun-display-format: "{name}";
-  dpi: 192;
-}
-
 * {
-  background-color: transparent;
+    font: "Feather 64";
+    background-color: @background; 
 }
 
-@import "~/.cache/wal/rofi-wal.rasi"
-
-window {
-  transparency: "real";
-  background-color: @background;
-  location: center;
-  anchor: center;
-  border-radius: 10;
-  border: 2px;
-  border-color: @border-color;
-  padding: 20px;
+#window {
+    transparency: "real";
+    fullscreen: true;
 }
 
-prompt {
-  enabled: false;
+#mainbox {
+    children: [ inputbar, listview ];
+    background-color: transparent;
+    location: center;
+    margin: 43% 30%;
+    anchor: center;
 }
 
-entry {
-  expand: true;
-  margin: 20px 0px 0px 0px;
-  border-radius: 25;
-  padding: 20px;
-  location: center;
-  background-color: @background-select;
-  border-color: @black-bold;
-  font: "JetBrains Mono 14";
+#prompt { enabled: false; }
+#entry { enabled: false; }
+#inputbar { enabled: false; }
+
+#listview {
+    background-color: transparent;
+    columns: 5;
+    lines: 1;
+    fixed-height: 0;
 }
 
-mainbox {
-  children: [ inputbar, listview ];
+#element {
+    background-color: transparent;
+    border-radius: 12px;
+    padding: 20px 0px 20px -136px;
 }
 
-inputbar {
-  enabled: false;
+#element.selected {
+    background-color: @background-selected;
+    border-radius: 12px;
 }
 
-listview {
-  columns: 5;
-  lines: 1;
-  fixed-height: 0;
-  spacing: 20px;
+element-text {
+    vertical-align: 0.5;
+    horizontal-align: 0.5;
 }
-
-element {
-  border-radius: 10;
-  padding: 10px -25px 10px;
-}
-
-element normal.urgent,
-element alternate.urgent {
-  background-color: @urgent;
-}
-
-element normal.active,
-element alternate.active {
-  background-color: @background;
-  color: @selected-text-color;
-}
-
-element selected {
-  background-color: @alpha-black-bold;
-  color: @text-color;
-  border: 3px solid;
-  border-color: @black-bold;
-  border-radius: 10px;
-}
-
-element selected.urgent {
-  background-color: @urgent;
-}
-
-element selected.active {
-  background-color: @background;
-  color: @selected-text-color;
-}
-
-/* element-text {
-  horizontal-align: 0.5;
-} */

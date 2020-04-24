@@ -106,11 +106,11 @@ element alternate.active {
 }
 
 element selected.normal {
-	background-color:   @alpha-black-bold;
+	background-color:   @background-selected;
 	text-color:      	@text-color;
 	padding:            16px;
-	border:             2px solid;
-	border-color:	    @black-bold;
+	/* border:             2px solid; */
+	/* border-color:	    @black-bold; */
 }
 
 element-icon {

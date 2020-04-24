@@ -16,23 +16,27 @@ configuration {
   border-color: @border-color;
   dynamic: true;
 }
+
 inputbar,
 prompt,
 textbox-prompt-colon,
 entry {
   background-color: transparent;
 }
+
 #inputbar {
   children: [ prompt, textbox-prompt-colon, entry ];
   margin: 10px;
   border-radius: 10px;
 }
+
 #prompt {
   padding: 10px 20px;
   background-color: transparent;
   color: @text-color;
   border-radius: 10px;
 }
+
 #textbox-prompt-colon {
   expand: false;
   str: "";
@@ -40,6 +44,7 @@ entry {
   padding: 10px 20px;
   font: "Hack Nerd Font Mono 14";
 }
+
 #listview {
   lines: 10;
   dynamic: true;
@@ -52,6 +57,7 @@ entry {
   padding: 10px 20px;
   border-radius: 10px;
 }
+
 #element {
   padding: 20px;
   margin: 5px;
@@ -59,11 +65,11 @@ entry {
   border-color: @background;
   border-radius: 10px;
 }
+
 #element.selected {
-  background-color: @alpha-black-bold;
+  background-color: @background-selected;
   color: @text-color;
-  border: 3px solid;
-  border-color: @black-bold;
+  /* border: 3px solid; */
+  /* border-color: @black-bold; */
   border-radius: 10px;
 }
-
