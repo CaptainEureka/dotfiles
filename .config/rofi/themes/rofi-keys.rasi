@@ -1,0 +1,60 @@
+* {
+    font: "Fantasque Sans Mono 14";
+    background-color: transparent;
+}
+
+#window {
+    transparency: "real";
+    fullscreen: true;
+}
+
+#mainbox {
+    children: [ inputbar, listview ];
+    background-color: @background;
+    margin: 25% 14%;
+    border-radius: 12;
+    border: 1px;
+    border-color: @black-normal;
+}
+
+#inputbar {
+    children: [ prompt, textbox-prompt-colon, entry ];
+    background-color: @black-normal;
+}
+
+#prompt {
+    padding: 1%;
+    enabled: false;
+}
+
+#textbox-prompt-colon {
+    expand: false;
+    str: " ";
+    padding: 1%;
+    font: "Fantasque Sans Mono Nerd Font 14";
+}
+
+#entry {
+    border-radius: 10px;
+    padding: 0.88% 0.5%;
+    horizontal-align: 0.48;
+    placeholder: "Keybindings";
+}
+
+#listview {
+    lines: 8;
+    margin: 1.78% 1%;
+    spacing: 2;
+    dynamic: true;
+    columns: 1;
+}
+
+#element {
+    border-radius: 12px;
+    padding: 12;
+}
+
+#element.selected {
+    background-color: @background-selected;
+    color: @text-color;
+}
