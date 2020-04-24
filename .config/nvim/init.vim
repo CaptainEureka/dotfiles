@@ -8,7 +8,6 @@ call plug#begin(g:plugged_home)
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'scrooloose/nerdtree'
-  Plug '~/.vim/plugged/base16-wal'
 
   " Better Visual Guide
   Plug 'Yggdroot/indentLine'
@@ -17,8 +16,9 @@ call plug#begin(g:plugged_home)
   Plug 'w0rp/ale'
   Plug 'hail2u/vim-css3-syntax'
   Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-  Plug 'vim-python/python-syntax'
+  " Plug 'vim-python/python-syntax'
   Plug 'kovetskiy/sxhkd-vim'
+  Plug 'pangloss/vim-javascript'
 
   " Autocomplete
   Plug 'ncm2/ncm2'
@@ -35,6 +35,7 @@ call plug#begin(g:plugged_home)
   Plug 'dylanaraps/wal.vim'
   Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
   Plug 'CaptainEureka/moonlight.vim'
+  Plug  'arzg/vim-substrata'
 
   " Vim Cheatsheet
   Plug 'liuchengxu/vim-which-key'
@@ -51,8 +52,8 @@ call plug#begin(g:plugged_home)
   " YAML support
   Plug 'stephpy/vim-yaml'
 
-   " Hexokinase
-   Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
+  " Hexokinase
+  Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
 
   " Commentary (auto comment)
   Plug 'tpope/vim-commentary'
@@ -66,6 +67,9 @@ call plug#begin(g:plugged_home)
   " Goyo minimal distraction free writing (고요)
   Plug 'junegunn/goyo.vim'
 
+  " Vim colorscheme template
+  Plug 'lifepillar/vim-colortemplate'
+  
   call plug#end()
 
 set encoding=UTF-8
@@ -87,6 +91,8 @@ endif
 set background=dark
 " colorscheme wal
 colorscheme moonlight
+
+hi Normal guibg=NONE ctermbg=NONE
 
 " Italics for moonlight
 let g:moonlight_terminal_italics = 1
@@ -113,19 +119,19 @@ set smartcase                     " turn on smartcase
 
 " Tab and Indent configuration
 set expandtab
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 
 " vim-autoformat
 noremap <F3> :Autoformat<CR>
 
 " NERDTree configs
-map <F2> :NERDTreeToggle<CR>
+map <C-t> :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
 " Auto open NERDTree on open
-autocmd vimenter * NERDTree
+" autocmd vimenter * NERDTree
 
 " NCM2
 augroup NCM2
@@ -186,7 +192,7 @@ let g:Hexokinase_highlighters = ['backgroundfull']
 let g:Hexokinase_optInPatterns = 'full_hex,rgb,rgba,hsl,hsla,colour_names'
 
 " vim-python/python syntax
-let g:python_highlight_all = 1
+" let g:python_highlight_all = 1
 
 " Semshi semantic python syntax
 let g:semshi#filetypes = ['python']

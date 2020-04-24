@@ -2,7 +2,7 @@
 [global]
     ### Display ###
 
-    corner_radius = 8
+    # corner_radius = 8
     # Which monitor should the notifications be displayed on.
     monitor = 0
 
@@ -42,7 +42,7 @@
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing window manager is
     # present (e.g. xcompmgr, compiz, etc.).
-    transparency = 30
+    transparency = 20
 
     # The height of the entire notification.  If the height is smaller
     # than the font height and padding combined, it will be raised
@@ -62,7 +62,7 @@
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
-    frame_width = 1
+    # frame_width = 1
 
     # Defines color of the frame around the notification window.
     frame_color = "{color8}"

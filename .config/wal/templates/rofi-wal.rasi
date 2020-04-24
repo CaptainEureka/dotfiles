@@ -2,7 +2,7 @@
     /* Special values */
     background: rgba({background.rgb}, 0.7);
     background-selected: rgba({foreground.rgb}, 0.075);
-    border-color: rgba({color8.rgb},0.3);
+    border-color: rgba({color7.rgb},0.2);
     text-color: {foreground};
     
     /* All term colors */
@@ -14,7 +14,7 @@
     magenta-normal: {color5};
     cyan-normal: {color6};
     white-normal: {color7};
-    black-bold: {color8};
+    black-bold: {color7};
     red-bold: {color9};
     green-bold: {color10};
     yellow-bold: {color11};
@@ -32,7 +32,7 @@
     alpha-magenta-normal: rgba({color5.rgb},0.5);
     alpha-cyan-normal: rgba({color6.rgb},0.5);
     alpha-white-normal: rgba({color7.rgb},0.5);
-    alpha-black-bold: rgba({color8.rgb},0.5);
+    alpha-black-bold: rgba({color7.rgb},0.1);
     alpha-red-bold: rgba({color9.rgb},0.5);
     alpha-green-bold: rgba({color10.rgb},0.5);
     alpha-yellow-bold: rgba({color11.rgb},0.5);

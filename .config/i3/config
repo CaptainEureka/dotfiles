@@ -41,42 +41,31 @@ bindsym $mod+Return exec kitty
 bindsym $mod+Shift+q kill
 
 # Fullscreen application launcher
-bindsym $mod+Shift+Return exec rofi -no-config -show drun -theme ~/.config/rofi/themes/appsmenu.rasi
+bindsym $mod+Shift+Return exec rofi-appsmenu
 
 # Application launcher
-bindsym $mod+d exec rofi -no-config -show drun -theme ~/.config/rofi/themes/appslist.rasi
+bindsym $mod+shift+d exec rofi-appslist 
 
 # Lock screen
 bindsym $mod+Shift+e exec betterlockscreen -l blur 
 
-# Update lockscreen wallpaper
-bindsym $mod+Shift+Ctrl+e exec cacheblck
-
 # Rofi power menu [shutdown, reboot, lock, suspend, logout]
-bindsym $mod+Shift+p exec $HOME/.config/rofi/scripts/powermenu.sh
+bindsym $mod+Shift+p exec rofi-powermenu
 
-# Search DuckDuckGo with Rofi
-bindsym $mod+Shift+s exec $HOME/.config/rofi/scripts/rofi-search.sh
-bindsym XF86Search exec $HOME/.config/rofi/scripts/rofi-search.sh
-
-# Rofi window control switcher
-bindsym $mod+Tab exec rofi-alt-tab
-
-# Set wallpaper with Rofi and generate/set theme with pywal
+# Set wallpaper with Sxiv + xwallpaper
 bindsym $mod+shift+w exec theme-switcher 
 
 # Menu for quick navigation to common configs
 bindsym $mod+shift+z exec rofi-config-menu
 
-# Pulse Audio controls
-# Change alsa_output.pci-0000_00_1f.3.analog-stereo to your sink
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1f.3.analog-stereo +5%  # increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume alsa_output.pci-0000_00_1f.3.analog-stereo -5%  # decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute alsa_output.pci-0000_00_1f.3.analog-stereo toggle        # mute sound
+# Audio controls
+bindsym XF86AudioRaiseVolume exec changeVol 5%
+bindsym XF86AudioLowerVolume exec changeVol 5%-
+bindsym XF86AudioMute exec changeVol toggle
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec changeBright -A 10
+bindsym XF86MonBrightnessDown exec changeBright -U 10 
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
@@ -85,7 +74,7 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 # Rofi Screenshot Utility
-bindsym Print exec rofi-screenshot
+bindsym Print exec rofi-maim
 
 #######################
 # DEFAULT i3 KEYBINDS #
@@ -116,8 +105,8 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+g split h; exec dunstify 'tile horizontally'
-bindsym $mod+v split v; exec dunstify 'tile vertically'
+bindsym $mod+g split h
+bindsym $mod+v split v
 bindsym $mod+p split toggle
 
 # enter fullscreen mode for the focused container
@@ -268,7 +257,7 @@ gaps outer 0
 #gaps top 32
 
 # Corner radius
-border_radius 10
+border_radius 12
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>

@@ -22,18 +22,28 @@ super + shift + {Return,d}
 super + Escape
 	pkill -USR1 -x sxhkd
 
-# description: rofi-{powermenu,search,config-menu,themer,bwmenu}
-super + shift + { p, s, z, w, b }
-	{rofi-powermenu,rofi-search,rofi-config-menu,rofi-themer,bwmenu}
+# description: rofi-{powermenu,search,config-menu,bwmenu}
+super + shift + { p, s, z, b }
+	{rofi-powermenu,rofi-search,rofi-config-menu,bwmenu}
 
+# description: set wallpaper Sxiv + xwallpaper
+super + shift + w
+	setbg ~/Pictures/wallpapers
 # description: Screenshot
 Print
 	rofi-maim
 
 # description: bindings cheatsheet
 super + shift + o
-	sxhkd-bindings
+	rofi-keys
 
+# description: show/hide deadd-notifc
+super + shift + n
+	kill -s USR1 $(pidof deadd-notification-center)
+
+# description: show/hide polybar
+super + u
+	bsp-nobar toggle
 # Brightness controls
 {_,super + ,super + shift + }XF86MonBrightness{Up,Down}
 	changeBright{ -A 10, -A 5, -S 100, -U 10, -U 5, -S 10 }
@@ -71,10 +81,21 @@ super + y
 super + g
 	bspc node -s biggest
 
+# description: dynamic gaps
+super + {_, shift} + {minus, equal}
+	bsp-gaps {-M 4, -M 8, -P 4, -P 8 }
+
 # description: dynamic padding
-super + {minus, equal}
-	bsp-gaps {-, +}
-#
+super + control + {minus, equal}
+	bsp-padding {-M 16, -P 16 }
+
+# description: dynamic gaps -> default
+super + shift + g
+	bsp-gaps -d
+# description: dynamic padding -> default
+super + control + g
+	bsp-padding -d
+
 # state/flags
 #
 
