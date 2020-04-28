@@ -2,7 +2,7 @@
 
 polybar_show() {
     xdo show -N Polybar
-    bspc config top_padding 64
+    bspc config top_padding 10 
 }
 
 polybar_hide() {

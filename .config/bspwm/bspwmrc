@@ -27,7 +27,7 @@ bspc condig remove_unplugged_monitors true
 bspc config border_width        0
 bspc config border_radius       12
 bspc config window_gap          20
-bspc config top_padding         10
+bspc config top_padding         54
 bspc config bottom_padding      0
 bspc config right_padding       0
 bspc config left_padding        0
@@ -49,9 +49,11 @@ bspc config single_monocle          true
 
 # source pywal colors
 . "${HOME}/.cache/wal/colors.sh"
-bspc config normal_border_color     "#2f334d"
-bspc config active_border_color     "#2f334d"
-bspc config focused_border_color    "#383e5c"
+# bspc config normal_border_color     "#2f334d"
+# bspc config active_border_color     "#2f334d"
+bspc config normal_border_color     "#82aaff"
+# bspc config active_border_color     "#46d3be"
+bspc config focused_border_color    "#46d3be"
 bspc config presel_feedback_color   "$color4"
 bspc config urgent_border_color     "$color4"
 
@@ -68,6 +70,6 @@ bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 bspc rule -a feh desktop='^4' state=floating
 bspc rule -a Thunar desktop='^4' state=floating
-bspc rule -a Sxiv state=floating rectangle=$(bsp-rectangle 1080 1080)
+bspc rule -a Sxiv state=floating rectangle=$(bsp-rectangle 1920 1080)
 bspc rule -a dolphin desktop='^4' state=floating rectangle=$(bsp-rectangle 2800 1575)
 bspc rule -a Yad state=floating

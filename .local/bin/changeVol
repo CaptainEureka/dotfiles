@@ -15,7 +15,7 @@ if [[ $volume == 0 || "$mute" == "off" ]]; then
     dunstify -a "changeVolume" -u low -i "~/.config/dunst/volume-mute-w.png" -r "$msgId" "Volume muted" 
 else
     # Show the volume notification
-    dunstify -a "changeVolume" -u low -i "~/.config/dunst/volume-full-w.png" -r "$msgId" \
+    dunstify -a "changeVolume" -u low -i audio-volume-high -r "$msgId" \
     "Volume: ${volume}%" "$(getProgressString 10 "<b> </b>" " " $volume)"
 fi
 

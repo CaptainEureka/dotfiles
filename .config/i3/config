@@ -53,7 +53,7 @@ bindsym $mod+Shift+e exec betterlockscreen -l blur
 bindsym $mod+Shift+p exec rofi-powermenu
 
 # Set wallpaper with Sxiv + xwallpaper
-bindsym $mod+shift+w exec theme-switcher 
+bindsym $mod+shift+w exec $(setbg $(sxiv -otbr ~/Pictures/wallpapers)) 
 
 # Menu for quick navigation to common configs
 bindsym $mod+shift+z exec rofi-config-menu

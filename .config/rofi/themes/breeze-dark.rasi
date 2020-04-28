@@ -41,6 +41,8 @@ configuration {
     border-radius: 3;
     border-color: @normal-border;
     padding: 7;
+    location: center;
+    anchor: south;
 }
 
 #mainbox {
@@ -61,7 +63,8 @@ configuration {
 }
 
 #listview {
-    fixed-height: 0;
+    fixed-height: false;
+    fixed-columns: false;
     spacing: 2;
     scrollbar: false;
     padding: 2 0 0;
