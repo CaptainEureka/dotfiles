@@ -105,7 +105,7 @@ super + {t,shift + t}
 
 # description: toggle floating
 super + shift + space
-	bspc node focused.floating -t tiled || (bspc node focused.tiled -t floating && xdo resize -w 1600 -h 900 && xdo move -x 800 -y 450)
+	bspc node focused.floating -t tiled || $(bspc node focused.tiled -t floating && xdo resize -w 1600 -h 900 && xdo move -x 800 -y 450)
 
 # description: toggle fullscreen
 super + f

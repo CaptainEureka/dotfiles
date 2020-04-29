@@ -95,21 +95,12 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# Pfetch Configuration
-export PF_INFO="ascii os host kernel uptime pkgs memory"
-export PF_SEP=" >"
-export PF_ASCII="manjaro"
-
-# Pfetch Colors
-export PF_COL1=4
-export PF_COL2=7
-export PF_COL3=1
+# QT5 config
+export QT_QPA_PLATFORMTHEME="qt5ct"
+export XDG_CURRENT_DESKTOP="KDE"
 
 # Ranger stop default
 export RANGER_LOAD_DEFAULT_RC=true
-
-# NNN plugins
-export NNN_PLUG='o:fzopen;g:getplugs;i:imgview;t:imgthumb;w:wall'
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -123,7 +114,8 @@ alias ls="exa -l"
 alias la="exa -la"
 alias vim="nvim"
 alias vi="nvim"
-alias yay="yay --aur"
+alias yay="yay --aur --color=always"
+alias pacman="pacman --color=always"
 
 # shortcuts
 alias i3cfg="vim ~/.config/i3/config"

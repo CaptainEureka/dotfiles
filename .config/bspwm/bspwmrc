@@ -12,7 +12,8 @@
 #### AUTO START ####
 sxhkd &
 launch-polybar
-wpg -s melanie-dretvic-wtVgiTlUAU4-unsplash.jpg &
+wal -f ~/.config/.colors/glorious.json &
+setbg ~/Downloads/jack-fifield-y8H9i6yxklw-unsplash.jpg &
 picom --dbus --experimental-backends --backend glx &
 libinput-gestures &
 sleep 1s; launch-dunst
