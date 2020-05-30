@@ -1,3 +1,0 @@
-#!/bin/bash
-
-libinput-gestures -c ~/.config/libinput-gestures-kde.conf &

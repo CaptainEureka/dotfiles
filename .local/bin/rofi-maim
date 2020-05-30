@@ -1,10 +1,10 @@
 #!/bin/sh
-# This is a modified version of Luke Smith's maim script to work with rofi
-# Credit: https://github.com/voidrice/dotfiles
+# Simple rofi menu for the maim screenshot utility
 
-# This is bound to PrintScreen by default, requires maim. It lets you
+# This is bound to PrintScreen by default. It lets you
 # choose the kind of screenshot to take, including copying the image or even
-# highlighting an area to copy. 
+# highlighting an area to copy. Sends a notification if successful
+# Deps: maim, rofi, notify-send.py, xclip
 
 dest_dir="$HOME/Screenshots"
 
@@ -12,44 +12,58 @@ options="selection\nactive window\nfull screen\nselection (copy)\nactive window 
 
 choice=$( echo -e $options | rofi -theme rofi-maim -l 6 -dmenu -i -fuzzy -p "Screenshot" )
 
-countdown() {
-    dunstify -t 600 "Screenshot" "... in 3 seconds"
-    sleep 1  
-    dunstify -t 600 "Screenshot" "... in 2 seconds"
-    sleep 1
-    dunstify -t 600 "Screenshot" "... in 1 second"
-    sleep 1
+ICON="applets-screenshooter"
+
+function countdown() {
+    for i in $(seq 3 -1 1); do
+      notify-send.py -i $ICON "Screenshot" "... in $i" \
+        --hint string:image-path:camera-photo \
+        --replaces-process "screenshot"
+      sleep 1  
+    done
+}
+
+function notifySaved() {
+  notify-send.py -i $ICON "Screenshot taken..." 'saving to '$dest_dir \
+    --hint string:image-path:camera-photo \
+    --replaces-process "screenshot"
+}
+
+function notifyClipboard() {
+  notify-send.py -i $ICON "Screenshot taken..." 'copied to clipboard' \
+    --hint string:image-path:camera-photo \
+    --replaces-process "screenshot"
 }
 
 case $choice in
     "selection")
         countdown
-        maim -s $dest_dir/pic-selected-"$(date '+%y%m%d-%H%M-%S').png" \
-            && dunstify -t 1500 "Screenshot taken..." 'saving to '$dest_dir
+        maim -s $dest_dir/pic-selected-"$(date '+%y%m%d-%H%M-%S').png"
+        notifySaved
         ;;
 	"active window") 
         countdown
-        maim -i $(xdotool getactivewindow) $dest_dir/pic-window-"$(date '+%y%m%d-%H%M-%S').png" \
-            && dunstify -t 1500 "Screenshot taken..." 'saving to '$dest_dir
+        maim -i $(xdotool getactivewindow) $dest_dir/pic-window-"$(date '+%y%m%d-%H%M-%S').png"
+        notifySaved
         ;;
 	"full screen") 
         countdown
-        maim $dest_dir/pic-full-"$(date '+%y%m%d-%H%M-%S').png" \
-            && dunstify -t 1500 "Screenshot taken..." 'saving to '$dest_dir
+        maim $dest_dir/pic-full-"$(date '+%y%m%d-%H%M-%S').png"
+        notifySaved
         ;;
 	"selection (copy)")
         countdown
-        maim -s | xclip -selection clipboard -t image/png \
-            && dunstify -t 1500 "Screenshot taken..." 'copied to clipboard'
+        maim -s | xclip -selection clipboard -t image/png
+        notifyClipboard
         ;;
 	"active window (copy)")
         countdown
-        maim -i "$(xdotool getactivewindow)" | xclip -selection clipboard -t image/png \
-            && dunstify -t 1500 "Screenshot taken..." 'copied to clipboard'
+        maim -i "$(xdotool getactivewindow)" | xclip -selection clipboard -t image/png
+        notifyClipboard
         ;;
 	"full screen (copy)")
         countdown
-        maim | xclip -selection clipboard -t image/png \
-            && dunstify -t 1500 "Screenshot taken..." 'copied to clipboard'
+        maim | xclip -selection clipboard -t image/png
+        notifyClipboard
         ;;
 esac

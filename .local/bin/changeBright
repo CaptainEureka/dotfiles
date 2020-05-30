@@ -1,5 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # change brightness notif script
+# Deps: light, dunst, dunstify
 
 # Arbitrary, unique message id
 msgId="903491"
@@ -8,13 +9,13 @@ msgId="903491"
 light "$1" "$2" > /dev/null
 
 brightness=$(light)
-
-if [[ $brightness -lt 50 ]]; then
-    dunstify -a "changeBright" -u low -i "~/.config/dunst/bulb-off-w.png" -r "$msgId" \
-    "Brightness: ${brightness}%" "$(getProgressString 10 "<b> </b>" " " $brightness)"
+icon="preferences-system-login"
+if [[ $brightness < 50 ]]; then
+    dunstify -u low  -r "$msgId" \
+    "$(getProgressString 10 "▆" "" $brightness)"
 else
-    dunstify -a "changeBright" -u low -i "~/.config/dunst/bulb-w.png" -r "$msgId" \
-    "Brightness: ${brightness}%" "$(getProgressString 10 "<b> </b>" " " $brightness)"
+    dunstify -u low  -r "$msgId" \
+    "$(getProgressString 10 "▆" "" $brightness)"
 fi
 
 

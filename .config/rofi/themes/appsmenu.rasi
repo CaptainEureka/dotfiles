@@ -1,62 +1,73 @@
 @import "~/.config/rofi/config.rasi"
 
 #window {
-    fullscreen: true;
-    background-color: @background;
+  fullscreen: true;
+  background-color: @background;
+}
+
+
+#mainbox {
+  children: [ inputbar, listview ];
+  margin: 1% 6% 4% 6%;
+}
+
+#inputbar {
+  children: [ prompt, textbox-prompt-colon, entry ];
+  margin: 4% 26% 1% 26%;
+  border-radius: 50px;
+  background-color: @background-selected;
 }
 
 #prompt {
-    enabled: false;
+  enabled: false;
+}
+
+#textbox-prompt-colon {
+  expand: false;
+  str: " ";
+  font: "Feather 14";
+  color: rgba(255,255,255,0.3);
+  padding: 1% -0.625% 1% 1%;
+  vertical-align: 0.50;
 }
 
 #entry {
-    expand: true;
-    blink: true;
-    background-color: @background-selected;
-    location: center;
-    horizontal-align: 0.5;
-    margin: 4% 28% 1% 28%;
-    padding: 1.3%;
-    border-radius: 25%;
-    font: "Lato 14";
-    placeholder: "Search Applications...";
-    placeholder-color: @text-color;
-}
-
-#mainbox {
-    children: [ inputbar, listview ];
-    margin: 1% 6% 4% 6%;
+  expand: true;
+  blink: true;
+  padding: 1%;
+  placeholder: "Rofi Search";
+  placeholder-color: rgba(255,255,255,0.3);
 }
 
 #listview {
-    columns: 5;
-    lines: 8;
-    layout: vertical;
-    margin: 2% 3.56% 0% 3.56%;
-    cycle: false;
+  columns: 5;
+  lines: 8;
+  layout: vertical;
+  margin: 2% 3.56% 0% 3.56%;
+  cycle: false;
 }
 
 #element {
-    orientation: vertical;
-    margin: 1% 1.78%;
-    padding: 2.0% 0.67% 2.0% 0.67%;
-    border-radius: 50px;
+  orientation: vertical;
+  margin: 1% 1.78%;
+  padding: 2.0% 0.67% 2.0% 0.67%;
+  border-radius: 50px;
 }
 
 element selected {
-    background-color: @background-selected;
-    color: @text-color;
-    border-radius: 50px;
+  background-color: @background-selected;
+  color: @text-color-t;
+  border-radius: 50px;
 }
 
 element-icon {
-    size: 7%;
+  size: 7%;
 }
 
 element-text {
-    font: "Lato 10";
-    padding: 10 0 10 0;
-    text-color: @text-color;
-    horizontal-align: 0.5;
-    vertical-align: 0.5;
+  font: "SF Pro Display 11";
+  padding: 10 0 10 0;
+  text-color: rgba(200,211,245,0.7);
+  horizontal-align: 0.5;
+  vertical-align: 0.5;
 }

@@ -1,6 +1,6 @@
 configuration {
-  font: "Lato 14";
-  icon-theme: "Papirus Dark";
+  font: "SF Pro Display 14";
+  icon-theme: "McMuse Dark";
   drun-display-format: "{name}";
   dpi: 192;
   show-icons: true;

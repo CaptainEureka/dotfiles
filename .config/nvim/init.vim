@@ -18,6 +18,10 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'kovetskiy/sxhkd-vim'
 Plug 'pangloss/vim-javascript'
+Plug 'tbastos/vim-lua'
+
+" Intellisense Autocomplete
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Formatter
 Plug 'Chiel92/vim-autoformat'
@@ -26,6 +30,7 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'CaptainEureka/moonlight.vim'
 Plug 'arzg/vim-substrata'
+Plug 'ayu-theme/ayu-vim'
 
 " Vim Cheatsheet
 Plug 'liuchengxu/vim-which-key'
@@ -79,13 +84,14 @@ endif
 
 " colorscheme
 set background=dark
-" colorscheme wal
+" colorscheme ayu
+" let ayucolor="dark"
 colorscheme moonlight
 
 hi Normal guibg=NONE ctermbg=NONE
 
 " Italics for moonlight
-let g:moonlight_terminal_italics = 1
+" let g:moonlight_terminal_italics = 1
 
 " Italics for palenight
 "let g:palenight_terminal_italics = 1
@@ -197,3 +203,6 @@ augroup qs_colors
   autocmd ColorScheme * highlight QuickScopePrimary guifg='#c3e88d' gui=underline ctermfg=155 cterm=underline
   autocmd ColorScheme * highlight QuickScopeSecondary guifg='#86e1fc' gui=underline ctermfg=81 cterm=underline
 augroup END
+
+" LUA syntax
+let g:lua_syntax_someoption = 1 

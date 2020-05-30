@@ -4,7 +4,7 @@
 #  ___) /  \|  _  | . \| |_| |
 # |____/_/\_\_| |_|_|\_\____/
 #
-# --- Autho: CaptainEureka
+# --- Author: CaptainEureka
 # --- GitHub: https://github.com/CaptainEureka
 # --- A customized sxhkdrc for bspwm
 
@@ -24,11 +24,12 @@ super + Escape
 
 # description: rofi-{powermenu,search,config-menu,bwmenu}
 super + shift + { p, s, z, b }
-	{rofi-powermenu,rofi-search,rofi-config-menu,bwmenu}
+	{rofi-powermenu sysicons,rofi-search,rofi-config-menu,bwmenu}
 
 # description: set wallpaper Sxiv + xwallpaper
 super + shift + w
 	setbg ~/Pictures/wallpapers
+
 # description: Screenshot
 Print
 	rofi-maim
@@ -39,18 +40,19 @@ super + shift + o
 
 # description: show/hide deadd-notifc
 super + shift + n
-	kill -s USR1 $(pidof deadd-notification-center)
+	notif-center-toggle
 
 # description: show/hide polybar
 super + u
 	bsp-nobar toggle
+
 # Brightness controls
-{_,super + ,super + shift + }XF86MonBrightness{Up,Down}
-	changeBright{ -A 10, -A 5, -S 100, -U 10, -U 5, -S 10 }
+{_,super + ,super + shift + }@XF86MonBrightness{Up,Down}
+	notipy-light { -A 10, -A 5, -S 100, -U 10, -U 5, -S 10 }
 
 # Audio controls
-{_,super + }XF86Audio{Mute,RaiseVolume,LowerVolume}
-	changeVol {toggle, mute, 5%+, 1%+, 5%-, 1%-}
+{_,super + }@XF86Audio{Mute,RaiseVolume,LowerVolume}
+	notipy-volume {toggle, mute, 10%+, 5%+, 10%-, 5%-}
 	# amixer sset Master {toggle, mute, 5%+, 1%+, 5%-, 1%-}
 
 # Media player controls
@@ -132,7 +134,7 @@ super + {_,shift + }c
 	bspc node -f {next,prev}.local
 
 # description: focus next/previous desktop
-super + bracket{left,right}
+super + {Left,Right}
 	bspc desktop -f {prev,next}.local
 
 # description: focus last node/desktop

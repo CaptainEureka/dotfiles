@@ -17,32 +17,28 @@
 }
 
 #inputbar {
-    children: [ prompt, textbox-prompt-colon, entry ];
-    padding: 4;
-    background-color: @black-normal;
+  children: [ prompt, textbox-prompt-colon, entry ];
+  background-color: @background-selected;
 }
 
 #prompt {
-    enabled: false;
+  enabled: false;
 }
 
 #textbox-prompt-colon {
-    expand: false;
-    str: " ";
-    padding: 1%;
-    font: "Fantasque Sans Mono Nerd Font 14";
-    vertical-align: 0.5;
+  expand: false;
+  str: " ";
+  font: "Feather 14";
+  padding: 1% -0.625% 1% 1%;
+  vertical-align: 0.50;
 }
 
 #entry {
-    expand: true;
-    border-radius: 12;
-    padding: 1%;
-    location: center;
-    horizontal-align: 0.45;
-    vertical-align: 0.5;
-    placeholder: "Applications";
-    blink: true;
+  expand: true;
+  blink: true;
+  padding: 1%;
+  /* placeholder: "Rofi Search"; */
+  placeholder-color: @text-color;
 }
 
 #listview {

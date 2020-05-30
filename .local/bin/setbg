@@ -1,7 +1,10 @@
 #!/bin/bash
 
-[ -f "$1" ] && bg="$1" && dunstify 'setbg' 'wallpaper changed ...'
+[ -f "$1" ] && bg="$1" && cp $bg $HOME/.cache/setbg/setbg.png
 
-[ -d "$1" ] && bg=$(find "$1" -iregex '.*.\(jpg\|jpeg\|png\)' -type f | shuf | sxiv -otbi) && dunstify 'setbg' 'wallpaper changed...'
+[ -d "$1" ] && bg=$(find "$1" -iregex '.*.\(jpg\|jpeg\|png\)' -type f | shuf | sxiv -otbi) \
+  && cp $bg $HOME/.cache/setbg/setbg.png
+
+[ "$1" == "-r" ] && bg=$HOME/.cache/setbg/setbg.png 
 
 xwallpaper --zoom $bg

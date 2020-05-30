@@ -1,36 +1,91 @@
 #!/bin/bash
 
-rofi_command="rofi -theme powermenu"
+function exec_shutdown() {
+  notify-send.py "System" "Shutting down..." \
+    --hint string:image-path:"system-shutdown"
+  sleep 1;
+  systemctl shutdown
+}
 
-### Options ###
-power_off=""
-reboot=""
-lock=""
-log_out=""
+function exec_reboot() {
+  notify-send.py "System" "Rebooting..." \
+    --hint string:image-path:"system-reboot"
+  sleep 1;
+  systemctl reboot
+}
 
-options="$power_off\n$reboot\n$lock\n$log_out"
+function exec_lock() {
+  lockscreen-wrapper
+}
 
-current_session=$(echo $DESKTOP_SESSION | cut -d '/' -f 5)
+function exec_logoff() {
+  session=$(echo $DESKTOP_SESSION | cut -d'/' -f5)
+  case $session in
+    "i3")
+        sleep 1;
+        notify-send.py "System" "Logging off..." \
+          --hint string:image-path:"system-log-out"
+        i3exit
+        ;;
+    "bspwm")
+        sleep 1;
+        notify-send.py "System" "Logging off..." \
+          --hint string:image-path:"system-log-out"
+        bspc quit
+        ;;
+  esac
+}
 
-chosen="$(echo -e "$options" | $rofi_command -dmenu -selected-row 2 -l 4)"
+function get_options() {
+  case "$1" in
+    "sysicons")
+        power_off="Shutdown\0icon\x1fsystem-shutdown"
+        reboot="Reboot\0icon\x1fsystem-reboot"
+        lock="Lock\0icon\x1fsystem-lock-screen"
+        log_out="Logoff\0icon\x1fsystem-log-out"
+        echo -en "$power_off\n$reboot\n$lock\n$log_out"
+        ;;
+    "feather")
+        power_off=""
+        reboot=""
+        lock=""
+        log_out=""
+        echo -en "$power_off\n$reboot\n$lock\n$log_out"
+        ;;
+    *)
+        echo -e "Usage:"
+        echo -e "Subcommands:"
+        echo -e "     sysicons    uses system defined icons (from iconset)"
+        echo -e "     feather      uses the feather font icons"
+        ;;
+  esac
+}
+
+case "$1" in
+  "sysicons")
+      rofi_command="rofi -theme powermenuv2"
+      ;;
+  "feather")
+      rofi_command="rofi -theme powermenu"
+      ;;
+  *)
+      rofi_command="rofi"
+      ;;
+esac
+
+chosen="$( get_options "$1" | $rofi_command -dmenu -selected-row 2)"
+
 case $chosen in
-    $power_off)
-        systemctl poweroff
+    "Shutdown"|"")
+        exec_shutdown
         ;;
-    $reboot)
-        systemctl reboot
+    "Reboot"|"")
+        exec_reboot
         ;;
-    $lock)
-        betterlockscreen -l blur
+    "Lock"|"")
+        exec_lock
         ;;
-    $log_out)
-        if [ $current_session = 'i3' ]
-        then
-            i3exit logout
-        fi
-        if [ $current_session = 'bspwm' ]
-        then
-            bspc quit
-        fi
+    "Logoff"|"")
+        exec_logoff
         ;;
 esac
