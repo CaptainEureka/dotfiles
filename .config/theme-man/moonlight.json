@@ -1,0 +1,26 @@
+{
+    "wallpaper": "/home/mk/Pictures/wallpapers/themes/Moonlight.png",
+    "special": {
+        "background": "#222436",
+        "foreground": "#c8d3f5",
+        "cursor": "#c8d3f5"
+    },
+    "colors": {
+        "color0": "#383e5c",
+        "color1": "#ff5370",
+        "color2": "#4fd6be",
+        "color3": "#ff995e",
+        "color4": "#82aaff",
+        "color5": "#c597f9",
+        "color6": "#86e1fc",
+        "color7": "#c8d3f5",
+        "color8": "#444a73",
+        "color9": "#ff758c",
+        "color10": "#67dcc7",
+        "color11": "#ffaf81",
+        "color12": "#a8c4ff",
+        "color13": "#dabdfb",
+        "color14": "#aceafd",
+        "color15": "#e2e8fa"
+    }
+}

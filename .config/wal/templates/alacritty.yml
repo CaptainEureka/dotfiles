@@ -1,0 +1,73 @@
+
+window:
+  position:
+    x: 0
+    y: 0
+
+  padding:
+    x: 20
+    y: 20
+
+  decorations: none
+  title: Alacritty
+  class:
+    instance: Alacritty
+    general: Alacritty
+
+scrolling:
+  history: 10000
+  multiplier: 2
+
+# Font configuration
+font:
+  normal:
+    family: Fantasque Sans Mono
+    style: Regular
+  size: 12.0
+  offset:
+    x: 0
+    y: 0
+
+
+background_opacity: .7
+
+# Allow terminal applications to change Alacritty's window title.
+#dynamic_title: true
+
+cursor:
+  style: Beam
+
+mouse:
+  hide_when_typing: true
+  url:
+    launcher:
+      program: xdg-open
+      args: []
+
+colors:
+  primary:
+    background: '0x{background.strip}'
+    foreground: '0x{foreground.strip}'
+  cursor:
+    text:       '0x{foreground.strip}'
+    cursor:     '0x{foreground.strip}'
+
+  normal:
+    black:      '0x{color0.strip}'
+    red:        '0x{color1.strip}'
+    green:      '0x{color2.strip}'
+    yellow:     '0x{color3.strip}'
+    blue:       '0x{color4.strip}'
+    magenta:    '0x{color5.strip}'
+    cyan:       '0x{color6.strip}'
+    white:      '0x{color7.strip}'
+
+  bright:
+    black:      '0x{color8.strip}'
+    red:        '0x{color9.strip}'
+    green:      '0x{color10.strip}'
+    yellow:     '0x{color11.strip}'
+    blue:       '0x{color12.strip}'
+    magenta:    '0x{color13.strip}'
+    cyan:       '0x{color14.strip}'
+    white:      '0x{color15.strip}'

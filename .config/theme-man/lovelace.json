@@ -1,0 +1,26 @@
+{
+    "wallpaper":"/home/mk/Pictures/wallpapers/themes/lovelace.jpg",
+    "special": {
+        "background": "#1d1f28",
+        "foreground": "#fdfdfd",
+        "cursor": "#fdfdfd"
+    },
+    "colors": {
+        "color0": "#1d1f28",
+        "color1": "#FF4971",
+        "color2": "#18E3C8",
+        "color3": "#FF8037",
+        "color4": "#556FFF",
+        "color5": "#B043D1",
+        "color6": "#3FDCEE",
+        "color7": "#fdfdfd",
+        "color8": "#8d8e92",
+        "color9": "#FF4971",
+        "color10": "#18E3C8",
+        "color11": "#FF8037",
+        "color12": "#556FFF",
+        "color13": "#B043D1",
+        "color14": "#3FDCEE",
+        "color15": "#fdfdfd"
+    }
+}
