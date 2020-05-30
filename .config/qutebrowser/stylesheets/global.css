@@ -1,0 +1,9 @@
+* {
+  background-color: #222436;
+  color: #c8d3f5;
+  border-color: #383e5c; 
+}
+
+th, td {
+  border: 1px solid #383e5c;
+}
