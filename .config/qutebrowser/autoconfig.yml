@@ -6,16 +6,5 @@
 
 config_version: 2
 settings:
-  aliases:
-    global:
-      q: close
-      qa: quit
-      w: session-save
-      wq: quit --save
-      wqa: quit --save
-  url.default_page:
-    global: https://start.duckduckgo.com/
-  url.start_pages:
-    global: https://start.duckduckgo.com
-  window.title_format:
-    global: '{current_title}'
+  statusbar.hide:
+    global: false

@@ -299,6 +299,11 @@ c.url.default_page = 'https://duckduckgo.com/'
 # Type: List of FuzzyUrl, or FuzzyUrl
 c.url.start_pages = 'https://duckduckgo.com'
 
+# Format to use for the window title. The same placeholders like for
+# `tabs.title.format` are defined.
+# Type: FormatString
+c.window.title_format = '{current_title}'
+
 # Default zoom level.
 # Type: Perc
 c.zoom.default = '100%'

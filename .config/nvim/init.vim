@@ -19,9 +19,14 @@ Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'kovetskiy/sxhkd-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'tbastos/vim-lua'
+Plug 'stephpy/vim-yaml'
 
 " Intellisense Autocomplete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" FZF file finder
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 " Formatter
 Plug 'Chiel92/vim-autoformat'
@@ -43,9 +48,6 @@ Plug 'SirVer/ultisnips'
 
 " Devicon glyphs for Nerdtree
 Plug 'ryanoasis/vim-devicons'
-
-" YAML support
-Plug 'stephpy/vim-yaml'
 
 " Hexokinase
 Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
@@ -125,9 +127,6 @@ noremap <F3> :Autoformat<CR>
 map <C-t> :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
-
-" Auto open NERDTree on open
-" autocmd vimenter * NERDTree
 
 " Ale
 let g:ale_lint_on_enter = 0

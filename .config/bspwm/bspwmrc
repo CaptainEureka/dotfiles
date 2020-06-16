@@ -13,7 +13,7 @@
 sxhkd &
 launch-polybar
 wal -f ~/.config/theme-man/moonlightII.json &
-# setbg -r &
+setbg -r &
 picom --dbus --experimental-backends --backend glx &
 libinput-gestures &
 launch-notif-center &

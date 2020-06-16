@@ -5,8 +5,8 @@ window:
     y: 0
 
   padding:
-    x: 20
-    y: 20
+    x: 30
+    y: 30
 
   decorations: none
   title: Alacritty
@@ -36,6 +36,7 @@ background_opacity: .7
 
 cursor:
   style: Beam
+  unfocused_hollow: true
 
 mouse:
   hide_when_typing: true
@@ -71,3 +72,15 @@ colors:
     magenta:    '0x{color13.strip}'
     cyan:       '0x{color14.strip}'
     white:      '0x{color15.strip}'
+
+  dim:
+    black:      '0x{color8.strip}'
+    red:        '0x{color9.strip}'
+    green:      '0x{color10.strip}'
+    yellow:     '0x{color11.strip}'
+    blue:       '0x{color12.strip}'
+    magenta:    '0x{color13.strip}'
+    cyan:       '0x{color14.strip}'
+    white:      '0x{color15.strip}'
+
+  live_config_reload: true;

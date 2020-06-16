@@ -15,7 +15,7 @@ case $uchoice in
         connect-tv HD
         ;;
     "Duplicate")
-        connect_tv --duplicate
+        connect-tv --duplicate
         ;;
     "Disconnect")
         connect-tv -d

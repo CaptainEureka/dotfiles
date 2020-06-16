@@ -1,9 +1,0 @@
-#!/usr/bin/sh
-
-if [ -f "$1" ]
-then
-    betterlockscreen -u "$1"
-else
-    CACHE_DIR=$(cat $HOME/.cache/wal/wal)
-    betterlockscreen -u $CACHE_DIR
-fi
