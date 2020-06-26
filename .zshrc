@@ -72,11 +72,13 @@ export SPACESHIPT_CHAR_SYMBOL='ζ'
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git
-	themes
+plugins=(
+    git
+	  themes
     colorize
     colored-man-pages
     zsh-syntax-highlighting
+    dotbare
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -119,6 +121,7 @@ alias vim="nvim"
 alias vi="nvim"
 alias yay="yay --aur --color=always"
 alias pacman="pacman --color=always"
+alias update="sudo pacman -Syu && yay -Su"
 
 # shortcuts
 alias i3cfg="vim ~/.config/i3/config"
@@ -134,4 +137,8 @@ alias ffdcfg="vim ~/.mozilla/firefox/89h219s6.dev-edition-default/chrome"
 alias wtcfg="vim ~/.config/wal/templates"
 alias kittycfg="vim ~/.config/kitty/kitty.conf"
 alias mozcfg="vim ~/.mozilla/firefox/"
-alias config='/usr/bin/git --git-dir=/home/mk/.dotfiles/ --work-tree=/home/mk'
+
+# dotbare
+# alias config='/usr/bin/git --git-dir=/home/mk/.dotfiles/ --work-tree=/home/mk'
+export DOTBARE_DIR="$HOME/.dotfiles"
+export DOTBARE_TREE="$HOME"

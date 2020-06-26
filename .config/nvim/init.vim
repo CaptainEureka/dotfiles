@@ -36,6 +36,7 @@ Plug 'drewtempelmeyer/palenight.vim'
 Plug 'CaptainEureka/moonlight.vim'
 Plug 'arzg/vim-substrata'
 Plug 'ayu-theme/ayu-vim'
+Plug 'ghifarit53/tokyonight.vim'
 
 " Vim Cheatsheet
 Plug 'liuchengxu/vim-which-key'
@@ -86,14 +87,20 @@ endif
 
 " colorscheme
 set background=dark
-" colorscheme ayu
-" let ayucolor="dark"
+" " colorscheme ayu
+" " let ayucolor="dark"
 colorscheme moonlight
+
+" let g:tokyonight_style = 'storm' " available: night, storm
+" let g:tokyonight_enable_italic = 1
+" let g:tokyonight_disable_italic_comment = 1
+
+" colorscheme tokyonight
 
 hi Normal guibg=NONE ctermbg=NONE
 
 " Italics for moonlight
-" let g:moonlight_terminal_italics = 1
+let g:moonlight_terminal_italics = 1
 
 " Italics for palenight
 "let g:palenight_terminal_italics = 1

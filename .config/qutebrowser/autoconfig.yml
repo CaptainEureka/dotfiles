@@ -6,5 +6,18 @@
 
 config_version: 2
 settings:
-  statusbar.hide:
-    global: false
+  aliases:
+    global:
+      q: close
+      qa: quit
+      w: session-save
+      wq: quit --save
+      wqa: quit --save
+  colors.tabs.even.bg:
+    global: '#131421'
+  colors.tabs.odd.bg:
+    global: '#131421'
+  colors.tabs.selected.even.bg:
+    global: '#222436'
+  colors.tabs.selected.odd.bg:
+    global: '#222436'

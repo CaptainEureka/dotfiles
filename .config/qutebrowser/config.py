@@ -28,6 +28,36 @@ c.auto_save.session = True
 # Type: Bool
 c.content.autoplay = False
 
+# Which cookies to accept. With QtWebEngine, this setting also controls
+# other features with tracking capabilities similar to those of cookies;
+# including IndexedDB, DOM storage, filesystem API, service workers, and
+# AppCache. Note that with QtWebKit, only `all` and `never` are
+# supported as per-domain values. Setting `no-3rdparty` or `no-
+# unknown-3rdparty` per-domain on QtWebKit will have the same effect as
+# `all`.
+# Type: String
+# Valid values:
+#   - all: Accept all cookies.
+#   - no-3rdparty: Accept cookies from the same origin only. This is known to break some sites, such as GMail.
+#   - no-unknown-3rdparty: Accept cookies from the same origin only, unless a cookie is already set for the domain. On QtWebEngine, this is the same as no-3rdparty.
+#   - never: Don't accept cookies at all.
+config.set('content.cookies.accept', 'all', 'chrome-devtools://*')
+
+# Which cookies to accept. With QtWebEngine, this setting also controls
+# other features with tracking capabilities similar to those of cookies;
+# including IndexedDB, DOM storage, filesystem API, service workers, and
+# AppCache. Note that with QtWebKit, only `all` and `never` are
+# supported as per-domain values. Setting `no-3rdparty` or `no-
+# unknown-3rdparty` per-domain on QtWebKit will have the same effect as
+# `all`.
+# Type: String
+# Valid values:
+#   - all: Accept all cookies.
+#   - no-3rdparty: Accept cookies from the same origin only. This is known to break some sites, such as GMail.
+#   - no-unknown-3rdparty: Accept cookies from the same origin only, unless a cookie is already set for the domain. On QtWebEngine, this is the same as no-3rdparty.
+#   - never: Don't accept cookies at all.
+config.set('content.cookies.accept', 'all', 'devtools://*')
+
 # Limit fullscreen to the browser window (does not expand to fill the
 # screen).
 # Type: Bool
@@ -88,6 +118,20 @@ config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}) AppleWebKit/53
 # read from JavaScript is always the global value.
 # Type: FormatString
 config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:71.0) Gecko/20100101 Firefox/71.0', 'https://docs.google.com/*')
+
+# User agent to send.  The following placeholders are defined:  *
+# `{os_info}`: Something like "X11; Linux x86_64". * `{webkit_version}`:
+# The underlying WebKit version (set to a fixed value   with
+# QtWebEngine). * `{qt_key}`: "Qt" for QtWebKit, "QtWebEngine" for
+# QtWebEngine. * `{qt_version}`: The underlying Qt version. *
+# `{upstream_browser_key}`: "Version" for QtWebKit, "Chrome" for
+# QtWebEngine. * `{upstream_browser_version}`: The corresponding
+# Safari/Chrome version. * `{qutebrowser_version}`: The currently
+# running qutebrowser version.  The default value is equal to the
+# unchanged user agent of QtWebKit/QtWebEngine.  Note that the value
+# read from JavaScript is always the global value.
+# Type: FormatString
+config.set('content.headers.user_agent', 'Mozilla/5.0 ({os_info}; rv:71.0) Gecko/20100101 Firefox/71.0', 'https://drive.google.com/*')
 
 # Load images automatically in web pages.
 # Type: Bool
@@ -211,7 +255,7 @@ c.tabs.mousewheel_switching = False
 
 # Padding (in pixels) around text for tabs.
 # Type: Padding
-c.tabs.padding = {'bottom': 4, 'left': 0, 'right': 0, 'top': 4}
+c.tabs.padding = {'bottom': 6, 'left': 2, 'right': 2, 'top': 6}
 
 # Position of the tab bar.
 # Type: Position
@@ -279,7 +323,7 @@ c.tabs.max_width = -1
 
 # Width (in pixels) of the progress indicator (0 to disable).
 # Type: Int
-c.tabs.indicator.width = 2
+c.tabs.indicator.width = 0
 
 # Padding (in pixels) for tab indicators.
 # Type: Padding
@@ -298,6 +342,11 @@ c.url.default_page = 'https://duckduckgo.com/'
 # Page(s) to open at the start.
 # Type: List of FuzzyUrl, or FuzzyUrl
 c.url.start_pages = 'https://duckduckgo.com'
+
+# Hide the window decoration.  This setting requires a restart on
+# Wayland.
+# Type: Bool
+c.window.hide_decoration = True
 
 # Format to use for the window title. The same placeholders like for
 # `tabs.title.format` are defined.

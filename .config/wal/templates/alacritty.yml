@@ -21,7 +21,7 @@ scrolling:
 # Font configuration
 font:
   normal:
-    family: Fantasque Sans Mono
+    family: JetBrains Mono
     style: Regular
   size: 12.0
   offset:
