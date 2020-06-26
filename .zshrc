@@ -77,11 +77,11 @@ plugins=(
 	  themes
     colorize
     colored-man-pages
-    zsh-syntax-highlighting
     dotbare
 )
 
 source $ZSH/oh-my-zsh.sh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # User configuration
 
