@@ -82,8 +82,10 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+<<<<<<< HEAD
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source <( echo "$(navi widget zsh)")
+=======
+>>>>>>> c1885e0c22366fb66376053a357161ea5135d1a6
 
 # User configuration
 
