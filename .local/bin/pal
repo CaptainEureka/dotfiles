@@ -1,0 +1,76 @@
+#!/usr/bin/env python
+
+"""
+CLI Terminal color palette manager using Pywal's template engine
+
+Usage:
+    pal
+    pal [ -s THEME ]
+    pal [ -l ]
+    pal (-h | --help)
+    pal (-v | --version)
+
+Arguments:
+    THEME  Theme name to set, show available themes with -l flag
+
+Options:
+    -s THEME        Sets theme located in ~/.config/pal/<theme>.json.
+    -l              List available themes.
+    -h --help       Show this screen.
+    -v --version    Show version.
+"""
+
+
+import pywal
+import os
+import os.path as path
+from docopt import docopt
+
+
+def get_theme(theme):
+    theme_dir = os.environ["HOME"]+"/.config/pal/"
+
+    return theme_dir+theme+".json"
+
+
+def list_themes(includePywal=False):
+    theme_dir = os.environ["HOME"]+"/.config/pal"
+    theme_list = os.listdir(theme_dir)
+    themes = [t for t in theme_list if path.isfile(path.join(theme_dir, t))]
+
+    print("Themes:")
+    for t in themes:
+        print("  - "+t[:-5])
+
+    if includePywal:
+        pywal.theme.list_out()
+
+
+def set_theme(theme):
+    """Main function."""
+    # Read colors from a `json` file.
+    colors = pywal.colors.file(get_theme(theme))
+    image = colors["wallpaper"]
+
+    # Apply palette to all open terminals
+    pywal.sequences.send(colors)
+
+    # Export templae files
+    pywal.export.every(colors)
+
+    # Reload xrdb, i3 and polybar.
+    pywal.reload.env()
+
+    # Set the wallpaper
+    pywal.wallpaper.change(image)
+
+
+if __name__ == '__main__':
+    arguments = docopt(__doc__, version='0.1')
+
+    if arguments['-s']:
+        set_theme(arguments['-s'])
+    elif arguments['-l']:
+        list_themes()
+    else:
+        print(arguments)
