@@ -14,7 +14,7 @@
 #inputbar {
   children: [ prompt, textbox-prompt-colon, entry ];
   margin: 4% 26% 1% 26%;
-  border-radius: 50px;
+  border-radius: 12px;
   background-color: @background-selected;
 }
 
@@ -26,7 +26,7 @@
   expand: false;
   str: " ";
   font: "Feather 14";
-  color: rgba(255,255,255,0.3);
+  color: @text-color-t;
   padding: 1% -0.625% 1% 1%;
   vertical-align: 0.50;
 }
@@ -36,7 +36,7 @@
   blink: true;
   padding: 1%;
   placeholder: "Rofi Search";
-  placeholder-color: rgba(255,255,255,0.3);
+  placeholder-color: @text-color-t;
 }
 
 #listview {
@@ -51,13 +51,13 @@
   orientation: vertical;
   margin: 1% 1.78%;
   padding: 2.0% 0.67% 2.0% 0.67%;
-  border-radius: 50px;
+  border-radius: 12px;
 }
 
 element selected {
   background-color: @background-selected;
   color: @text-color-t;
-  border-radius: 50px;
+  border-radius: 12px;
 }
 
 element-icon {
@@ -67,7 +67,7 @@ element-icon {
 element-text {
   font: "SF Pro Display 11";
   padding: 10 0 10 0;
-  text-color: rgba(200,211,245,0.7);
+  text-color: @text-color-t;
   horizontal-align: 0.5;
   vertical-align: 0.5;
 }

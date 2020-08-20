@@ -11,10 +11,9 @@
 
 #### AUTO START ####
 sxhkd &
-launch-polybar
-wal -f ~/.config/theme-man/moonlightII.json &
+launch-polybar bspwm
 setbg -r &
-picom --dbus --experimental-backends --backend glx &
+picom -b --experimental-backends &
 libinput-gestures &
 launch-notif-center &
 
@@ -40,6 +39,8 @@ bspc config pointer_action2 resize_side
 bspc config pointer_action3 resize_corner 
 
 bspc config split_ratio             0.5
+bspc config initial_polarity        second_child
+bspc config automatic_scheme        alternate
 bspc config borderless_monocle      false
 bspc config gapless_monocle         false
 bspc config focus_follows_pointer   true
@@ -50,9 +51,9 @@ bspc config single_monocle          true
 
 # source pywal colors
 . "${HOME}/.cache/wal/colors.sh"
-bspc config normal_border_color     "#2f334d"
-bspc config active_border_color     "#2f334d"
-bspc config focused_border_color    "#444a73"
+bspc config normal_border_color     "#383e5c"
+bspc config active_border_color     "#383e5c"
+bspc config focused_border_color    "#82aaff"
 bspc config presel_feedback_color   "$color8"
 bspc config urgent_border_color     "$color3"
 
@@ -61,6 +62,7 @@ bspc rule -a Gimp desktop='^7' state=floating follow=on
 bspc rule -a 'Firefox Beta' desktop='^2'
 bspc rule -a firefox desktop='^2'
 bspc rule -a Chromium desktop='^2'
+bspc rule -a ark state=floating
 bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off

@@ -25,6 +25,7 @@
 
 # IMPORTS
 import os
+import json
 import re
 import socket
 import subprocess
@@ -33,13 +34,13 @@ from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook
 from typing import List  # noqa: F401
 
-##### DEFINING SOME VARIABLES #####
+# DEFINING SOME VARIABLES
 mod = "mod4"                                     # Sets mod key to SUPER/WINDOWS
 alt = "mod1"                                     # Sets Alt key
-myTerm = "kitty"                                 # My terminal of choice
+myTerm = "alacritty"                                 # My terminal of choice
 myConfig = "/home/mk/.config/qtile/config.py"    # The Qtile config file location
 
-##### KEYBINDINGS #####
+# KEYBINDINGS
 keys = [
     # The essentials
     Key(
@@ -58,7 +59,7 @@ keys = [
         desc='Toggle through layouts'
     ),
     Key(
-        [mod, "shift"], "q",
+        [mod], "q",
         lazy.window.kill(),
         desc='Kill active window'
     ),
@@ -154,8 +155,13 @@ keys = [
     ),
     Key(
         [alt, "control"], "w",
-        lazy.spawn("setbg ~/Downloads"),
+        lazy.spawn("setbg /home/mk/Pictures/wallpapers"),
         desc='Set wallpaper with Sxiv and xwallpaper'
+    ),
+    Key(
+        [alt, "control"], "n",
+        lazy.spawn("notif-center-toggle"),
+        desc='Toggle linux notification center'
     ),
     Key(
         [alt, "control"], "b",
@@ -168,33 +174,43 @@ keys = [
         desc='Rofi power menu (shutdown, reboot, lock, logoff)'
     ),
     Key(
-        [alt, "control"], "s",
-        lazy.spawn("rofi-search"),
-        desc='Rofi DuckDuckGo Search'
+        [], "XF86AudioRaiseVolume",
+        lazy.spawn("notipy-volume 5%+"),
+        desc='Raise volume 5%'
+    ),
+    Key(
+        [], "XF86AudioLowerVolume",
+        lazy.spawn("notipy-volume 5%-"),
+        desc='Lower volume 5%'
+    ),
+    Key(
+        [], "XF86AudioMute",
+        lazy.spawn("notipy-volume toggle"),
+        desc='Toggle audio mute'
+    ),
+    Key(
+        [], "Print",
+        lazy.spawn("rofi-maim"),
+        desc='Rofi screenshot utility'
+    ),
+    Key(
+        [], "XF86MonBrightnessUp",
+        lazy.spawn("notipy-light -A 10"),
+        desc='Increase Brightness'
+    ),
+    Key(
+        [], "XF86MonBrightnessDown",
+        lazy.spawn("notipy-light -U 10"),
+        desc='Decrease Brightness'
     )
-    # Key(
-    #     "Print",
-    #     lazy.spawn("rofi-maim"),
-    #     desc='Rofi screenshot utility'
-    # ),
-    # Key(
-    #     "XF86MonBrightnessUp",
-    #     lazy.spawn("notipy-light -A 10"),
-    #     desc='Increase Brightness'
-    # ),
-    # Key(
-    #     "XF86MonBrightnessDown",
-    #     lazy.spawn("notipy-light -U 10"),
-    #     desc='Decrease Brightness'
-    # )
 ]
 
-##### GROUPS #####
-group_names = [("일", {'layout': 'monadtall'}),
-               ("이", {'layout': 'monadtall'}),
-               ("삼", {'layout': 'monadtall'}),
-               ("사", {'layout': 'monadtall'}),
-               ("오", {'layout': 'floating'})]
+# GROUPS
+group_names = [("I", {'layout': 'monadtall'}),
+               ("II", {'layout': 'max'}),
+               ("III", {'layout': 'monadtall'}),
+               ("IV", {'layout': 'monadtall'}),
+               ("V", {'layout': 'floating'})]
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
 
@@ -204,170 +220,130 @@ for i, (name, kwargs) in enumerate(group_names, 1):
     # Send current window to another group
     keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name)))
 
-##### DEFAULT THEME SETTINGS FOR LAYOUTS #####
+# COLORS
+def init_colors():
+    theme_dir = os.environ["HOME"]+"/.config/pal/moonlight.json"
+    with open(theme_dir) as c:
+        colors = json.load(c)
+
+    return colors
+
+
+colors = init_colors()
+special_colors = colors['special']
+normal_colors = colors['colors']
+
+# DEFAULT THEME SETTINGS FOR LAYOUTS
 layout_theme = {"border_width": 0,
-                "margin": 20,
-                "border_focus": "82aaff",
-                "border_normal": "383e5c"
+                "margin": 12,
+                "border_focus": normal_colors['color4'],
+                "border_normal": normal_colors['color0']
                 }
 
-##### THE LAYOUTS #####
+# THE LAYOUTS
 layouts = [
     # layout.MonadWide(**layout_theme),
-    # layout.Bsp(**layout_theme),
+    # layout.Bsp(ratio=1.5, fair=True, lower_right=False, **layout_theme),
     layout.MonadTall(**layout_theme),
     layout.Max(**layout_theme),
-    layout.Tile(shift_windows=True, **layout_theme),
     layout.Floating(**layout_theme)
 ]
 
-##### COLORS #####
-colors = [["#131421", "#131421"],  # panel background
-          ["#383e5c", "#383e5c"],  # background for current screen tab
-          ["#c8d3f5", "#c8d3f5"],  # font color for group names
-          ["#ff5370", "#ff5370"],  # border line color for current tab
-          ["#c597f9", "#c597f9"],  # border line color for other tab and odd widgets
-          ["#82aaff", "#82aaff"],  # color for the even widgets
-          ["#fca7ea", "#fca7ea"]]  # window name
+# DEFAULT WIDGET SETTINGS
 
-##### PROMPT #####
-prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
-
-##### DEFAULT WIDGET SETTINGS #####
 widget_defaults = dict(
     font="SF Pro Display",
     fontsize=22,
     padding=4,
-    background=colors[2]
+    background=special_colors['foreground']
 )
 extension_defaults = widget_defaults.copy()
 
-##### WIDGETS #####
+# WIDGETS
+
 
 def init_widgets():
     widgets_list = [
         widget.Sep(
             linewidth=0,
-            padding=10,
-            foreground=colors[2],
-            background=colors[0]
+            padding=6,
+            foreground=special_colors['foreground'],
+            background=special_colors['background']
         ),
-        widget.GroupBox(font="SF Pro Display",
-                        fontsize=22,
-                        margin_y=3,
-                        margin_x=0,
-                        padding_y=20,
-                        padding_x=20,
-                        borderwidth=3,
-                        active=colors[2],
-                        inactive=colors[2],
-                        rounded=True,
-                        highlight_color=colors[1],
-                        highlight_method="line",
-                        this_current_screen_border=colors[5],
-                        this_screen_border=colors[4],
-                        other_current_screen_border=colors[0],
-                        other_screen_border=colors[0],
-                        foreground=colors[2],
-                        background=colors[0]
-                        ),
+        widget.Image(
+            background=special_colors['background'],
+            filename="/home/mk/.config/qtile/icons/search.png",
+            mouse_callbacks={'Button1': lambda qtile: qtile.cmd_spawn('rofi -show drun -theme startmenu')},
+            margin=6,
+            scale=True
+        ),
         widget.Sep(
             linewidth=0,
-            padding=1200,
-            foreground=colors[2],
-            background=colors[0]
+            padding=6,
+            foreground=special_colors['foreground'],
+            background=special_colors['background']
         ),
-        widget.Clock(
-            font="SF Pro Display Bold",
-            foreground=colors[2],
-            background=colors[0],
-            format="%a, %H:%M"
-        ),
-        widget.Spacer(
-            background=colors[0]
-        ),
-        # widget.TextBox(
-        #     text=" ",
-        #     padding=4,
-        #     font="Feather",
-        #     foreground=colors[2],
-        #     background=colors[0],
-        #     fontsize=20
-        # ),
-        widget.Notify(
-            foreground=colors[2],
-            foreground_low=colors[2],
-            foreground_urgen=colors[3],
-            background=colors[0],
-            padding=8
-        ),
-        widget.CheckUpdates(
-            execute='kitty',
-            foreground=colors[2],
-            background=colors[0],
-            padding=4,
-            colour_no_updates=colors[2],
-            colour_have='ff5370',
-            display_format='  {updates}',
-            font='Feather'
-        ),
-        # widget.TextBox(
-        #     text="  ",
-        #     font="Feather",
-        #     fontsize=24,
-        #     foreground=colors[2],
-        #     background=colors[0],
-        #     padding=2
-        # ),
-        widget.Volume(
-            foreground=colors[2],
-            background=colors[0],
-            padding=4,
-            theme_path='/usr/share/icons/Papirus-Dark/16x16/panel'
-        ),
-        widget.BatteryIcon(
-            foreground=colors[2],
-            background=colors[0],
-            padding=4,
-            theme_path='/usr/share/icons/Papirus-Dark/16x16/panel'
-        ),
-        widget.Battery(
-            foreground=colors[2],
-            background=colors[0],
-            low_foreground=colors[3],
-            format='{percent:2.0%}'
-        ),
-        widget.Wlan(
-            interface='wlp58s0',
-            foreground=colors[2],
-            background=colors[0],
-            padding=8,
-            format=' ',
-            disconnected_message=' ',
-            mouse_callbacks={'Button1': 'kitty'}
+        widget.GroupBox(
+            font="SF Pro Display",
+            fontsize=28,
+            margin_y=3,
+            margin_x=0,
+            padding_y=20,
+            padding_x=20,
+            borderwidth=3,
+            active=special_colors['foreground'],
+            inactive=special_colors['foreground'],
+            rounded=False,
+            center_aligned=True,
+            highlight_color=normal_colors['color0'],
+            highlight_method="block",
+            this_current_screen_border=normal_colors['color0'],
+            this_screen_border=normal_colors['color0'],
+            other_current_screen_border=special_colors['background'],
+            other_screen_border=special_colors['background'],
+            foreground=special_colors['foreground'],
+            background=special_colors['background']
         ),
         widget.CurrentLayoutIcon(
             custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
-            foreground=colors[2],
-            background=colors[0],
+            foreground=special_colors['foreground'],
+            background=special_colors['background'],
             padding=0,
             scale=0.5
+        ),
+        widget.Spacer(
+            background=special_colors['background']
+        ),
+        widget.Systray(
+            background=special_colors['background'],
+            icon_size=38,
+            padding=8
         ),
         widget.Sep(
             linewidth=0,
             padding=10,
-            foreground=colors[0],
-            background=colors[0]
+            foreground=special_colors['background'],
+            background=special_colors['background']
+        ),
+        widget.Clock(
+            font="SF Pro Text",
+            foreground=special_colors['foreground'],
+            background=special_colors['background'],
+            format="%a %d, %H:%M"
+        ),
+        widget.Sep(
+            linewidth=0,
+            padding=10,
+            foreground=special_colors['background'],
+            background=special_colors['background']
         )
     ]
     return widgets_list
 
-# SCREENS ##### (TRIPLE MONITOR SETUP)
-
 
 def init_screens():
     return [Screen(top=bar.Bar(widgets=init_widgets(),
-                               opacity=0.70, size=54, margin=[10, 20, 0, 20]))]
+                               opacity=0.90, size=54, margin=[0, 0, 0, 0]))]
 
 
 if __name__ in ["config", "__main__"]:
@@ -403,15 +379,18 @@ floating_layout = layout.Floating(float_rules=[
     {'wmclass': 'confirmreset'},  # gitk
     {'wmclass': 'makebranch'},  # gitk
     {'wmclass': 'maketag'},  # gitk
+    {'wname': 'sxiv'},
     {'wname': 'branchdialog'},  # gitk
     {'wname': 'pinentry'},  # GPG key password entry
     {'wmclass': 'ssh-askpass'},  # ssh-askpass
 ],
-border_width=0)
+    border_width=0)
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 
 ##### STARTUP APPLICATIONS #####
+
+
 @hook.subscribe.startup_once
 def start_once():
     home = os.path.expanduser('~')

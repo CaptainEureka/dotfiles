@@ -1,5 +1,9 @@
 
 window:
+  dimensions:
+    columns: 80
+    lines: 24 
+
   position:
     x: 0
     y: 0
@@ -29,7 +33,7 @@ font:
     y: 0
 
 
-background_opacity: .7
+background_opacity: 0.9
 
 # Allow terminal applications to change Alacritty's window title.
 #dynamic_title: true

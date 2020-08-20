@@ -1,5 +1,38 @@
-#!/bin/bash
-touch "$1"
-chmod +x "$1"
-echo "$0: file $1 created with exec permissions"
-echo -e '#!/bin/bash' > "$1"
+#!/usr/bin/env bash
+
+check_valid() {
+  if [ -f "$1" ]; then
+    echo "The file "$1" already exists!"
+    exit 1
+  fi
+}
+
+create_script() {
+  touch "$1"
+  chmod +x "$1"
+  echo "$0: $2 script file $1 created with exec permissions"
+  echo -e '#!/usr/bin/env '"$2" > "$1"
+}
+
+usage() {
+  echo -e "Quickly create executable script\n"
+  echo "Usage:"
+  echo "  xtouch [ -w FILE LANG ]"
+  echo -e "  xtouch ( -h | --help )\n"
+  echo "Arguments:"
+  echo "FILE  Name to give the scripts"
+  echo -e "LANG  Language in which the script will be written\n"
+  echo "Options:"
+  echo "  -w FILE LANG      Creates a <LANG> executable script file named <FILE>."
+  echo "  -h --help         Show this screen."
+}
+
+case "$1" in
+  '-w')
+    check_valid "$2"
+    create_script "$2" "$3"
+    ;;
+  *)
+    usage
+    ;;
+esac

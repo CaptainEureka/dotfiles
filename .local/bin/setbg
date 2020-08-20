@@ -2,7 +2,7 @@
 
 [ -f "$1" ] && bg="$1" && cp $bg $HOME/.cache/setbg/setbg.png
 
-[ -d "$1" ] && bg=$(find "$1" -iregex '.*.\(jpg\|jpeg\|png\)' -type f | shuf | sxiv -otbi) \
+[ -d "$1" ] && bg=$(find "$1" -iregex '.*.\(jpg\|jpeg\|png\)' -type f | shuf | sxiv -otbif) \
   && cp $bg $HOME/.cache/setbg/setbg.png
 
 [ "$1" == "-r" ] && bg=$HOME/.cache/setbg/setbg.png 

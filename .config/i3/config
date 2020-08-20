@@ -22,11 +22,10 @@ font pango:Fantasque Sans Mono Regular 14
 # AUTOSTART #
 #############
 
-exec_always --no-startup-id wal -Rq
+exec_always --no-startup-id wal -f ~/.config/them-man/moonlight.json
 exec_always --no-startup-id picom -b --dbus --experimental-backends --backend glx
-# exec_always --no-startup-id compton --dbus
-exec_always --no-startup-id launch-polybar
-exec_always --no-startup-id dunst
+exec_always --no-startup-id launch-polybar i3
+exec_always --no-startup-id launch-notif-center
 exec --no-startup-id nm-applet
 exec_always --no-startup-id libinput-gestures
 
@@ -47,7 +46,7 @@ bindsym $mod+Shift+Return exec rofi-appsmenu
 bindsym $mod+shift+d exec rofi-appslist 
 
 # Lock screen
-bindsym $mod+Shift+e exec betterlockscreen -l blur 
+bindsym $mod+Shift+e exec lockscreen-wrapper
 
 # Rofi power menu [shutdown, reboot, lock, suspend, logout]
 bindsym $mod+Shift+p exec rofi-powermenu
@@ -59,13 +58,13 @@ bindsym $mod+shift+w exec $(setbg $(sxiv -otbr ~/Pictures/wallpapers))
 bindsym $mod+shift+z exec rofi-config-menu
 
 # Audio controls
-bindsym XF86AudioRaiseVolume exec changeVol 5%
-bindsym XF86AudioLowerVolume exec changeVol 5%-
-bindsym XF86AudioMute exec changeVol toggle
+bindsym XF86AudioRaiseVolume exec notipy-volume 5%
+bindsym XF86AudioLowerVolume exec notipy-volume 5%-
+bindsym XF86AudioMute exec notipy-volume toggle
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec changeBright -A 10
-bindsym XF86MonBrightnessDown exec changeBright -U 10 
+bindsym XF86MonBrightnessUp exec notipy-light -A 10
+bindsym XF86MonBrightnessDown exec notipy-light -U 10 
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
@@ -257,7 +256,7 @@ gaps outer 0
 #gaps top 32
 
 # Corner radius
-border_radius 12
+# border_radius 12
 
 # Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
 # gaps inner|outer current|all set|plus|minus <px>

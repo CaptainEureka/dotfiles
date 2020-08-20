@@ -13,11 +13,5 @@ settings:
       w: session-save
       wq: quit --save
       wqa: quit --save
-  colors.tabs.even.bg:
-    global: '#131421'
-  colors.tabs.odd.bg:
-    global: '#131421'
-  colors.tabs.selected.even.bg:
-    global: '#222436'
-  colors.tabs.selected.odd.bg:
-    global: '#222436'
+  scrolling.smooth:
+    global: true

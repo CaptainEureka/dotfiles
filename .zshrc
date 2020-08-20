@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.local/bin:usr/local/bin:$PATH
 export PATH=$PATH:/snap/bin
 
 # Path to your oh-my-zsh installation.
@@ -77,11 +77,13 @@ plugins=(
 	  themes
     colorize
     colored-man-pages
-    zsh-syntax-highlighting
     dotbare
 )
 
 source $ZSH/oh-my-zsh.sh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source <( echo "$(navi widget zsh)")
 
 # User configuration
 

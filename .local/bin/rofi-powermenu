@@ -1,15 +1,11 @@
 #!/bin/bash
 
 function exec_shutdown() {
-  notify-send.py "System" "Shutting down..." \
-    --hint string:image-path:"system-shutdown"
   sleep 1;
   systemctl shutdown
 }
 
 function exec_reboot() {
-  notify-send.py "System" "Rebooting..." \
-    --hint string:image-path:"system-reboot"
   sleep 1;
   systemctl reboot
 }
@@ -23,16 +19,15 @@ function exec_logoff() {
   case $session in
     "i3")
         sleep 1;
-        notify-send.py "System" "Logging off..." \
-          --hint string:image-path:"system-log-out"
         i3exit
         ;;
     "bspwm")
         sleep 1;
-        notify-send.py "System" "Logging off..." \
-          --hint string:image-path:"system-log-out"
         bspc quit
         ;;
+    "qtile")
+      sleep 1;
+      qshell --command shutdown\(\)
   esac
 }
 

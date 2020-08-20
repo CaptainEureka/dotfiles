@@ -39,10 +39,10 @@ entry {
 
 #textbox-prompt-colon {
   expand: false;
-  str: "";
+  str: "";
   color: @text-color;
   padding: 10px 20px;
-  font: "Hack Nerd Font Mono 14";
+  font: "Feather 14";
 }
 
 #listview {
@@ -53,7 +53,6 @@ entry {
 
 #entry {
   background-color: transparent;
-  color: @black-bold;
   padding: 10px 20px;
   border-radius: 10px;
 }
@@ -69,7 +68,5 @@ entry {
 #element.selected {
   background-color: @background-selected;
   color: @text-color;
-  /* border: 3px solid; */
-  /* border-color: @black-bold; */
   border-radius: 10px;
 }

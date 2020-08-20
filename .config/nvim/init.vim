@@ -127,6 +127,9 @@ set expandtab
 set tabstop=2
 set shiftwidth=2
 
+" FZF keybindings
+noremap <C-f> :Files<CR>
+
 " vim-autoformat
 noremap <F3> :Autoformat<CR>
 

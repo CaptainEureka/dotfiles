@@ -12,23 +12,23 @@
 
 # description: terminal emulator
 super + Return
-	kitty	
-
-# Proxy:
-super + w
-	rofi -show drun -theme concept
+	alacritty	
 
 # description: rofi runner
-super + shift + {Return,d}
-	rofi-{appsmenu,appslist}
+super + shift + Return
+	rofi-appsmenu
 
 # description: reload sxhkd config
 super + Escape
 	pkill -USR1 -x sxhkd
 
-# description: rofi-{powermenu,keybinds,config-menu,bwmenu}
-super + shift + { p, s, z, b }
-	{rofi-powermenu sysicons,rofi-sxhkd,rofi-config-menu,bwmenu}
+# description: rofi-{powermenu,config-menu,bwmenu}
+super + shift + { p, z, b }
+	{rofi-powermenu sysicons,rofi-config-menu,bwmenu}
+
+# description: rofi based sxhkd help
+super + slash
+	rofi-sxhkd
 
 # description: set wallpaper Sxiv + xwallpaper
 super + shift + w
@@ -71,10 +71,6 @@ super + shift + {Escape,r}
 super + {_,shift + }q
 	bspc node -{c,k}
 
-# description: toggle monocle layout
-super + m
-	bspc desktop -l next
-
 # description: newest marked node -> newest preselected node
 super + y
 	bspc node newest.marked.local -n newest.!automatic.local
@@ -94,6 +90,7 @@ super + control + {minus, equal}
 # description: dynamic gaps -> default
 super + shift + g
 	bsp-gaps -d
+
 # description: dynamic padding -> default
 super + control + g
 	bsp-padding -d
@@ -112,10 +109,6 @@ super + shift + space
 # description: toggle fullscreen
 super + f
 	bsp-fullscreen
-
-# description: set node flags (marked,locked,sticky,private)
-super + ctrl + {m,x,y,z}
-	bspc node -g {marked,locked,sticky,private}
 
 #
 # focus/swap
@@ -151,6 +144,10 @@ super + {o,i}
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
+# description: rotate tree
+super + shift + {j,k}
+	bspc node @/ -C {forward,backward}
+
 #
 # preselect
 #
@@ -175,14 +172,23 @@ super + ctrl + shift + space
 # move/resize
 #
 
-# description: expand window outward
-super + alt + {h,j,k,l}
-	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
-
-# description: contract window inward
-super + alt + shift + {h,j,k,l}
-	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
-
-# description: move floating window
-super + {Left,Down,Up,Right}
+# description: move floating window - vim-keys
+super + m : {h,j,k,l}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# description: move floating window - arrow-keys
+super + m : {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+
+# description: expand/contract a window outward/inward - vim-keys
+super + s : {h,j,k,l}
+    STEP=20; SELECTION={1,2,3,4}; \
+    bspc node -z $(echo "left -$STEP 0,bottom 0 $STEP,top 0 -$STEP,right $STEP 0" | cut -d',' -f$SELECTION) || \
+    bspc node -z $(echo "right -$STEP 0,top 0 $STEP,bottom 0 -$STEP,left $STEP 0" | cut -d',' -f$SELECTION)
+
+# description: expand/contract a window outward/inward - arrow-keys
+super + s : {Left,Down,Up,Right}
+    STEP=20; SELECTION={1,2,3,4}; \
+    bspc node -z $(echo "left -$STEP 0,bottom 0 $STEP,top 0 -$STEP,right $STEP 0" | cut -d',' -f$SELECTION) || \
+    bspc node -z $(echo "right -$STEP 0,top 0 $STEP,bottom 0 -$STEP,left $STEP 0" | cut -d',' -f$SELECTION)
