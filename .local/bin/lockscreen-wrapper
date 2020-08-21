@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+bgr=13142150
+base01=191b2180
+base0=22243650
+fgr=e2e4fa80
+fgr_t=e2e4fa80
+green=4fd6beB3
+red=ff757fB3
+transparent=00000000
+font="Share Tech Mono"
+
+i3lock -k --indicator \
+  -c $bgr \
+  --indpos="w/2-r/2:h-r*2" --radius 25 \
+  --veriftext='' --wrongtext='' --noinputtext='' \
+  --insidevercolor=$transparent \
+  --insidewrongcolor=$transparent \
+  --insidecolor=$transparent \
+  --ringvercolor=$transparent \
+  --ringwrongcolor=$transparent \
+  --ringcolor=$fgr_t \
+  --line-uses-inside \
+  --keyhlcolor=$green \
+  --bshlcolor=$red \
+  --separatorcolor=$transparent \
+  --clock --force-clock \
+  --timecolor=$fgr \
+  --timestr="%H:%M" \
+  --time-font="$font" \
+  --timepos="w/2:h/2" \
+  --timesize=148 \
+  --datecolor=$fgr \
+  --datestr="%a, %b %-d" \
+  --date-font="$font" \
+  --datepos="tx:ty+80" \
+  --datesize=32

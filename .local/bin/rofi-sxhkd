@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# A rofi based utility to show sxhkd keybinding
+# extend with xdotool to run the given hotkey
+
+# grep -i -A 1 description .config/sxhkd/sxhkdrc | \
+#     sed '/--/d;s/# description:\ //gI' | \
+#         awk 'NR%2{printf "%s: ",$0;next;}1' "$1" | \
+#             column -t -s':' | \
+#                 rofi -theme rofi-keys -dmenu -p "Keybinds"
+
+awk '/^[a-z]/ && last {print "<small>",$0,"\t",last,"</small>"} {last=""} /^#/{last=$0}' ~/.config/sxhkd/sxhkdrc |
+    column -t -s $'\t' |
+    rofi -theme rofi-keys -dmenu -i -markup-rows -no-show-icons -width 1000 -lines 15 -yoffset 40

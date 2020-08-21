@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+function get_volume() {
+  amixer sget Master | tail -1 | awk '{print $5}' | sed 's/[^0-9]*//g'
+}
+
+function is_mute() {
+  amixer sget Master | tail -1 | awk '{print $6}' | sed 's/[^a-z]*//g'
+}
+
+function set_volume() {
+  amixer sset Master "$@" > /dev/null
+}
+
+function get_icon() {
+  VOLUME=$(get_volume)
+  MUTE=$(is_mute)
+  if [ $VOLUME -le 20 ]; then
+      ICON=audio-volume-low
+    else if [ $VOLUME -le 60 ]; then
+          ICON=audio-volume-medium
+    else 
+        ICON=audio-volume-high
+    fi
+  fi
+  if [[ $VOLUME == 0 || $MUTE == "off" ]]; then
+      ICON=audio-volume-muted
+  fi
+
+  echo $ICON
+}
+
+function notify() {
+  # block="▁"
+  block="▆"
+  
+  if [ "$2" == "audio-volume-muted" ]; then
+      disabled="#333"
+      bar="Muted"
+  else
+      disabled="#fff"
+      bar=$(getProgressString 10 "<span foreground='$disabled'>$block</span>" "" "$1")
+  fi
+
+  notify-send.py " " "$bar" \
+                    -t 1500 \
+                    --hint string:image-path:"$2" boolean:transient:true \
+                    --replaces-process "volume-popup"
+}
+
+set_volume "$@"
+notify $(get_volume) $(get_icon) > /dev/null &
