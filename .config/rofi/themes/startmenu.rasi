@@ -1,0 +1,77 @@
+* {
+    background-color: transparent;
+}
+
+#window {
+    transparency: "real";
+    location: northwest;
+    anchor: northwest;
+    x-offset: 20px;
+    y-offset: 74px;
+    height: 32%;
+    width: 15%;
+}
+
+#mainbox {
+    children: [ inputbar , listview ];
+    background-color: @background;
+}
+
+#inputbar {
+  children: [ prompt, textbox-prompt-colon, entry ];
+  /* background-color: @background-selected; */
+  /* border: 0px 0px 4px 0px; */
+  border-color: @background-selected;
+}
+
+#prompt {
+  enabled: false;
+}
+
+#textbox-prompt-colon {
+  expand: false;
+  str: " ";
+  font: "Feather 14";
+  color: @text-color-t;
+  padding: 1% -0.625% 1% 1%;
+  vertical-align: 0.50;
+}
+
+#entry {
+  expand: true;
+  blink: true;
+  padding: 1%;
+  placeholder: "Search...";
+  placeholder-color: @text-color-t;
+}
+
+#listview {
+    lines: 6;
+    cycle: false;
+    /* margin: 1.78% 1%; */
+    /* padding: 0.5% 0%; */
+}
+
+#element {
+    /* border-radius: 12px; */
+    padding: 1%;
+}
+
+#element.selected {
+    background-color: @background-selected;
+    border: 0px 0px 0px 8px;
+    border-color: @blue-normal;
+    color: @text-color-t;
+    /* border-radius: 12; */
+}
+
+element-icon {
+    size: 3%;
+}
+
+element-text {
+    font: "SF Pro Display 9";
+    padding: 10 0 10 0;
+    text-color: @text-color-t;
+    vertical-align: 0.5;
+}
