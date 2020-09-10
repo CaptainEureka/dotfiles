@@ -4,65 +4,63 @@
 
 #window {
     transparency: "real";
-    fullscreen: true;
+    location: center;
+    anchor: center;
+    width: 35%;
 }
 
 #mainbox {
-    children: [ inputbar, listview ];
+    children: [ inputbar , listview ];
     background-color: @background;
-    margin: 23% 35%;
-    border-radius: 12px;
-    border: 1px;
-    border-color: @black-normal;
 }
 
 #inputbar {
-    children: [ prompt, textbox-prompt-colon, entry ];
-    padding: 4;
-    background-color: @black-normal;
+  children: [ prompt, textbox-prompt-colon, entry ];
+  border: 0px 0px 4px 0px;
+  border-color: @background-selected;
+  margin: 12px;
 }
 
 #prompt {
-    enabled: false;    
+  enabled: false;
 }
 
 #textbox-prompt-colon {
     expand: false;
-    str: "  ";
-    padding: 1% 1%;
-    font: "Fantasque Sans Mono Nerd Font 14";
+    str: " ";
+    padding: 1%;
+    font: "Feather 14";
+    vertical-align: 0.5;
 }
 
 #entry {
-    expand: true;
-    border-radius: 12px;
-    padding: 0.88% 0.5% ;
-    location: center;
-    horizontal-align: 0.45;
-    vertical-align: 0.5;
-    placeholder: "Network Manager";
-    blink: false;
+  expand: true;
+  blink: true;
+  padding: 1%;
+  placeholder: "Connection Manager";
+  placeholder-color: @text-color-t;
 }
 
 #listview {
-    lines: 9;
-    columns: 1;
-    margin: 1.78% 1%;
-    spacing: 2;
-    dynamic: true;
+    padding: 8px 0px 0px 0px;
+    cycle: false;
+    lines: 8;
 }
 
 #element {
-    padding: 12px;
-    border-radius: 12px;
+    padding: 1%;
 }
 
 #element.selected {
     background-color: @background-selected;
-    color: @text-color;
+    border: 0px 0px 0px 8px;
+    border-color: @blue-normal;
+    color: @text-color-t;
 }
 
 element-text {
-    padding: 10 0 10 0;
+    font: "SF Pro Display 12";
+    padding: 10px;
+    text-color: @text-color-t;
     vertical-align: 0.5;
 }

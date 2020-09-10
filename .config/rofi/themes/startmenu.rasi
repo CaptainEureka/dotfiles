@@ -8,7 +8,6 @@
     anchor: northwest;
     x-offset: 20px;
     y-offset: 74px;
-    height: 32%;
     width: 15%;
 }
 

@@ -4,22 +4,16 @@ let g:plugged_home = '~/.config/nvim/plugged'
 call plug#begin(g:plugged_home)
 
 " UI related
-Plug 'chriskempson/base16-vim'
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
 
 " Better Visual Guide
 Plug 'Yggdroot/indentLine'
 
 " Syntax
-Plug 'w0rp/ale'
-Plug 'hail2u/vim-css3-syntax'
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'kovetskiy/sxhkd-vim'
-Plug 'pangloss/vim-javascript'
-Plug 'tbastos/vim-lua'
-Plug 'stephpy/vim-yaml'
+Plug 'sheerun/vim-polyglot'
 
 " Intellisense Autocomplete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -35,14 +29,9 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'CaptainEureka/moonlight.vim'
 Plug 'arzg/vim-substrata'
-Plug 'ayu-theme/ayu-vim'
-Plug 'ghifarit53/tokyonight.vim'
-
-" Vim Cheatsheet
-Plug 'liuchengxu/vim-which-key'
-
-" Vim multi-cursor
-Plug 'terryma/vim-multiple-cursors'
+Plug 'ghifarit53/tokyonight-vim'
+Plug 'ntk148v/vim-horizon'
+Plug 'morhetz/gruvbox'
 
 " UltiSnips vim snippets
 Plug 'SirVer/ultisnips'
@@ -87,20 +76,19 @@ endif
 
 " colorscheme
 set background=dark
-" " colorscheme ayu
-" " let ayucolor="dark"
-colorscheme moonlight
+" colorscheme ayu
+" let ayucolor="dark"
 
-" let g:tokyonight_style = 'storm' " available: night, storm
-" let g:tokyonight_enable_italic = 1
-" let g:tokyonight_disable_italic_comment = 1
+colorscheme gruvbox
 
+" let g:tokyonight_style = 'night' " available: night, storm
+" let g:tokyonight_transparent_background = 1
 " colorscheme tokyonight
 
 hi Normal guibg=NONE ctermbg=NONE
 
 " Italics for moonlight
-let g:moonlight_terminal_italics = 1
+" let g:moonlight_terminal_italics = 1
 
 " Italics for palenight
 "let g:palenight_terminal_italics = 1
@@ -152,7 +140,7 @@ let g:airline_right_sep = ''
 let g:airline#extensions#ale#enabled = 1
 let airline#extensions#ale#error_symbol = 'E:'
 let airline#extensions#ale#warning_symbol = 'W:'
-let g:airline_theme = 'moonlight'
+let g:airline_theme = 'gruvbox'
 
 " .rasi syntax
 au BufNewFile,BufRead /*.rasi setf css

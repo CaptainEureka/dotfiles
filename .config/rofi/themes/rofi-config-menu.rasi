@@ -1,72 +1,65 @@
-configuration {
-  show-icons: false;
-  columns: 1;
-  dpi: 192;
-}
-@import "~/.cache/wal/rofi-wal.rasi"
 * {
-  background-color: transparent;
-  font: "Hack Nerd Font Mono 14";
-}
-#window {
-  background-color: @background;
-  padding: 20px;
-  border-radius: 10px;
-  border: 2px;
-  border-color: @border-color;
-  dynamic: true;
+    background-color: transparent;
 }
 
-inputbar,
-prompt,
-textbox-prompt-colon,
-entry {
-  background-color: transparent;
+#window {
+    transparency: "real";
+    location: center;
+    anchor: center;
+    width: 35%;
+}
+
+#mainbox {
+    children: [ inputbar , listview ];
+    background-color: @background;
 }
 
 #inputbar {
   children: [ prompt, textbox-prompt-colon, entry ];
-  margin: 10px;
-  border-radius: 10px;
+  border: 0px 0px 4px 0px;
+  border-color: @background-selected;
+  margin: 12px;
 }
 
 #prompt {
-  padding: 10px 20px;
-  background-color: transparent;
-  color: @text-color;
-  border-radius: 10px;
+  enabled: false;
 }
 
 #textbox-prompt-colon {
-  expand: false;
-  str: "";
-  color: @text-color;
-  padding: 10px 20px;
-  font: "Feather 14";
-}
-
-#listview {
-  lines: 10;
-  dynamic: true;
-  columns: 1;
+    expand: false;
+    str: "";
+    padding: 1%;
+    font: "Feather 14";
+    vertical-align: 0.5;
 }
 
 #entry {
-  background-color: transparent;
-  padding: 10px 20px;
-  border-radius: 10px;
+  expand: true;
+  blink: true;
+  padding: 1%;
+  placeholder: "Configurations";
+  placeholder-color: @text-color-t;
+}
+
+#listview {
+    padding: 8px 0px 0px 0px;
+    cycle: false;
 }
 
 #element {
-  padding: 20px;
-  margin: 5px;
-  border: 0px;
-  border-color: @background;
-  border-radius: 10px;
+    padding: 1%;
 }
 
 #element.selected {
-  background-color: @background-selected;
-  color: @text-color;
-  border-radius: 10px;
+    background-color: @background-selected;
+    border: 0px 0px 0px 8px;
+    border-color: @blue-normal;
+    color: @text-color-t;
+}
+
+element-text {
+    font: "SF Pro Display 12";
+    padding: 10px;
+    text-color: @text-color-t;
+    vertical-align: 0.5;
 }

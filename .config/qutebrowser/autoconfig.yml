@@ -13,5 +13,6 @@ settings:
       w: session-save
       wq: quit --save
       wqa: quit --save
-  scrolling.smooth:
-    global: true
+  url.searchengines:
+    global:
+      DEFAULT: https://start.duckduckgo.com/?q={}

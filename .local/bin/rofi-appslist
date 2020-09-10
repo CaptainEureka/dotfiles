@@ -1,4 +1,0 @@
-#!/bin/sh
-
-rofi -show drun -theme appslist
-

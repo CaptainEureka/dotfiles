@@ -33,6 +33,7 @@ from libqtile.config import Key, Screen, Group, Drag, Click
 from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook
 from typing import List  # noqa: F401
+import fontawesome as fa
 
 # DEFINING SOME VARIABLES
 mod = "mod4"                                     # Sets mod key to SUPER/WINDOWS
@@ -82,6 +83,15 @@ keys = [
         lazy.prev_screen(),
         desc='Move focus to prev monitor'
         ),
+    # Move focus to next/prev group
+    Key([mod, "control"], "Right",
+        lazy.screen.next_group(),
+        desc='Move focus to next group'
+        ),
+    Key([mod, "control"], "Left",
+        lazy.screen.prev_group(),
+        desc='Move focus to previous group'
+        ),
     # Window controls
     Key(
         [mod], "k",
@@ -127,8 +137,8 @@ keys = [
     ),
     Key(
         [mod, "shift"], "f",
-        lazy.window.toggle_floating(),
-        desc='toggle floating'
+        lazy.window.toggle_fullscreen(),
+        desc='toggle fullscreen'
     ),
     # Stack controls
     Key(
@@ -221,21 +231,49 @@ for i, (name, kwargs) in enumerate(group_names, 1):
     keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name)))
 
 # COLORS
-def init_colors():
-    theme_dir = os.environ["HOME"]+"/.config/pal/moonlight.json"
+def init_colors(theme):
+    theme_dir = os.path.expanduser("~/.config/pal/"+theme+".json")
     with open(theme_dir) as c:
         colors = json.load(c)
 
     return colors
 
 
-colors = init_colors()
+def recolor_icons(icons, fg):
+    icon_dir = os.path.expanduser("~/.config/qtile/icons/")
+    for icon in icons:
+        subprocess.call(["recolor "+icon_dir+icon+" "+"\""+fg+"\""], shell=True)
+    
+    return
+
+
+themes = ["gruvbox",
+          "moonlight",
+          "horizon",
+          "tokyo-night",
+          "amarena",
+          "iceberg",
+          "dracula",
+          "manta",
+          "nord",
+          "lovelace"]
+
+colors = init_colors(themes[0])
 special_colors = colors['special']
 normal_colors = colors['colors']
 
+icons = ["search.png",
+         "layout-floating.png",
+         "layout-max.png",
+         "layout-monadtall.png",
+         "layout-tile.png",
+         "layout-treetab.png"]
+
+recolor_icons(icons, special_colors['foreground'])
+
 # DEFAULT THEME SETTINGS FOR LAYOUTS
-layout_theme = {"border_width": 0,
-                "margin": 12,
+layout_theme = {"border_width": 4,
+                "margin": 18,
                 "border_focus": normal_colors['color4'],
                 "border_normal": normal_colors['color0']
                 }
@@ -252,7 +290,7 @@ layouts = [
 # DEFAULT WIDGET SETTINGS
 
 widget_defaults = dict(
-    font="SF Pro Display",
+    font="Lato Bold 22",
     fontsize=22,
     padding=4,
     background=special_colors['foreground']
@@ -321,12 +359,29 @@ def init_widgets():
         ),
         widget.Sep(
             linewidth=0,
-            padding=10,
+            padding=20,
             foreground=special_colors['background'],
-            background=special_colors['background']
+            background=special_colors['background'],
+            size_percent=80
+        ),
+        widget.TextBox(
+            text="VOL:",
+            background=special_colors['background'],
+            foreground=special_colors['foreground'],
+        ),
+        widget.Volume(
+            background=special_colors['background'],
+            foreground=special_colors['foreground'],
+            step=5,
+            # padding=10
+        ),
+        widget.Battery(
+            background=special_colors['background'],
+            foreground=special_colors['foreground'],
+            format='BAT: {percent:2.0%}',
+            padding=20
         ),
         widget.Clock(
-            font="SF Pro Text",
             foreground=special_colors['foreground'],
             background=special_colors['background'],
             format="%a %d, %H:%M"
@@ -343,7 +398,7 @@ def init_widgets():
 
 def init_screens():
     return [Screen(top=bar.Bar(widgets=init_widgets(),
-                               opacity=0.90, size=54, margin=[0, 0, 0, 0]))]
+                               opacity=0.95, size=54, margin=[0, 0, 0, 0]))]
 
 
 if __name__ in ["config", "__main__"]:

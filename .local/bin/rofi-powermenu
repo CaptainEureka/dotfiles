@@ -2,12 +2,12 @@
 
 function exec_shutdown() {
   sleep 1;
-  systemctl shutdown
+  systemctl shutdown --now
 }
 
 function exec_reboot() {
   sleep 1;
-  systemctl reboot
+  systemctl reboot --now
 }
 
 function exec_lock() {
@@ -19,7 +19,7 @@ function exec_logoff() {
   case $session in
     "i3")
         sleep 1;
-        i3exit
+        i3exit logout
         ;;
     "bspwm")
         sleep 1;
@@ -32,55 +32,29 @@ function exec_logoff() {
 }
 
 function get_options() {
-  case "$1" in
-    "sysicons")
-        power_off="Shutdown\0icon\x1fsystem-shutdown"
-        reboot="Reboot\0icon\x1fsystem-reboot"
-        lock="Lock\0icon\x1fsystem-lock-screen"
-        log_out="Logoff\0icon\x1fsystem-log-out"
-        echo -en "$power_off\n$reboot\n$lock\n$log_out"
-        ;;
-    "feather")
-        power_off=""
-        reboot=""
-        lock=""
-        log_out=""
-        echo -en "$power_off\n$reboot\n$lock\n$log_out"
-        ;;
-    *)
-        echo -e "Usage:"
-        echo -e "Subcommands:"
-        echo -e "     sysicons    uses system defined icons (from iconset)"
-        echo -e "     feather      uses the feather font icons"
-        ;;
-  esac
+
+  power_off="Shutdown\0icon\x1fsystem-shutdown"
+  reboot="Reboot\0icon\x1fsystem-reboot"
+  lock="Lock\0icon\x1fsystem-lock-screen"
+  log_out="Logoff\0icon\x1fsystem-log-out"
+  echo -en "$power_off\n$reboot\n$lock\n$log_out"
+
 }
 
-case "$1" in
-  "sysicons")
-      rofi_command="rofi -theme powermenuv2"
-      ;;
-  "feather")
-      rofi_command="rofi -theme powermenu"
-      ;;
-  *)
-      rofi_command="rofi"
-      ;;
-esac
-
-chosen="$( get_options "$1" | $rofi_command -dmenu -selected-row 2)"
+rofi_command="rofi -theme powermenu"
+chosen="$( get_options | $rofi_command -dmenu -selected-row 2)"
 
 case $chosen in
-    "Shutdown"|"")
+    "Shutdown")
         exec_shutdown
         ;;
-    "Reboot"|"")
+    "Reboot")
         exec_reboot
         ;;
-    "Lock"|"")
+    "Lock")
         exec_lock
         ;;
-    "Logoff"|"")
+    "Logoff")
         exec_logoff
         ;;
 esac

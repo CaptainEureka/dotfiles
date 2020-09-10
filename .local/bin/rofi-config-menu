@@ -1,11 +1,15 @@
 #!/bin/bash
 
 ## TERMINAL ##
-TERMINAL=kitty
+TERMINAL=alacritty
 ## OPTIONS ##
-my_options="i3\nawesome\nbspwm\nqtile\nsxhkd\npolybar\nrofi\npicom\nwal\n$TERMINAL\n"
+my_options="i3\nawesome\nbspwm\nqtile\nsxhkd\npolybar\nrofi\npicom\n$TERMINAL"
 
-choice="$(echo -e "$my_options" | rofi -theme rofi-config-menu -dmenu -p Configs)"
+choice="$(echo -e "$my_options" | rofi -l 5 -theme rofi-config-menu -dmenu -p Configurations)"
+
+if [[ -z $choice ]]; then
+  exit 1
+fi
 
 case "$choice" in
     i3)

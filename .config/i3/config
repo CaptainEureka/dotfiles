@@ -22,22 +22,25 @@ font pango:Fantasque Sans Mono Regular 14
 # AUTOSTART #
 #############
 
-exec_always --no-startup-id wal -f ~/.config/them-man/moonlight.json
-exec_always --no-startup-id picom -b --dbus --experimental-backends --backend glx
+exec_always --no-startup-id pal moonlight
+exec_always --no-startup-id picom --experimental-backends
 exec_always --no-startup-id launch-polybar i3
 exec_always --no-startup-id launch-notif-center
-exec --no-startup-id nm-applet
+exec --no-startup-id nm-applet --no-agent
 exec_always --no-startup-id libinput-gestures
+exec_always --no-startup-id xob-volume-wacher.py | xob &
+exec_always --no-startup-id setbg -r
 
 ###################
 # CUSTOM KEYBINDS #
 ###################
 
 # Open terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec alacritty
 
 # Close focused window
 bindsym $mod+Shift+q kill
+bindsym $mod+q kill
 
 # Fullscreen application launcher
 bindsym $mod+Shift+Return exec rofi-appsmenu
@@ -52,7 +55,7 @@ bindsym $mod+Shift+e exec lockscreen-wrapper
 bindsym $mod+Shift+p exec rofi-powermenu
 
 # Set wallpaper with Sxiv + xwallpaper
-bindsym $mod+shift+w exec $(setbg $(sxiv -otbr ~/Pictures/wallpapers)) 
+bindsym $mod+shift+w exec setbg ~/Pictures/wallpapers 
 
 # Menu for quick navigation to common configs
 bindsym $mod+shift+z exec rofi-config-menu
@@ -216,7 +219,7 @@ bindsym $mod+r mode "resize"
 ###########
 
 # Remove window border
-for_window [class=".*"] border pixel 0
+for_window [class=".*"] border pixel 2
 
 # change borders
 bindsym $mod+u border none
@@ -224,8 +227,8 @@ bindsym $mod+y border pixel 1
 bindsym $mod+n border normal
 
 # COLORS
-set $sd #222436B3
-set $pm #7a88cfB3  
+set $sd #282828D6
+set $pm #689d6aD6  
  
 # window colors                 border  backgr text indicator child_border                                                                    
 client.focused_inactive         $sd     $sd    $pm  $sd       $sd
@@ -253,7 +256,7 @@ gaps outer 0
 #gaps left 0
 #gaps right 0
 #gaps bottom 15
-#gaps top 32
+gaps top 24
 
 # Corner radius
 # border_radius 12

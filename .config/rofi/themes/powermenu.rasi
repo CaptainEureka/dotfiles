@@ -1,44 +1,45 @@
-* {
-    font: "Feather 64";
-    background-color: @background; 
-}
+@import "~/.config/rofi/config.rasi"
 
 #window {
-    transparency: "real";
-    fullscreen: true;
-}
-
-#mainbox {
-    children: [ inputbar, listview ];
-    background-color: transparent;
-    location: center;
-    margin: 43% 30%;
-    anchor: center;
+  fullscreen: true;
+  background-color: @background;
 }
 
 #prompt { enabled: false; }
 #entry { enabled: false; }
 #inputbar { enabled: false; }
 
+#mainbox {
+  children: [ inputbar, listview ];
+  margin: 43% 30%;
+}
+
 #listview {
-    background-color: transparent;
-    columns: 5;
-    lines: 1;
-    fixed-height: 0;
+  columns: 5;
+  lines: 1;
+  cycle: false;
 }
 
 #element {
-    background-color: transparent;
-    border-radius: 12px;
-    padding: 20px 0px 20px -136px;
+  orientation: vertical;
+  padding: 1.0% 0.33% 1.0% 0.33%;
+  border-radius: 12px;
 }
 
-#element.selected {
-    background-color: @background-selected;
-    border-radius: 12px;
+element selected {
+  background-color: @background-selected;
+  color: @text-color;
+  border-radius: 12px;
+}
+
+element-icon {
+  size: 7%;
 }
 
 element-text {
-    vertical-align: 0.5;
-    horizontal-align: 0.5;
+  font: "SF Pro Display 10";
+  padding: 10 0 10 0;
+  text-color: @text-color;
+  horizontal-align: 0.5;
+  vertical-align: 0.5;
 }

@@ -8,6 +8,9 @@
 # --- GitHub: https://github.com/CaptainEureka
 # --- A customized sxhkdrc for bspwm
 
+#### FUNCTIONS ####
+
+
 #### WM INDEPENDENT HOTKEYS ####
 
 # description: terminal emulator
@@ -16,7 +19,7 @@ super + Return
 
 # description: rofi runner
 super + shift + Return
-	rofi-appsmenu
+	rofi -show drun -theme appslist
 
 # description: reload sxhkd config
 super + Escape
@@ -52,12 +55,13 @@ super + u
 
 # Audio controls
 {_,super + }@XF86Audio{Mute,RaiseVolume,LowerVolume}
-	notipy-volume {toggle, mute, 10%+, 5%+, 10%-, 5%-}
-	# amixer sset Master {toggle, mute, 5%+, 1%+, 5%-, 1%-}
+	amixer sset Master {toggle, mute, 5%+, 1%+, 5%-, 1%-}
+	# notipy-volume {toggle, mute, 10%+, 5%+, 10%-, 5%-}
 
 # Media player controls
-XF86Audio{Play,Pause,Next,Prev}
-	playerctl {play,pause,next,previous}
+XF86Audio{Play,Next,Prev}
+	mpc {toggle, next, previous}
+	# playerctl {play,pause,next,previous}
 
 #
 # bspwm specific hotkeys

@@ -1,18 +1,29 @@
 #!/usr/bin/env bash
 
-bgr=13142150
-base01=191b2180
-base0=22243650
-fgr=e2e4fa80
-fgr_t=e2e4fa80
-green=4fd6beB3
-red=ff757fB3
+. "${HOME}/.cache/wal/colors.sh"
+
+function process_color() {
+  clr="$1"
+
+  echo -n $clr | sed -e 's/#//g'
+  echo -n "$2"
+}
+
+bgr=$(process_color ${background} 50)
+base01=$(process_color ${color0} 80)
+base0=$(process_color ${color8} 50)
+fgr=$(process_color ${foreground} ff)
+fgr_t=$(process_color ${foreground} 50)
+green=$(process_color ${color6} ff)
+red=$(process_color ${color1} ff)
 transparent=00000000
-font="Share Tech Mono"
+font="Lato Medium"
+tfont="Lato Light"
 
 i3lock -k --indicator \
   -c $bgr \
-  --indpos="w/2-r/2:h-r*2" --radius 25 \
+  --indpos="w/2:h-80" \
+  --radius 25 --ring-width 5 \
   --veriftext='' --wrongtext='' --noinputtext='' \
   --insidevercolor=$transparent \
   --insidewrongcolor=$transparent \
@@ -26,12 +37,12 @@ i3lock -k --indicator \
   --separatorcolor=$transparent \
   --clock --force-clock \
   --timecolor=$fgr \
-  --timestr="%H:%M" \
-  --time-font="$font" \
+  --timestr="%I:%M" \
+  --time-font="$tfont" \
   --timepos="w/2:h/2" \
-  --timesize=148 \
+  --timesize=120 \
   --datecolor=$fgr \
-  --datestr="%a, %b %-d" \
+  --datestr="%A, %b %-d" \
   --date-font="$font" \
-  --datepos="tx:ty+80" \
-  --datesize=32
+  --datepos="tx:ty+60" \
+  --datesize=18

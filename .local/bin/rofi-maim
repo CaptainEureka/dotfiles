@@ -8,9 +8,13 @@
 
 dest_dir="$HOME/Screenshots"
 
-options="selection\nactive window\nfull screen\nselection (copy)\nactive window (copy)\nfull screen (copy)"
+options="Selection\nActive Window\nFull Screen\nSelection - Copy\nActive Window - Copy\nFull Screen - Copy"
 
-choice=$( echo -e $options | rofi -theme rofi-maim -l 6 -dmenu -i -fuzzy -p "Screenshot" )
+choice=$( echo -e $options | rofi -theme maim -l 6 -dmenu -i -fuzzy -p "Screenshot" )
+
+if [[ -z ${choice} ]]; then
+  exit 1
+fi
 
 ICON="applets-screenshooter"
 
@@ -36,32 +40,32 @@ function notifyClipboard() {
 }
 
 case $choice in
-    "selection")
+  "Selection")
         countdown
         maim -s $dest_dir/pic-selected-"$(date '+%y%m%d-%H%M-%S').png"
         notifySaved
         ;;
-	"active window") 
+	"Active Window") 
         countdown
         maim -i $(xdotool getactivewindow) $dest_dir/pic-window-"$(date '+%y%m%d-%H%M-%S').png"
         notifySaved
         ;;
-	"full screen") 
+	"Full Screen") 
         countdown
         maim $dest_dir/pic-full-"$(date '+%y%m%d-%H%M-%S').png"
         notifySaved
         ;;
-	"selection (copy)")
+	"Selection - Copy")
         countdown
         maim -s | xclip -selection clipboard -t image/png
         notifyClipboard
         ;;
-	"active window (copy)")
+	"Active Window - Copy")
         countdown
         maim -i "$(xdotool getactivewindow)" | xclip -selection clipboard -t image/png
         notifyClipboard
         ;;
-	"full screen (copy)")
+	"Full Screen - Copy")
         countdown
         maim | xclip -selection clipboard -t image/png
         notifyClipboard

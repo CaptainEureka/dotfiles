@@ -7,6 +7,7 @@ Usage:
     pal
     pal [ -s THEME ]
     pal [ -l ]
+    pal [ -e THEME ]
     pal (-h | --help)
     pal (-v | --version)
 
@@ -15,6 +16,7 @@ Arguments:
 
 Options:
     -s THEME        Sets theme located in ~/.config/pal/<theme>.json.
+    -e THEME        Edit theme in EDITOR.
     -l              List available themes.
     -h --help       Show this screen.
     -v --version    Show version.
@@ -24,19 +26,21 @@ Options:
 import pywal
 import os
 import os.path as path
+from subprocess import Popen, PIPE
 from docopt import docopt
 
 
 def get_theme(theme):
-    theme_dir = os.environ["HOME"]+"/.config/pal/"
+    theme_dir = path.expanduser("~/.config/pal/")
 
-    return theme_dir+theme+".json"
+    return theme_dir+"{}.json".format(theme)
 
 
 def list_themes(includePywal=False):
-    theme_dir = os.environ["HOME"]+"/.config/pal"
+    theme_dir = path.expanduser("~/.config/pal")
     theme_list = os.listdir(theme_dir)
     themes = [t for t in theme_list if path.isfile(path.join(theme_dir, t))]
+    themes.sort()
 
     print("Themes:")
     for t in themes:
@@ -44,6 +48,11 @@ def list_themes(includePywal=False):
 
     if includePywal:
         pywal.theme.list_out()
+
+
+def edit_theme(theme):
+    theme_path = os.path.expanduser("~/.config/pal/")+"{}.json".format(theme)
+    Popen("alacritty --class pal-edit -e nvim {}".format(theme_path), shell=True)
 
 
 def set_theme(theme):
@@ -72,5 +81,7 @@ if __name__ == '__main__':
         set_theme(arguments['-s'])
     elif arguments['-l']:
         list_themes()
+    elif arguments['-e']:
+        edit_theme(arguments['-e'])
     else:
         print(arguments)
