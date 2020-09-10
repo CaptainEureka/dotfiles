@@ -1,0 +1,65 @@
+* {
+    background-color: transparent;
+}
+
+#window {
+    transparency: "real";
+    location: center;
+    anchor: center;
+    width: 35%;
+}
+
+#mainbox {
+    children: [ inputbar , listview ];
+    background-color: @background;
+}
+
+#inputbar {
+  children: [ prompt, textbox-prompt-colon, entry ];
+  border: 0px 0px 4px 0px;
+  border-color: @background-selected;
+  margin: 12px;
+}
+
+#prompt {
+  enabled: false;
+}
+
+#textbox-prompt-colon {
+    expand: false;
+    str: " ";
+    padding: 1%;
+    font: "Feather 14";
+    vertical-align: 0.5;
+}
+
+#entry {
+  expand: true;
+  blink: true;
+  padding: 1%;
+  placeholder: "Screenshot Utility";
+  placeholder-color: @text-color-t;
+}
+
+#listview {
+    padding: 8px 0px 0px 0px;
+    cycle: false;
+}
+
+#element {
+    padding: 1%;
+}
+
+#element.selected {
+    background-color: @background-selected;
+    border: 0px 0px 0px 8px;
+    border-color: @blue-normal;
+    color: @text-color-t;
+}
+
+element-text {
+    font: "SF Pro Display 12";
+    padding: 10px;
+    text-color: @text-color-t;
+    vertical-align: 0.5;
+}
