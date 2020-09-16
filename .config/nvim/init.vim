@@ -31,6 +31,7 @@ Plug 'CaptainEureka/moonlight.vim'
 Plug 'arzg/vim-substrata'
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'ntk148v/vim-horizon'
+Plug 'dylanaraps/wal.vim'
 Plug 'morhetz/gruvbox'
 
 " UltiSnips vim snippets

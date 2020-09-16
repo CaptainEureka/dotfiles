@@ -14,8 +14,8 @@
 #### WM INDEPENDENT HOTKEYS ####
 
 # description: terminal emulator
-super + Return
-	alacritty	
+super + {_, control} + Return
+	{alacritty, alacritty && bspc node focused.tiled -t floating}
 
 # description: rofi runner
 super + shift + Return
@@ -51,7 +51,8 @@ super + u
 
 # Brightness controls
 {_,super + ,super + shift + }@XF86MonBrightness{Up,Down}
-	notipy-light { -A 10, -A 5, -S 100, -U 10, -U 5, -S 10 }
+	light { -A 10, -A 5, -S 100, -U 10, -U 5, -S 10 }
+	# notipy-light { -A 10, -A 5, -S 100, -U 10, -U 5, -S 10 }
 
 # Audio controls
 {_,super + }@XF86Audio{Mute,RaiseVolume,LowerVolume}

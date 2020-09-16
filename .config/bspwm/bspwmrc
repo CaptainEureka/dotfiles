@@ -18,7 +18,7 @@ function run {
 }
 
 run sxhkd
-run launch-polybar multibar-bspwm
+run launch-polybar bspwm
 picom --experimental-backends &
 run libinput-gestures
 run launch-notif-center

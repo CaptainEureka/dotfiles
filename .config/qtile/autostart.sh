@@ -8,8 +8,9 @@ function run {
 }
 
 # run deadd-notification-center
-run picom --config ~/.config/qtile/configuration/picom.conf
+run picom --experimental-backends --config ~/.config/qtile/configuration/picom.conf
 run nm-applet --no-agent
-xob-volume-watcher.py | xob &
+xob-volume-watcher.py | xob -s gruvbpx &
 setbg -r
+run mopidy
 # run libinput-gestures

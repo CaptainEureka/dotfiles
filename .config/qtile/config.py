@@ -180,22 +180,22 @@ keys = [
     ),
     Key(
         [alt, "control"], "p",
-        lazy.spawn("rofi-powermenu sysicons"),
+        lazy.spawn("rofi-powermenu"),
         desc='Rofi power menu (shutdown, reboot, lock, logoff)'
     ),
     Key(
         [], "XF86AudioRaiseVolume",
-        lazy.spawn("notipy-volume 5%+"),
+        lazy.spawn("amixer sset Master 5%+"),
         desc='Raise volume 5%'
     ),
     Key(
         [], "XF86AudioLowerVolume",
-        lazy.spawn("notipy-volume 5%-"),
+        lazy.spawn("amixer sset Master 5%-"),
         desc='Lower volume 5%'
     ),
     Key(
         [], "XF86AudioMute",
-        lazy.spawn("notipy-volume toggle"),
+        lazy.spawn("amixer sset Master toggle"),
         desc='Toggle audio mute'
     ),
     Key(
@@ -205,12 +205,12 @@ keys = [
     ),
     Key(
         [], "XF86MonBrightnessUp",
-        lazy.spawn("notipy-light -A 10"),
+        lazy.spawn("light -A 10"),
         desc='Increase Brightness'
     ),
     Key(
         [], "XF86MonBrightnessDown",
-        lazy.spawn("notipy-light -U 10"),
+        lazy.spawn("light -U 10"),
         desc='Decrease Brightness'
     )
 ]
@@ -243,22 +243,10 @@ def recolor_icons(icons, fg):
     icon_dir = os.path.expanduser("~/.config/qtile/icons/")
     for icon in icons:
         subprocess.call(["recolor "+icon_dir+icon+" "+"\""+fg+"\""], shell=True)
-    
+
     return
 
-
-themes = ["gruvbox",
-          "moonlight",
-          "horizon",
-          "tokyo-night",
-          "amarena",
-          "iceberg",
-          "dracula",
-          "manta",
-          "nord",
-          "lovelace"]
-
-colors = init_colors(themes[0])
+colors = init_colors('amarena')
 special_colors = colors['special']
 normal_colors = colors['colors']
 

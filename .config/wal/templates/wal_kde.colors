@@ -42,8 +42,8 @@ shadeSortColumn=false
 contrast=4
 
 [WM]
-activeBackground={background.rgb}
+activeBackground={background.rgb},204
 activeForeground={foreground.rgb}
-inactiveBackground={background.rgb}
+inactiveBackground={background.rgb},204
 inactiveForeground={foreground.rgb}
 
