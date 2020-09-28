@@ -19,7 +19,7 @@ def init_colors(theme):
 
     return colors
 
-theme = 'amarena'
+theme = 'ussf'
 colors = init_colors(theme)
 special_c = colors['special']
 normal_c = colors['colors']

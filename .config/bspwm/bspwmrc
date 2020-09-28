@@ -23,7 +23,7 @@ picom --experimental-backends &
 run libinput-gestures
 run launch-notif-center
 setbg -r &
-pgrep xob || xob-volume-watcher.py | xob -s gruvbox &
+pgrep xob || xob-volume-watcher.py | xob -s pywal &
 run mopidy
 run flashfocus
 
@@ -60,8 +60,8 @@ bspc config single_monocle          true
 
 # source pywal colors
 . "${HOME}/.cache/wal/colors.sh"
-bspc config normal_border_color     "$color0"
-bspc config active_border_color     "$color0"
+bspc config normal_border_color     "$color8"
+bspc config active_border_color     "$color8"
 bspc config focused_border_color    "$color6"
 bspc config presel_feedback_color   "$color6"
 bspc config urgent_border_color     "$color1"
@@ -72,13 +72,9 @@ bspc rule -a 'Firefox Beta' desktop='^2'
 bspc rule -a firefox desktop='^2'
 bspc rule -a Chromium desktop='^2'
 bspc rule -a ark state=floating
-bspc rule -a mplayer2 state=floating
-bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 bspc rule -a feh desktop='^4' state=floating
 bspc rule -a Thunar desktop='^4' state=floating
 bspc rule -a Sxiv state=floating rectangle=$(bsp-rectangle 1920 1080)
-bspc rule -a dolphin desktop='^4' state=floating rectangle=$(bsp-rectangle 2200 1240)
-bspc rule -a ulauncher state=floating
-bspc rule -a Yad state=floating
+bspc rule -a dolphin desktop='^4' state=floating rectangle=$(bsp-rectangle 1920 1080)
 bspc rule -a Xephyr desktop='^5'

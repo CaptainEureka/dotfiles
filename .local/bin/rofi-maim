@@ -41,33 +41,27 @@ function notifyClipboard() {
 
 case $choice in
   "Selection")
-        countdown
-        maim -s $dest_dir/pic-selected-"$(date '+%y%m%d-%H%M-%S').png"
+        sleep 1 && maim -u -s $dest_dir/pic-selected-"$(date '+%y%m%d-%H%M-%S').png";
         notifySaved
         ;;
 	"Active Window") 
-        countdown
-        maim -i $(xdotool getactivewindow) $dest_dir/pic-window-"$(date '+%y%m%d-%H%M-%S').png"
+        sleep 1 && maim -u -i $(xdotool getactivewindow) $dest_dir/pic-window-"$(date '+%y%m%d-%H%M-%S').png";
         notifySaved
         ;;
 	"Full Screen") 
-        countdown
-        maim $dest_dir/pic-full-"$(date '+%y%m%d-%H%M-%S').png"
+        sleep 1 &&maim -u $dest_dir/pic-full-"$(date '+%y%m%d-%H%M-%S').png";
         notifySaved
         ;;
 	"Selection - Copy")
-        countdown
-        maim -s | xclip -selection clipboard -t image/png
+        sleep 1 && maim -u -s | xclip -selection clipboard -t image/png;
         notifyClipboard
         ;;
 	"Active Window - Copy")
-        countdown
-        maim -i "$(xdotool getactivewindow)" | xclip -selection clipboard -t image/png
+        sleep 1 && maim -u -i "$(xdotool getactivewindow)" | xclip -selection clipboard -t image/png;
         notifyClipboard
         ;;
 	"Full Screen - Copy")
-        countdown
-        maim | xclip -selection clipboard -t image/png
+        sleep 1 && maim -u | xclip -selection clipboard -t image/png;
         notifyClipboard
         ;;
 esac

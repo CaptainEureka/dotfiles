@@ -22,9 +22,7 @@
   margin: 12px;
 }
 
-#prompt {
-  enabled: false;
-}
+#prompt { enabled: false; }
 
 #textbox-prompt-colon {
   expand: false;

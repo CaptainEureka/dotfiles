@@ -1,24 +1,27 @@
+configuration {
+  show-icons: false;
+}
+
 * {
-    font: "Fantasque Sans Mono 14";
     background-color: transparent;
 }
 
 #window {
     transparency: "real";
     fullscreen: true;
+    background-color: @background;
 }
 
 #mainbox {
     children: [ inputbar, message, listview ];
-    background-color: @background;
     margin: 25% 25%;
-    border-radius: 12;
 }
 
 #inputbar {
     children: [ prompt, textbox-prompt-colon, entry ];
-    background-color: @black-normal;
-    border-radius: 12px;
+    border: 0px 0px 4px 0px;
+    border-color: @background-selected;
+    margin: 12px;
 }
 
 #message {
@@ -30,30 +33,38 @@
 #textbox-prompt-colon {
     expand: false;
     str: " ";
-    padding: 1%;
-    font: "Fantasque Sans Mono Nerd Font 14";
+    font: "Feather 12";
+    color: @text-color-t;
+    padding: 1% -0.6235% 1% 1%;
+    vertical-align: 0.50;
 }
 
 #entry {
-    border-radius: 10px;
-    padding: 0.88% 0.5%;
+    padding: 1%;
     horizontal-align: 0.48;
+    placeholder-color: @text-color-t;
     placeholder: "Search Accounts...";
 }
 
 #listview {
-    margin: 1.78% 1%;
+    padding: 8px 0px 0px 0px;
     spacing: 2;
-    dynamic: true;
-    columns: 1;
 }
 
 #element {
-    border-radius: 12px;
-    padding: 12;
+    padding: 1%;
 }
 
 #element.selected {
     background-color: @background-selected;
-    color: @text-color;
+    border: 0px 0px 0px 8px;
+    border-color: @blue-normal;
+    color: @text-color-t;
+}
+
+element-text {
+  font: "SF Pro Display 11";
+  padding: 10px;
+  text-color: @text-color-t;
+  vertical-align: 0.5;
 }

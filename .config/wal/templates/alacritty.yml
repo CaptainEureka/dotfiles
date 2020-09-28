@@ -1,18 +1,12 @@
-
 window:
   dimensions:
     columns: 80
-    lines: 24 
-
-  position:
-    x: 0
-    y: 0
+    lines: 60
 
   padding:
     x: 30
     y: 30
 
-  decorations: none
   title: Alacritty
   class:
     instance: Alacritty
@@ -25,13 +19,12 @@ scrolling:
 # Font configuration
 font:
   normal:
-    family: JetBrains Mono
+    family: 'Anka/Coder'
     style: Regular
   size: 12.0
   offset:
     x: 0
     y: 0
-
 
 background_opacity: 0.9
 
@@ -40,7 +33,6 @@ background_opacity: 0.9
 
 cursor:
   style: Beam
-  unfocused_hollow: true
 
 mouse:
   hide_when_typing: true
@@ -48,7 +40,6 @@ mouse:
     launcher:
       program: xdg-open
       args: []
-
 colors:
   primary:
     background: '0x{background.strip}'

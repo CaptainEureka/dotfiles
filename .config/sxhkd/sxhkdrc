@@ -61,7 +61,8 @@ super + u
 
 # Media player controls
 XF86Audio{Play,Next,Prev}
-	mpc {toggle, next, previous}
+	mpc {toggle, next, previous}; \
+	./home/mk/.config/ncmpcpp/mpd-notification
 	# playerctl {play,pause,next,previous}
 
 #
@@ -81,23 +82,23 @@ super + y
 	bspc node newest.marked.local -n newest.!automatic.local
 
 # description: current node <-> biggest node
-super + g
+super + b
 	bspc node -s biggest
 
 # description: dynamic gaps
-super + {_, shift} + {minus, equal}
+super + g: {_, shift} + {minus, equal}
 	bsp-gaps {-M 4, -M 8, -P 4, -P 8 }
 
 # description: dynamic padding
-super + control + {minus, equal}
+super + d: {minus, equal}
 	bsp-padding {-M 16, -P 16 }
 
 # description: dynamic gaps -> default
-super + shift + g
+super + g: d
 	bsp-gaps -d
 
 # description: dynamic padding -> default
-super + control + g
+super + d: d
 	bsp-padding -d
 
 # state/flags
@@ -109,7 +110,7 @@ super + {t,shift + t}
 
 # description: toggle floating
 super + shift + space
-	bspc node focused.floating -t tiled || $(bspc node focused.tiled -t floating && xdo resize -w 1600 -h 900 && xdo move -x 800 -y 450)
+	bsp-toggle-floating 1920 1080
 
 # description: toggle fullscreen
 super + f
@@ -122,10 +123,6 @@ super + f
 # description: focus node in given direction
 super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
-
-# description: focus node for given path jump (parent,brother,first,second) 
-super + {p,b,comma,period}
-	bspc node -f @{parent,brother,first,second}
 
 # description: focus next/previous node
 super + {_,shift + }c
@@ -147,10 +144,10 @@ super + {o,i}
 
 # description: focus/send to given desktop
 super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+	bspc {desktop -f,node -d} '^{1-9,10}';
 
 # description: rotate tree
-super + shift + {j,k}
+super + shift + {a,d}
 	bspc node @/ -C {forward,backward}
 
 #

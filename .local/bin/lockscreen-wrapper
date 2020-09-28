@@ -17,8 +17,8 @@ fgr_t=$(process_color ${foreground} 50)
 green=$(process_color ${color6} ff)
 red=$(process_color ${color1} ff)
 transparent=00000000
-font="Lato Medium"
-tfont="Lato Light"
+font="Space Mono"
+tfont="Anka/Coder"
 
 i3lock -k --indicator \
   -c $bgr \
@@ -37,7 +37,7 @@ i3lock -k --indicator \
   --separatorcolor=$transparent \
   --clock --force-clock \
   --timecolor=$fgr \
-  --timestr="%I:%M" \
+  --timestr="%H:%M" \
   --time-font="$tfont" \
   --timepos="w/2:h/2" \
   --timesize=120 \

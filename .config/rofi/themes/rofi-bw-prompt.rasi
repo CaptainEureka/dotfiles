@@ -1,13 +1,13 @@
 @import "~/.config/rofi/config.rasi"
 
 * {
-    font: "Fantasque Sans Mono 14";
     background-color: transparent;
 }
 
 #window {
     transparency: "real";
     fullscreen: true;
+    background-color: @background;
 }
 
 #mainbox {
@@ -16,9 +16,9 @@
 
 #inputbar {
     children: [ prompt, textbox-prompt-colon, entry ];
-    background-color: @black-normal;
-    border-radius: 12px;
-    margin: 45% 25%;
+    border: 0px 0px 4px 0px;
+    border-color: @background-selected;
+    margin: 45% 35%;
 }
 
 #message {
@@ -30,13 +30,12 @@
 #textbox-prompt-colon {
     expand: false;
     str: " ";
-    padding: 1%;
-    font: "Fantasque Sans Mono Nerd Font 14";
+    padding: 1% 0.25% 1% 1%;
+    font: "Feather 12";
 }
 
 #entry {
-    border-radius: 10px;
-    padding: 0.88% 0.5%;
+    padding: 1% 0%;
     horizontal-align: 0.48;
     placeholder: "Master Password";
 }

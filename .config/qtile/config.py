@@ -246,7 +246,7 @@ def recolor_icons(icons, fg):
 
     return
 
-colors = init_colors('amarena')
+colors = init_colors('ussf')
 special_colors = colors['special']
 normal_colors = colors['colors']
 
