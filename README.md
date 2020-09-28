@@ -43,15 +43,15 @@
 
 * Fake busy
 
-![2](/home/mk/Screenshots/pic-full-200928-2021-36.png)
+![2](Screenshots/pic-full-200928-2021-36.png)
 
 * Ranger
 
-![3](/home/mk/Screenshots/pic-full-200928-2019-28.png)
+![3](Screenshots/pic-full-200928-2019-28.png)
 
 * Qutebrowser w/ them GAPS!!
 
-![4](/home/mk/Screenshots/pic-full-200928-2056-38.png)
+![4](Screenshots/pic-full-200928-2056-38.png)
 
 * Clean
 
