@@ -1,16 +1,19 @@
-## CaptainEureka's personal config files
+## Preview
 
-This is a collection of my personal configuration files.
+![All](Screenshots/pic-full-200928-2035-51.png)
 
-Some details about my setup:
+![bspwm2](Screenshots/pic-full-200928-2022-19.png)
+
+### Some details about my setup:
+
+- **OS**: Manjaro
 
 - **WMs**: 
   - [bspwm-rounded-corners](https://github.com/dylanaraps/bspqwm) ([AUR](https://aur.archlinux.org/packages/bspwm-rounded-corners/)) patched by dylanaraps
   - [qtile](https://qtile.org)
-  - [Awesome](https://awesomewm.org)
+  - [i3](i3wm.org)
 - **DE**: [KDE/Plasma](https://kde.org/plasma-desktop)
 - **Compositor**: ibhagwan's fork of [picom](https://github.com/ibhagwan/picom)
-- **OS**: Manjaro
 - **Shell**: [zsh](https://wiki.archlinux.org/index.php/Zsh)
   - Using: [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh) with the [Spaceship](https://github.com/denysdovhan/spaceship-prompt) prompt
 - **Terminal Emulator**: [kitty](https://github.com/kovidgoyal/kitty/) / [alacritty](https://github.com/alacritty/alacritty) / [konsole](https://github.com/KDE/konsole)
@@ -19,15 +22,37 @@ Some details about my setup:
 - **Launcher/run**: [rofi](https://github.com/davatorium/rofi)
 - **Bar**: [polybar](https://github.com/polybar/polybar)
 - **Browser**: [Qutebrowser](https://github.com/qutebrowser)
+- **Wallpaper**: [here](wallpaper.jpg)
 
 ### Fonts
 
-- **Terminal**: `JetBrains Mono`
-- **Polybar**: `Fantasque Sans Mono`, `Hack Nerd Font Mono`
-- **System**: `Lato`, `
+- JetBrains Mono
+- Share Tech Mono
+- Anka/Coder
+- SF Pro
+- Icomoon - Feather
+- Material Icons
+
+## Setup
+
+**Coming Soon!!**
 
 ###  Screenshots
 
-| `i3-gaps` | ![i3wm](Screenshots/2604-i3.png)                  |
-| :-------- | ------------------------------------------------- |
-| `bspwm`   | ![bspwm](Screenshots/pic-full-200927-1556-24.png) |
+![Fake Busy](Screenshots/pic-full-200928-2037-02.png)
+
+* Fake busy
+
+![2](/home/mk/Screenshots/pic-full-200928-2021-36.png)
+
+* Ranger
+
+![3](/home/mk/Screenshots/pic-full-200928-2019-28.png)
+
+* Qutebrowser w/ them GAPS!!
+
+![4](/home/mk/Screenshots/pic-full-200928-2056-38.png)
+
+* Clean
+
+[Actual daily driver](Screenshots/pic-full-200927-1556-24.png)
