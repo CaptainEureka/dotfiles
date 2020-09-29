@@ -22,7 +22,7 @@
 - **Launcher/run**: [rofi](https://github.com/davatorium/rofi)
 - **Bar**: [polybar](https://github.com/polybar/polybar)
 - **Browser**: [Qutebrowser](https://github.com/qutebrowser)
-- **Wallpaper**: [here](wallpaper.jpg)
+- **Wallpaper**: [here](.wallpapers/ussf-wallp.jpg)
 
 ### Fonts
 
