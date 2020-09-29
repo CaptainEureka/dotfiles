@@ -1,0 +1,28 @@
+{
+    "wallpaper": "/home/mk/Downloads/IMG_0959.JPG",
+    "alpha": "100",
+
+    "special": {
+        "background": "#0b1f2e",
+        "foreground": "#e0e1e0",
+        "cursor": "#e0e1e0"
+    },
+    "colors": {
+        "color0": "#102d43",
+        "color1": "#30578C",
+        "color2": "#43b0f1",
+        "color3": "#75e6da",
+        "color4": "#d4f1f4",
+        "color5": "#38308c",
+        "color6": "#30848c",
+        "color7": "#e0e1e0",
+        "color8": "#1a496c",
+        "color9": "#487ac0",
+        "color10": "#8acff6",
+        "color11": "#b6f2ec",
+        "color12": "#e0f5f7",
+        "color13": "#5248c0",
+        "color14": "#48b6c0",
+        "color15": "#ffffff"
+    }
+}
