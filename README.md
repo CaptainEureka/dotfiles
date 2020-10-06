@@ -66,4 +66,4 @@
 
 * Clean
 
-[Actual daily driver](Screenshots/pic-full-200927-1556-24.png)
+[Actual daily driver](https://raw.githubusercontent.com/CaptainEureka/dotfiles/master/Screenshots/pic-full-200927-1556-24.png)
