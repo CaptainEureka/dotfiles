@@ -1,0 +1,173 @@
+#!/bin/bash
+
+PROGNAME="$(basename "$0")"
+
+function usage() {
+  echo "USAGE                                              "
+  echo "                                                   "
+  echo "$PROGNAME gaps -m 10                               "
+  echo "$PROGNAME padding -m 10                            "
+  echo "$PROGNAME rectangle 1920 1080                      "
+  echo "$PROGNAME toggle floating                          "
+  echo "                                                   "
+  echo "OPTIONS                                            "
+  echo "                                                   "
+  echo "  -h/--help:                      show this screen "
+  echo "                                                   "
+  echo "MODULES                                            "
+  echo "                                                   "
+  echo "  gaps:                           change gaps      "
+  echo "    -m <val>                      dec by <val> px  "
+  echo "    -p <val>                      inc by <val> px  "
+  echo "    -d                            set default      "
+  echo "  padding:                        change padding   "
+  echo "    -m <val>                      dec by <val> px  "
+  echo "    -p <val>                      inc by <val> px  "
+  echo "  rectangle <width> <heigh>       calc rectangle   "
+  echo "  toggle:                                          "
+  echo "    fullscreen:                   toggle fullscreen"
+  echo "    polybar:                      toggle polybar   "
+  echo "    floating:                     toggle floating  "
+}
+
+function toggle_floating() {
+  w="$1"
+  h="$2"
+  move_x=$(rectangle $w $h | cut -d'+' -f2)
+  move_y=$(rectangle $w $h | cut -d'+' -f3 )
+
+  bspc node focused.floating -t tiled \
+    || $(bspc node focused.tiled -t floating \
+    && xdo resize -w $w -h $h \
+    && xdo move -x $move_x -y $move_y)
+}
+
+function toggle_fullscreen() {
+
+  if [ -z "$(bspc query -N -n .focused.fullscreen -d focused)" ]; then
+    bspc node focused.tiled -t fullscreen \
+      && hide_unfocused on
+  else
+    bspc node focused.fullscreen -t tiled \
+      && hide_unfocused off
+  fi
+  toggle_polybar
+}
+
+function toggle_polybar() {
+
+  if [[ $(bspc config top_padding) != 0 ]]; then
+    fix_padding=0
+    state="hide"
+  else
+    fix_padding=54
+    state="show"
+  fi
+
+  if [[ $(pgrep "polybar") ]]; then
+    xdo "$state" -N Polybar
+    bspc config top_padding $fix_padding
+  fi
+}
+
+function hide_unfocused() {
+  if [ "$1" == "on" ]; then
+    NODES=$(bspc query -N -n .tiled -d focused)
+  else
+    NODES=$(bspc query -N -n .hidden -d focused)
+  fi
+
+  for node in $NODES; do
+    bspc node $node -g hidden="$1"
+  done
+}
+
+function gaps() {
+  cur_gap=$(bspc config -d focused window_gap)
+  def_gap=$(bspc config window_gap)
+
+  case "$1" in
+    "-p")
+      bspc config -d focused window_gap $((${cur_gap} + "$2"))
+      ;;
+    "-m")
+      bspc config -d focused window_gap $((${cur_gap} - "$2"))
+      ;;
+    *)
+      bspc config -d focused window_gap $def_gap
+      ;;
+  esac
+}
+
+function padding() {
+  cur_top_padding=$(bspc config -d focused top_padding)
+  cur_bottom_padding=$(bspc config -d focused bottom_padding)
+  cur_left_padding=$(bspc config -d focused left_padding)
+  cur_right_padding=$(bspc config -d focused right_padding)
+
+  case "$1" in
+      "-p")
+          bspc config -d focused top_padding $((${cur_top_padding} + "$2"))
+          bspc config -d focused bottom_padding $((${cur_bottom_padding} + "$2"))
+          bspc config -d focused left_padding $((${cur_left_padding} + "$2"))
+          bspc config -d focused right_padding $((${cur_right_padding} + "$2"))
+          ;;
+      "-m")
+          bspc config -d focused top_padding $((${cur_top_padding} - "$2"))
+          bspc config -d focused bottom_padding $((${cur_bottom_padding} - "$2"))
+          bspc config -d focused left_padding $((${cur_left_padding} - "$2"))
+          bspc config -d focused right_padding $((${cur_right_padding} - "$2"))
+          ;;
+      *)
+          bspc config -d focused top_padding 0
+          bspc config -d focused bottom_padding 0
+          bspc config -d focused left_padding 0
+          bspc config -d focused right_padding 0
+          ;;
+  esac
+}
+
+function rectangle() {
+  w="$1"
+  h="$2"
+
+  screenw=$(xdpyinfo | awk -F'[ x]+' '/dimensions:/{print $3}')
+  screenh=$(xdpyinfo | awk -F'[ x]+' '/dimensions:/{print $4}')
+
+  windowx=$(("$screenw"/2-"$w"/2))
+  windowy=$(("$screenh"/2-"$h"/2))
+
+  echo "$w"x"$h"+"$windowx"+"$windowy"
+}
+
+function main() {
+  case "$1" in
+    "gaps")
+      gaps "$2" "$3"
+      ;;
+    "padding")
+      padding "$2" "$3"
+      ;;
+    "rectangle")
+      rectangle "$2" "$3"
+      ;;
+    "toggle")
+      case "$2" in
+        "floating")
+          toggle_floating 1920 1080
+          ;;
+        "fullscreen")
+          toggle_fullscreen
+          ;;
+        "polybar")
+          toggle_polybar
+          ;;
+      esac
+      ;;
+    *)
+      usage
+      ;;
+  esac
+}
+
+main "$@"
