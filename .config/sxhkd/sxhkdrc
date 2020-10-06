@@ -47,7 +47,7 @@ super + shift + n
 
 # description: show/hide polybar
 super + u
-	bsp-nobar toggle
+	bspwm_utils toggle polybar
 
 # Brightness controls
 {_,super + ,super + shift + }@XF86MonBrightness{Up,Down}
@@ -61,8 +61,7 @@ super + u
 
 # Media player controls
 XF86Audio{Play,Next,Prev}
-	mpc {toggle, next, previous}; \
-	./home/mk/.config/ncmpcpp/mpd-notification
+	mpc {toggle, next, previous}
 	# playerctl {play,pause,next,previous}
 
 #
@@ -87,19 +86,19 @@ super + b
 
 # description: dynamic gaps
 super + g: {_, shift} + {minus, equal}
-	bsp-gaps {-M 4, -M 8, -P 4, -P 8 }
+	bspwm_utils gaps {-m 4, -m 8, -p 4, -p 8 }
 
 # description: dynamic padding
 super + d: {minus, equal}
-	bsp-padding {-M 16, -P 16 }
+	bspwm_utils padding {-m 16, -p 16 }
 
 # description: dynamic gaps -> default
 super + g: d
-	bsp-gaps -d
+	bspwm_utils gaps -d
 
 # description: dynamic padding -> default
 super + d: d
-	bsp-padding -d
+	bspwm_utils padding -d
 
 # state/flags
 #
@@ -110,11 +109,11 @@ super + {t,shift + t}
 
 # description: toggle floating
 super + shift + space
-	bsp-toggle-floating 1920 1080
+	bspwm_utils toggle floating 1920 1080
 
 # description: toggle fullscreen
 super + f
-	bsp-fullscreen
+	bspwm_utils toggle fullscreen
 
 #
 # focus/swap
@@ -125,7 +124,7 @@ super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
 # description: focus next/previous node
-super + {_,shift + }c
+super + {_,shift + } c
 	bspc node -f {next,prev}.local
 
 # description: focus next/previous desktop

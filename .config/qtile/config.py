@@ -33,7 +33,6 @@ from libqtile.config import Key, Screen, Group, Drag, Click
 from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook
 from typing import List  # noqa: F401
-import fontawesome as fa
 
 # DEFINING SOME VARIABLES
 mod = "mod4"                                     # Sets mod key to SUPER/WINDOWS
@@ -51,7 +50,7 @@ keys = [
     ),
     Key(
         [mod, "shift"], "Return",
-        lazy.spawn("rofi-appsmenu"),
+        lazy.spawn("rofi -show drun -theme appslist"),
         desc='Rofi Run Launcher'
     ),
     Key(
@@ -231,7 +230,10 @@ for i, (name, kwargs) in enumerate(group_names, 1):
     keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name)))
 
 # COLORS
-def init_colors(theme):
+def init_colors():
+    themefile = os.path.expanduser("~/.cache/pal/themefile")
+    with open(themefile) as t:
+        theme = t.read()
     theme_dir = os.path.expanduser("~/.config/pal/"+theme+".json")
     with open(theme_dir) as c:
         colors = json.load(c)
@@ -246,7 +248,7 @@ def recolor_icons(icons, fg):
 
     return
 
-colors = init_colors('ussf')
+colors = init_colors()
 special_colors = colors['special']
 normal_colors = colors['colors']
 
@@ -262,7 +264,7 @@ recolor_icons(icons, special_colors['foreground'])
 # DEFAULT THEME SETTINGS FOR LAYOUTS
 layout_theme = {"border_width": 4,
                 "margin": 18,
-                "border_focus": normal_colors['color4'],
+                "border_focus": normal_colors['color6'],
                 "border_normal": normal_colors['color0']
                 }
 
@@ -278,7 +280,7 @@ layouts = [
 # DEFAULT WIDGET SETTINGS
 
 widget_defaults = dict(
-    font="Lato Bold 22",
+    font="Anka/Coder Regular 22",
     fontsize=22,
     padding=4,
     background=special_colors['foreground']

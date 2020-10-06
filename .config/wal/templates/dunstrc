@@ -30,7 +30,7 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "640x64-1280+64"
+    geometry = "0x0-20+64"
 
     # Show how many messages are currently hidden (because of geometry).
     indicate_hidden = yes
@@ -55,10 +55,10 @@
     separator_height = 4
 
     # Padding between text and separator.
-    padding = 8
+    padding = 20
 
     # Horizontal padding.
-    horizontal_padding = 10
+    horizontal_padding = 20
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
@@ -85,11 +85,11 @@
 
     ### Text ###
 
-    font = Lato 12
+    font = Anka/Coder 9
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
-    line_height = 5
+    line_height = 10
 
     # Possible values are:
     # full: Allow a small subset of html markup in notifications:
@@ -158,11 +158,10 @@
     icon_position = left
 
     # Scale larger icons down to this size, set to 0 to disable
-    max_icon_size = 0
-    corner_radius = 20
+    max_icon_size = 64
 
     # Paths to default icons.
-    icon_path = /usr/share/icons/Papirus-Dark/16x16/status/:/usr/share/icons/Papirus-Dark/16x16/devices/
+    icon_path = /home/mk/.icons/oomox-Gruvbox-Oomox/32x32/status/:/home/mk/.icons/oomox-Gruvbox-Oomox/32x32/devices/:/home/mk/.icons/oomox-Gruvbox-Oomox/32x32/actions/
 
     ### History ###
 
@@ -179,7 +178,7 @@
     dmenu = /usr/bin/dmenu -p dunst
 
     # Browser for opening urls in context menu.
-    browser = firefox
+    browser = qutebrowser
 
     # Always run rule-defined scripts, even if the notification is suppressed
     always_run_script = true

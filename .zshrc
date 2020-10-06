@@ -122,8 +122,9 @@ alias la="exa -la"
 alias vim="nvim"
 alias vi="nvim"
 alias yay="yay --aur --color=always"
-alias pacman="sudo pacman --color=always"
+alias pacman="pacman --color=always"
 alias update="sudo pacman -Syu && yay -Su"
+alias pacpreview="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
 
 # shortcuts
 alias i3cfg="vim ~/.config/i3/config"

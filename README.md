@@ -1,3 +1,14 @@
+<p align="center">
+  <b> CaptainEureka's configuration files </b>
+</p>
+
+<p align="center">
+  <a href="#setup"><img width="150px" style="padding: 0 10px;" src=""></a>
+  <a href="#screenshots"><img width="150px" style="padding:0 10px;" src=""></a>
+  <a href="https://github.com/CaptainEureka/dotfiles/wiki"><img width="150px" style="padding: 0 10px;" src=""></a>
+</p>
+
+
 ## Preview
 
 ![All](Screenshots/pic-full-200928-2035-51.png)

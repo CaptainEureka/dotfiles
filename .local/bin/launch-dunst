@@ -13,4 +13,4 @@ fi
 
 # (Re)launch dunst server
 dunst -config ~/.config/dunst/dunstrc &
-dunstify 'Dunst' 'Dunst started successfully'
+notify-send 'Dunst' 'Dunst started successfully'

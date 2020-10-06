@@ -52,13 +52,19 @@ def list_themes(includePywal=False):
 
 def edit_theme(theme):
     theme_path = os.path.expanduser("~/.config/pal/")+"{}.json".format(theme)
-    Popen("alacritty --class pal-edit -e nvim {}".format(theme_path), shell=True)
+    Popen("kitty --class pal-edit -e nvim {}".format(theme_path), shell=True)
 
+
+def write_themefile(theme):
+    themefile=path.expanduser("~/.cache/pal/themefile")
+    with open(themefile, "w") as t:
+        t.write(theme)
 
 def set_theme(theme):
     """Main function."""
     # Read colors from a `json` file.
     colors = pywal.colors.file(get_theme(theme))
+    write_themefile(theme)
     image = colors["wallpaper"]
 
     # Apply palette to all open terminals

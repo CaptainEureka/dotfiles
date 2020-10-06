@@ -1,60 +1,66 @@
+configuration {
+  show-icons: false;
+}
+
 * {
-    font: "JetBrains Mono 14";
+    font: "Anka/Coder 14";
     background-color: transparent;
 }
 
 #window {
     transparency: "real";
+    background-color: @background;
     fullscreen: true;
 }
 
 #mainbox {
     children: [ inputbar, listview ];
-    background-color: @background;
-    margin: 25% 14%;
-    border-radius: 12;
-    border: 1px;
-    border-color: @black-normal;
+    margin: 25% 15%;
 }
 
 #inputbar {
     children: [ prompt, textbox-prompt-colon, entry ];
-    background-color: @black-normal;
+    border: 0px 0px 4px 0px;
+    border-color: @background-selected;
+    margin: 12px;
 }
 
-#prompt {
-    padding: 1%;
-    enabled: false;
-}
+#prompt { enable: false; }
 
 #textbox-prompt-colon {
     expand: false;
     str: " ";
-    padding: 1%;
     font: "Fantasque Sans Mono Nerd Font 14";
+    color: @text-color-t;
+    padding: 1%;
+    vertical-align: 0.5;
 }
 
 #entry {
-    border-radius: 10px;
-    padding: 0.88% 0.5%;
+    padding: 1%;
     horizontal-align: 0.48;
+    placeholder-color: @text-color-t;
     placeholder: "Keybindings";
 }
 
 #listview {
-    lines: 8;
-    margin: 1.78% 1%;
+  padding: 8px 0px 0px 0px;
     spacing: 2;
-    dynamic: true;
-    columns: 1;
 }
 
 #element {
-    border-radius: 12px;
-    padding: 12;
+    padding: 1%;
 }
 
 #element.selected {
     background-color: @background-selected;
-    color: @text-color;
+    border: 0px 0px 0px 8px;
+    border-color: @blue-normal;
+    color: @text-color-t;
+}
+
+element-text {
+  padding: 10px;
+  text-color: @text-color-t;
+  vertical-align: 0.5;
 }
