@@ -1,20 +1,25 @@
 #!/bin/bash
 
 PROGNAME="$(basename "$0")"
+RED=$(tput setaf 1)
+BOLD=$(tput bold)
+BOLDOFF=$(tput sgr0)
 
 function usage() {
-  echo "USAGE                                              "
+  echo "                                                   "
+  echo "${BOLD}${RED}USAGE${BOLDOFF}                       "
   echo "                                                   "
   echo "$PROGNAME gaps -m 10                               "
   echo "$PROGNAME padding -m 10                            "
   echo "$PROGNAME rectangle 1920 1080                      "
+  echo "$PROGNAME dpi 54                                   "
   echo "$PROGNAME toggle floating                          "
   echo "                                                   "
-  echo "OPTIONS                                            "
+  echo "${BOLD}${RED}OPTIONS${BOLDOFF}                     "
   echo "                                                   "
   echo "  -h/--help:                      show this screen "
   echo "                                                   "
-  echo "MODULES                                            "
+  echo "${BOLD}${RED}MODULES${BOLDOFF}                     "
   echo "                                                   "
   echo "  gaps:                           change gaps      "
   echo "    -m <val>                      dec by <val> px  "
@@ -24,10 +29,12 @@ function usage() {
   echo "    -m <val>                      dec by <val> px  "
   echo "    -p <val>                      inc by <val> px  "
   echo "  rectangle <width> <heigh>       calc rectangle   "
+  echo "  dpi <number>                    adjust for dpi   "
   echo "  toggle:                                          "
   echo "    fullscreen:                   toggle fullscreen"
   echo "    polybar:                      toggle polybar   "
   echo "    floating:                     toggle floating  "
+  echo "                                                   "
 }
 
 function toggle_floating() {
@@ -45,7 +52,7 @@ function toggle_floating() {
 function toggle_fullscreen() {
 
   if [ -z "$(bspc query -N -n .focused.fullscreen -d focused)" ]; then
-    bspc node focused.tiled -t fullscreen \
+    bspc node focused.tiled -t fullscreen || bspc node focused.floating -t fullscreen \
       && hide_unfocused on
   else
     bspc node focused.fullscreen -t tiled \
@@ -127,6 +134,12 @@ function padding() {
   esac
 }
 
+function dpi() {
+  res=$(xdpyinfo | awk -F'[ x]+' '/resolution:/{print $3}')
+  scaling=$(expr ${res} / 92)
+  echo $(expr "$1" \* ${scaling})
+}
+
 function rectangle() {
   w="$1"
   h="$2"
@@ -151,10 +164,13 @@ function main() {
     "rectangle")
       rectangle "$2" "$3"
       ;;
+    "dpi")
+      dpi "$2"
+      ;;
     "toggle")
       case "$2" in
         "floating")
-          toggle_floating 1920 1080
+          toggle_floating $(dpi 960) $(dpi 540)
           ;;
         "fullscreen")
           toggle_fullscreen

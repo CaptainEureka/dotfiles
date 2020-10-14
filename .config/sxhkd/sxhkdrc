@@ -47,7 +47,7 @@ super + shift + n
 
 # description: show/hide polybar
 super + u
-	bspwm_utils toggle polybar
+	bspu toggle polybar
 
 # Brightness controls
 {_,super + ,super + shift + }@XF86MonBrightness{Up,Down}
@@ -85,20 +85,20 @@ super + b
 	bspc node -s biggest
 
 # description: dynamic gaps
-super + g: {_, shift} + {minus, equal}
-	bspwm_utils gaps {-m 4, -m 8, -p 4, -p 8 }
+super + g: {minus, equal}
+	bspu gaps { -m , -p } $(bspu dpi 2)
 
 # description: dynamic padding
 super + d: {minus, equal}
-	bspwm_utils padding {-m 16, -p 16 }
+	bspu padding { -m , -p } $(bspu dpi 8)
 
 # description: dynamic gaps -> default
 super + g: d
-	bspwm_utils gaps -d
+	bspu gaps -d
 
 # description: dynamic padding -> default
 super + d: d
-	bspwm_utils padding -d
+	bspu padding -d
 
 # state/flags
 #
@@ -109,11 +109,11 @@ super + {t,shift + t}
 
 # description: toggle floating
 super + shift + space
-	bspwm_utils toggle floating 1920 1080
+	bspu toggle floating $(bspu dpi 960) $(bspu dpi 540)
 
 # description: toggle fullscreen
 super + f
-	bspwm_utils toggle fullscreen
+	bspu toggle fullscreen
 
 #
 # focus/swap

@@ -1,10 +1,35 @@
 #!/bin/bash
 
-[ -f "$1" ] && bg="$1" && cp $bg $HOME/.cache/setbg/setbg.png
+CACHE_DIR=$HOME/.cache/setbg
+
+function usage(){
+  echo ""
+  echo "USAGE"
+  echo ""
+  echo "  setbg <wall file>           set <file> as wallpaper"
+  echo "  setbg <directory>           set wallpaper using sxiv"
+  echo "  setbg -z <directory>        set random wallpaper from dir"
+  echo "  setbg -r                    set previously used wallpaper"
+  echo ""
+}
+
+function setup_or_check(){
+  [ -d $CACHE_DIR ] || mkdir -p $CACHE_DIR
+}
+
+function copy_to_cache(){
+  cp $bg $CACHE_DIR/setbg.png
+}
+
+[ -f "$1" ] && bg="$1" && copy_to_cache
 
 [ -d "$1" ] && bg=$(find "$1" -iregex '.*.\(jpg\|jpeg\|png\)' -type f | shuf | sxiv -otbif) \
-  && cp $bg $HOME/.cache/setbg/setbg.png
+  && copy_to_cache
 
-[ "$1" == "-r" ] && bg=$HOME/.cache/setbg/setbg.png 
+[ "$1" == "-z" ] && bg=$(find "$2" -iregex '.*.\(jpg\|jpeg\|png\)' -type f | shuf -n 1) 
 
+[ "$1" == "-r" ] && bg="$CACHE_DIR"/setbg.png 
+
+setup_or_check
+# Setting the wallpaper using xwallpaper
 xwallpaper --zoom $bg

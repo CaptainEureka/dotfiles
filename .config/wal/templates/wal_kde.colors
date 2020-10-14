@@ -4,33 +4,33 @@
 ChangeSelectionColor=true
 
 [Colors:Button]
-BackgroundNormal={background.rgb}
-DecorationFocus={color4.rgb}
-DecorationHover={color4.rgb}
+BackgroundNormal={color0.rgb}
+DecorationFocus={color9.rgb}
+DecorationHover={color9.rgb}
 ForegroundNormal={foreground.rgb}
 
 [Colors:Selection]
-BackgroundNormal={color4.rgb}
-DecorationFocus={color4.rgb}
-DecorationHover={color4.rgb}
+BackgroundNormal={color0.rgb}
+DecorationFocus={color9.rgb}
+DecorationHover={color9.rgb}
 ForegroundNormal={foreground.rgb}
 
 [Colors:Tooltip]
 BackgroundNormal={background.rgb}
-DecorationFocus={color4.rgb}
-DecorationHover={color4.rgb}
+DecorationFocus={color9.rgb}
+DecorationHover={color9.rgb}
 ForegroundNormal={foreground.rgb}
 
 [Colors:View]
 BackgroundNormal={background.rgb}
-DecorationFocus={color4.rgb}
-DecorationHover={color4.rgb}
+DecorationFocus={color9.rgb}
+DecorationHover={color9.rgb}
 ForegroundNormal={foreground.rgb}
 
 [Colors:Window]
 BackgroundNormal={background.rgb}
-DecorationFocus={color4.rgb}
-DecorationHover={color4.rgb}
+DecorationFocus={color9.rgb}
+DecorationHover={color9.rgb}
 ForegroundNormal={foreground.rgb}
 
 [General]

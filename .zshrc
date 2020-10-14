@@ -119,29 +119,24 @@ alias zshconfig="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias ls="exa -l"
 alias la="exa -la"
+alias lh="ls -d .*"
 alias vim="nvim"
 alias vi="nvim"
 alias yay="yay --aur --color=always"
 alias pacman="pacman --color=always"
 alias update="sudo pacman -Syu && yay -Su"
-alias pacpreview="pacman -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'enter:execute(pacman -Qil {} | less)'"
+alias pacin="pacman -Slq | fzf --layout=reverse --multi --preview 'pacman -Si {}' | xargs -ro sudo pacman -S"
+alias yayin="yay -Slq | fzf  --layout=reverse --multi --preview 'yay -Si {}' | xargs -ro yay -S"
+alias pacrem="pacman -Qq | fzf  --layout=reverse --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
+# alias yayrem=" | fzf --layout=reverse --multi --preview 'yay -Qi {}' | xargs -ro yay -Rns"
+
 
 # shortcuts
-alias i3cfg="vim ~/.config/i3/config"
-alias bspwmcfg="vim ~/.config/bspwm/bspwmrc"
-alias sxhkdcfg="vim ~/.config/sxhkd/sxhkdrc"
-alias awecfg="vim ~/.config/awesome/"
-alias compcfg="vim ~/.config/compton.conf"
-alias polycfg="vim ~/.config/polybar/"
-alias roficfg="vim ~/.config/rofi/"
-alias ffbcfg="vim ~/.mozilla/firefox/g5hz6bnm.default-beta/chrome"
-alias ffcfg="vim ~/.mozilla/firefox/5679d2dz.default-release/chrome"
-alias ffdcfg="vim ~/.mozilla/firefox/89h219s6.dev-edition-default/chrome"
-alias wtcfg="vim ~/.config/wal/templates"
-alias kittycfg="vim ~/.config/kitty/kitty.conf"
 alias mozcfg="vim ~/.mozilla/firefox/"
+alias cdbin="cd ~/.local/bin"
+alias cdconf="cd ~/.config"
 
 # dotbare
-# alias config='/usr/bin/git --git-dir=/home/mk/.dotfiles/ --work-tree=/home/mk'
+# alias config='/usr/bin/git --git-dir=/home/mk/.dotfiles/ --work-tree=/home/mk
 export DOTBARE_DIR="$HOME/.dotfiles"
 export DOTBARE_TREE="$HOME"
