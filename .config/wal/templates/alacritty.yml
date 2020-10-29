@@ -1,45 +1,3 @@
-window:
-  dimensions:
-    columns: 80
-    lines: 60
-
-  padding:
-    x: 30
-    y: 30
-
-  title: Alacritty
-  class:
-    instance: Alacritty
-    general: Alacritty
-
-scrolling:
-  history: 10000
-  multiplier: 2
-
-# Font configuration
-font:
-  normal:
-    family: 'Anka/Coder'
-    style: Regular
-  size: 12.0
-  offset:
-    x: 0
-    y: 0
-
-background_opacity: 0.9
-
-# Allow terminal applications to change Alacritty's window title.
-#dynamic_title: true
-
-cursor:
-  style: Beam
-
-mouse:
-  hide_when_typing: true
-  url:
-    launcher:
-      program: xdg-open
-      args: []
 colors:
   primary:
     background: '0x{background.strip}'
@@ -77,5 +35,3 @@ colors:
     magenta:    '0x{color13.strip}'
     cyan:       '0x{color14.strip}'
     white:      '0x{color15.strip}'
-
-  live_config_reload: true;

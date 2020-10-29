@@ -1,1 +1,47 @@
-/home/mk/.cache/wal/alacritty.yml
+import:
+  - /home/mk/.config/alacritty/colors.yml
+
+window:
+  dimensions:
+    columns: 80
+    lines: 60
+
+  padding:
+    x: 30
+    y: 30
+
+  title: Alacritty
+  class:
+    instance: Alacritty
+    general: Alacritty
+
+scrolling:
+  history: 10000
+  multiplier: 2
+
+# Font configuration
+font:
+  normal:
+    family: 'JetBrains Mono'
+    style: Regular
+  size: 12.0
+  offset:
+    x: 0
+    y: 0
+
+background_opacity: 0.8
+
+# Allow terminal applications to change Alacritty's window title.
+#dynamic_title: true
+
+cursor:
+  style: Beam
+
+mouse:
+  hide_when_typing: true
+  url:
+    launcher:
+      program: xdg-open
+      args: []
+
+  live_config_reload: true;

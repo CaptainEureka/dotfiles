@@ -79,7 +79,7 @@ endif
 
 " colorscheme
 set background=dark
-colorscheme gruvbox
+colorscheme wal
 
 " Tokyo-Night
 " let g:tokyonight_style = 'night' " available: night, storm
@@ -129,7 +129,7 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 
 " Lightline
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
+      \ 'colorscheme': 'wal',
       \ }
 
 " .rasi syntax

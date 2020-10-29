@@ -23,7 +23,7 @@ run_once libinput-gestures
 run_once mopidy
 launch-polybar bspwm
 launch-dunst
-pgrep xob || xob-volume-watcher.py | xob -s gruvbox &
+pgrep xob || xob-volume-watcher.py | xob -s amarena &
 setbg -r
 
 #### MONITORS ####
