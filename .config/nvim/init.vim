@@ -31,7 +31,6 @@ Plug 'drewtempelmeyer/palenight.vim'
 Plug 'CaptainEureka/moonlight.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'arzg/vim-substrata'
-Plug 'ghifarit53/tokyonight-vim'
 Plug 'ntk148v/vim-horizon'
 Plug 'dylanaraps/wal.vim'
 Plug 'morhetz/gruvbox'
@@ -56,9 +55,6 @@ Plug 'unblevable/quick-scope'
 
 " Goyo minimal distraction free writing (고요)
 Plug 'junegunn/goyo.vim'
-
-" Vim colorscheme template
-Plug 'lifepillar/vim-colortemplate'
 
 call plug#end()
 

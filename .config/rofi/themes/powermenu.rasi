@@ -23,13 +23,13 @@
 #element {
   orientation: vertical;
   padding: 1.0% 0.33% 1.0% 0.33%;
-  border-radius: 12px;
+  border-radius: 6px;
 }
 
 element selected {
   background-color: @background-selected;
   color: @text-color;
-  border-radius: 12px;
+  border-radius: 6px;
 }
 
 element-icon {

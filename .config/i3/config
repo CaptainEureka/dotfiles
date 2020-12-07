@@ -43,10 +43,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+q kill
 
 # Fullscreen application launcher
-bindsym $mod+Shift+Return exec rofi-appsmenu
-
-# Application launcher
-bindsym $mod+shift+d exec rofi-appslist 
+bindsym $mod+Shift+Return exec rofi -show drun -them appslist
 
 # Lock screen
 bindsym $mod+Shift+e exec lockscreen-wrapper
@@ -56,9 +53,6 @@ bindsym $mod+Shift+p exec rofi-powermenu
 
 # Set wallpaper with Sxiv + xwallpaper
 bindsym $mod+shift+w exec setbg ~/Pictures/wallpapers 
-
-# Menu for quick navigation to common configs
-bindsym $mod+shift+z exec rofi-config-menu
 
 # Audio controls
 bindsym XF86AudioRaiseVolume exec notipy-volume 5%
@@ -215,8 +209,8 @@ bindsym $mod+y border pixel 1
 bindsym $mod+n border normal
 
 # COLORS
-set $sd #282828D6
-set $pm #689d6aD6  
+set $sd #526170D6
+set $pm #52d6b:D6  
  
 # window colors                 border  backgr text indicator child_border                                                                    
 client.focused_inactive         $sd     $sd    $pm  $sd       $sd

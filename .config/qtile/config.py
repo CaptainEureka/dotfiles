@@ -158,19 +158,9 @@ keys = [
     ),
     # Rofi scripts launched with ALT + CTRL + KEY
     Key(
-        [alt, "control"], "e",
-        lazy.spawn("rofi-config-menu"),
-        desc='Rofi script for editing config files'
-    ),
-    Key(
         [alt, "control"], "w",
         lazy.spawn("setbg /home/mk/Pictures/wallpapers"),
         desc='Set wallpaper with Sxiv and xwallpaper'
-    ),
-    Key(
-        [alt, "control"], "n",
-        lazy.spawn("notif-center-toggle"),
-        desc='Toggle linux notification center'
     ),
     Key(
         [alt, "control"], "b",
@@ -215,11 +205,11 @@ keys = [
 ]
 
 # GROUPS
-group_names = [("I", {'layout': 'monadtall'}),
-               ("II", {'layout': 'max'}),
-               ("III", {'layout': 'monadtall'}),
-               ("IV", {'layout': 'monadtall'}),
-               ("V", {'layout': 'floating'})]
+group_names = [("TERM", {'layout': 'monadtall'}),
+               ("WEB", {'layout': 'max'}),
+               ("DEV", {'layout': 'monadtall'}),
+               ("FILES", {'layout': 'monadtall'}),
+               ("MUSIC", {'layout': 'floating'})]
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
 
@@ -280,7 +270,7 @@ layouts = [
 # DEFAULT WIDGET SETTINGS
 
 widget_defaults = dict(
-    font="Anka/Coder Regular 22",
+    font="Anka/Coder",
     fontsize=22,
     padding=4,
     background=special_colors['foreground']
@@ -301,7 +291,7 @@ def init_widgets():
         widget.Image(
             background=special_colors['background'],
             filename="/home/mk/.config/qtile/icons/search.png",
-            mouse_callbacks={'Button1': lambda qtile: qtile.cmd_spawn('rofi -show drun -theme startmenu')},
+            mouse_callbacks={'Button1': lambda qtile: qtile.cmd_spawn('jgmenu --at-pointer')},
             margin=6,
             scale=True
         ),
@@ -312,8 +302,8 @@ def init_widgets():
             background=special_colors['background']
         ),
         widget.GroupBox(
-            font="SF Pro Display",
-            fontsize=28,
+            font="Anka/Coder",
+            fontsize=22,
             margin_y=3,
             margin_x=0,
             padding_y=20,
@@ -425,6 +415,7 @@ floating_layout = layout.Floating(float_rules=[
     {'wmclass': 'makebranch'},  # gitk
     {'wmclass': 'maketag'},  # gitk
     {'wname': 'sxiv'},
+    {'wname': 'ulauncher'},
     {'wname': 'branchdialog'},  # gitk
     {'wname': 'pinentry'},  # GPG key password entry
     {'wmclass': 'ssh-askpass'},  # ssh-askpass

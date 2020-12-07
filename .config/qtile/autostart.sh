@@ -12,5 +12,5 @@ run_once nm-applet --no-agent
 run_once mopidy
 # run_once libinput-gestures
 launch_dunst
-xob-volume-watcher.py | xob -s gruvbox &
+pgrep xob || xob-volume-watcher.py | xob -s amarena &
 setbg -r
