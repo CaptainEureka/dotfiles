@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-if [[ $(pgrep deadd) ]]; then
-    pkill deadd
-fi
-
-deadd-notification-center
