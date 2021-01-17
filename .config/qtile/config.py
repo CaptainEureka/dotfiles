@@ -31,7 +31,7 @@ import socket
 import subprocess
 from libqtile.config import Key, Screen, Group, Drag, Click
 from libqtile.command import lazy
-from libqtile import layout, bar, widget, hook
+from libqtile import qtile, layout, bar, widget, hook
 from typing import List  # noqa: F401
 
 # DEFINING SOME VARIABLES
@@ -52,6 +52,11 @@ keys = [
         [mod, "shift"], "Return",
         lazy.spawn("rofi -show drun -theme appslist"),
         desc='Rofi Run Launcher'
+    ),
+    Key(
+        [mod, "control"], "q",
+        lazy.spawn("kill -s USR1 $(pidof deadd-notification-center)"),
+        desc='Testing deadd'
     ),
     Key(
         [mod], "Tab",
@@ -205,11 +210,11 @@ keys = [
 ]
 
 # GROUPS
-group_names = [("TERM", {'layout': 'monadtall'}),
-               ("WEB", {'layout': 'max'}),
-               ("DEV", {'layout': 'monadtall'}),
-               ("FILES", {'layout': 'monadtall'}),
-               ("MUSIC", {'layout': 'floating'})]
+group_names = [("", {'layout': 'monadtall'}),
+               ("", {'layout': 'monadtall'}),
+               ("", {'layout': 'monadtall'}),
+               ("", {'layout': 'monadtall'}),
+               ("", {'layout': 'floating'})]
 
 groups = [Group(name, **kwargs) for name, kwargs in group_names]
 
@@ -234,7 +239,7 @@ def init_colors():
 def recolor_icons(icons, fg):
     icon_dir = os.path.expanduser("~/.config/qtile/icons/")
     for icon in icons:
-        subprocess.call(["recolor "+icon_dir+icon+" "+"\""+fg+"\""], shell=True)
+        subprocess.call(["recolor {} \"{}\"".format(icon_dir+icon,fg)], shell=True)
 
     return
 
@@ -242,18 +247,15 @@ colors = init_colors()
 special_colors = colors['special']
 normal_colors = colors['colors']
 
-icons = ["search.png",
-         "layout-floating.png",
+icons = ["layout-floating.png",
          "layout-max.png",
-         "layout-monadtall.png",
-         "layout-tile.png",
-         "layout-treetab.png"]
+         "layout-tile.png"]
 
 recolor_icons(icons, special_colors['foreground'])
 
 # DEFAULT THEME SETTINGS FOR LAYOUTS
-layout_theme = {"border_width": 4,
-                "margin": 18,
+layout_theme = {"border_width": 0,
+                "margin": 24,
                 "border_focus": normal_colors['color6'],
                 "border_normal": normal_colors['color0']
                 }
@@ -261,7 +263,7 @@ layout_theme = {"border_width": 4,
 # THE LAYOUTS
 layouts = [
     # layout.MonadWide(**layout_theme),
-    # layout.Bsp(ratio=1.5, fair=True, lower_right=False, **layout_theme),
+    # layout.Bsp(ratio=1.5, fair=False, lower_right=True, **layout_theme),
     layout.MonadTall(**layout_theme),
     layout.Max(**layout_theme),
     layout.Floating(**layout_theme)
@@ -269,15 +271,27 @@ layouts = [
 
 # DEFAULT WIDGET SETTINGS
 
+fontconfig = {
+    "mono": "SF Mono",
+    "text": "SF Pro Text",
+    "icon": "Feather"
+}
 widget_defaults = dict(
-    font="Anka/Coder",
-    fontsize=22,
+    font=fontconfig['text'],
+    fontsize=24,
     padding=4,
     background=special_colors['foreground']
 )
 extension_defaults = widget_defaults.copy()
 
 # WIDGETS
+
+def run_eww():
+    qtile.cmd_spawn('eww open-many blur_command clock-window battery-window volume-window brightness-window music-window systemctl-window')
+
+
+def close_eww():
+    qtile.cmd_spawn('eww close-all')
 
 
 def init_widgets():
@@ -288,12 +302,15 @@ def init_widgets():
             foreground=special_colors['foreground'],
             background=special_colors['background']
         ),
-        widget.Image(
+        widget.TextBox(
             background=special_colors['background'],
-            filename="/home/mk/.config/qtile/icons/search.png",
-            mouse_callbacks={'Button1': lambda qtile: qtile.cmd_spawn('jgmenu --at-pointer')},
-            margin=6,
-            scale=True
+            foreground=special_colors['foreground'],
+            text="",
+            padding=20,
+            fontsize=34,
+            font=fontconfig['icon'],
+            mouse_callbacks={'Button1': run_eww,
+                             'Button3': close_eww}
         ),
         widget.Sep(
             linewidth=0,
@@ -302,23 +319,24 @@ def init_widgets():
             background=special_colors['background']
         ),
         widget.GroupBox(
-            font="Anka/Coder",
-            fontsize=22,
-            margin_y=3,
-            margin_x=0,
-            padding_y=20,
-            padding_x=20,
+            font=fontconfig['icon'],
+            fontsize=34,
+            padding=20,
             borderwidth=3,
-            active=special_colors['foreground'],
-            inactive=special_colors['foreground'],
-            rounded=False,
+            active=normal_colors['color4'],
+            inactive=normal_colors['color8'],
+            rounded=True,
             center_aligned=True,
             highlight_color=normal_colors['color0'],
             highlight_method="block",
             this_current_screen_border=normal_colors['color0'],
             this_screen_border=normal_colors['color0'],
-            other_current_screen_border=special_colors['background'],
-            other_screen_border=special_colors['background'],
+            foreground=special_colors['foreground'],
+            background=special_colors['background']
+        ),
+        widget.Sep(
+            linewidth=0,
+            padding=6,
             foreground=special_colors['foreground'],
             background=special_colors['background']
         ),
@@ -327,10 +345,36 @@ def init_widgets():
             foreground=special_colors['foreground'],
             background=special_colors['background'],
             padding=0,
-            scale=0.5
+            scale=0.9
         ),
         widget.Spacer(
             background=special_colors['background']
+        ),
+        widget.WidgetBox(widgets=[
+            widget.TextBox(
+                text="VOL:",
+                background=special_colors['background'],
+                foreground=special_colors['foreground'],
+            ),
+            widget.Volume(
+                background=special_colors['background'],
+                foreground=special_colors['foreground'],
+                padding=10,
+                step=5,
+            ),
+            widget.Battery(
+                background=special_colors['background'],
+                foreground=special_colors['foreground'],
+                format='BAT: {percent:2.0%}',
+                padding=5
+            )],
+            background=special_colors['background'],
+            foreground=special_colors['foreground'],
+            close_button_location='right',
+            font=fontconfig['icon'],
+            fontsize= 38,
+            text_closed='  ',
+            text_open='  '
         ),
         widget.Systray(
             background=special_colors['background'],
@@ -344,32 +388,17 @@ def init_widgets():
             background=special_colors['background'],
             size_percent=80
         ),
-        widget.TextBox(
-            text="VOL:",
-            background=special_colors['background'],
-            foreground=special_colors['foreground'],
-        ),
-        widget.Volume(
-            background=special_colors['background'],
-            foreground=special_colors['foreground'],
-            step=5,
-            # padding=10
-        ),
-        widget.Battery(
-            background=special_colors['background'],
-            foreground=special_colors['foreground'],
-            format='BAT: {percent:2.0%}',
-            padding=20
-        ),
         widget.Clock(
             foreground=special_colors['foreground'],
             background=special_colors['background'],
-            format="%a %d, %H:%M"
+            font=fontconfig['text']+" Bold",
+            padding=10,
+            format="%A %d, %H:%M"
         ),
         widget.Sep(
             linewidth=0,
             padding=10,
-            foreground=special_colors['background'],
+            foreground=special_colors['foreground'],
             background=special_colors['background']
         )
     ]
@@ -378,7 +407,10 @@ def init_widgets():
 
 def init_screens():
     return [Screen(top=bar.Bar(widgets=init_widgets(),
-                               opacity=0.95, size=54, margin=[0, 0, 0, 0]))]
+                               opacity=0.85,
+                               size=64,
+                               margin=[14, 24, 0, 24])
+                   )]
 
 
 if __name__ in ["config", "__main__"]:
@@ -414,8 +446,8 @@ floating_layout = layout.Floating(float_rules=[
     {'wmclass': 'confirmreset'},  # gitk
     {'wmclass': 'makebranch'},  # gitk
     {'wmclass': 'maketag'},  # gitk
+    {'wname': 'eww'},
     {'wname': 'sxiv'},
-    {'wname': 'ulauncher'},
     {'wname': 'branchdialog'},  # gitk
     {'wname': 'pinentry'},  # GPG key password entry
     {'wmclass': 'ssh-askpass'},  # ssh-askpass
@@ -432,7 +464,6 @@ def start_once():
     home = os.path.expanduser('~')
     subprocess.call([home + '/.config/qtile/autostart.sh'])
 
-
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
 # mailing lists, GitHub issues, and other WM documentation that suggest setting
@@ -441,4 +472,4 @@ def start_once():
 #
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
-wmname = "LG3D"
+wmname = "qtile"
