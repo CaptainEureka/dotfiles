@@ -147,15 +147,20 @@ keys = [
     # Stack controls
     Key(
         [mod, "shift"], "space",
-        lazy.layout.rotate(),
-        lazy.layout.flip(),
-        desc='Switch which side main pane occupies (XmonadTall)'
+        lazy.layout.toggle_floating(),
+        desc='toggle floating'
     ),
-    Key(
-        [mod], "space",
-        lazy.layout.next(),
-        desc='Switch window focus to other pane(s) of stack'
-    ),
+    # Key(
+    #     [mod, "shift"], "space",
+    #     lazy.layout.rotate(),
+    #     lazy.layout.flip(),
+    #     desc='Switch which side main pane occupies (XmonadTall)'
+    # ),
+    # Key(
+    #     [mod], "space",
+    #     lazy.layout.next(),
+    #     desc='Switch window focus to other pane(s) of stack'
+    # ),
     Key(
         [mod, "control"], "Return",
         lazy.layout.toggle_split(),
@@ -249,15 +254,15 @@ normal_colors = colors['colors']
 
 icons = ["layout-floating.png",
          "layout-max.png",
-         "layout-tile.png"]
+         "layout-monadtall.png"]
 
 recolor_icons(icons, special_colors['foreground'])
 
 # DEFAULT THEME SETTINGS FOR LAYOUTS
-layout_theme = {"border_width": 0,
+layout_theme = {"border_width": 4,
                 "margin": 24,
-                "border_focus": normal_colors['color6'],
-                "border_normal": normal_colors['color0']
+                "border_focus": normal_colors['color0'],
+                "border_normal": special_colors['background']
                 }
 
 # THE LAYOUTS
@@ -409,7 +414,7 @@ def init_screens():
     return [Screen(top=bar.Bar(widgets=init_widgets(),
                                opacity=0.85,
                                size=64,
-                               margin=[14, 24, 0, 24])
+                               margin=[10,24,0,24])
                    )]
 
 
@@ -446,6 +451,7 @@ floating_layout = layout.Floating(float_rules=[
     {'wmclass': 'confirmreset'},  # gitk
     {'wmclass': 'makebranch'},  # gitk
     {'wmclass': 'maketag'},  # gitk
+    {'wmclass': 'zenity'},
     {'wname': 'eww'},
     {'wname': 'sxiv'},
     {'wname': 'branchdialog'},  # gitk
@@ -457,7 +463,6 @@ auto_fullscreen = True
 focus_on_window_activation = "smart"
 
 ##### STARTUP APPLICATIONS #####
-
 
 @hook.subscribe.startup_once
 def start_once():

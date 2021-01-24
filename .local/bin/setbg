@@ -18,18 +18,30 @@ function setup_or_check(){
 }
 
 function copy_to_cache(){
-  cp $bg $CACHE_DIR/setbg.png
+  [ -d $CACHE_DIR ] && cp $bg $CACHE_DIR/setbg.png
 }
 
-[ -f "$1" ] && bg="$1" && copy_to_cache
-
-[ -d "$1" ] && bg=$(find "$1" -iregex '.*.\(jpg\|jpeg\|png\)' -type f | shuf | sxiv -otbif) \
+function options(){
+[ -f "$1" ] && bg="$1" \
   && copy_to_cache
 
-[ "$1" == "-z" ] && bg=$(find "$2" -iregex '.*.\(jpg\|jpeg\|png\)' -type f | shuf -n 1) 
+[ -d "$1" ] && bg=$(find "$1" -iregex '.*.\(jpg\|jpeg\|png\)' -type f | shuf | sxiv -otbi) \
+  && copy_to_cache
+
+[ "$1" == "-z" ] && bg=$(find "$2" -iregex '.*.\(jpg\|jpeg\|png\)' -type f | shuf -n 1) \
+  && copy_to_cache
 
 [ "$1" == "-r" ] && bg="$CACHE_DIR"/setbg.png 
 
-setup_or_check
-# Setting the wallpaper using xwallpaper
-xwallpaper --zoom $bg
+[ "$1" == "-h" ] && usage
+}
+
+function main(){
+options "$@"
+if [ -n "$bg" ]; then
+  setup_or_check \
+    && xwallpaper --zoom $bg
+fi
+}
+
+main "$@"

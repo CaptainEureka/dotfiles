@@ -4,7 +4,7 @@ import:
 window:
   dimensions:
     columns: 80
-    lines: 60
+    lines: 25
 
   padding:
     x: 30
@@ -22,14 +22,14 @@ scrolling:
 # Font configuration
 font:
   normal:
-    family: 'JetBrains Mono'
+    family: 'MesloLG S'
     style: Regular
   size: 12.0
   offset:
     x: 0
     y: 0
 
-background_opacity: 0.8
+background_opacity: 0.9
 
 # Allow terminal applications to change Alacritty's window title.
 #dynamic_title: true

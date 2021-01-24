@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.cargo/bin:$HOME/.local/bin:$PATH
 # usr/local/bin:$PATH
 export PATH=$PATH:/snap/bin
 
@@ -13,7 +13,7 @@ export ZSH="/home/mk/.oh-my-zsh"
 ZSH_THEME="spaceship"
 export SPACESHIP_PROMPT_ADD_NEWLINE=false
 export SPACESHIP_PROMPT_SEPARATE_LINE=false
-export SPACESHIPT_CHAR_SYMBOL='ζ'
+export SPACESHIP_CHAR_SYMBOL='ζ '
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -119,6 +119,7 @@ alias zshconfig="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias ls="exa -l"
 alias la="exa -la"
+alias cat="bat"
 alias lh="ls -d .*"
 alias vim="nvim"
 alias vi="nvim"
@@ -128,7 +129,8 @@ alias update="sudo pacman -Syu && yay -Su"
 alias pacin="pacman -Slq | fzf --layout=reverse --multi --preview 'pacman -Si {}' | xargs -ro sudo pacman -S"
 alias yayin="yay -Slq | fzf  --layout=reverse --multi --preview 'yay -Si {}' | xargs -ro yay -S"
 alias pacrem="pacman -Qq | fzf  --layout=reverse --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
-# alias yayrem=" | fzf --layout=reverse --multi --preview 'yay -Qi {}' | xargs -ro yay -Rns"
+alias pacexp="pacman -Qqe | fzf --layout=reverse --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
+alias yayrem="pacman -Qqm | fzf --layout=reverse --multi --preview 'yay -Qi {}' | xargs -ro yay -Rns"
 
 
 # shortcuts

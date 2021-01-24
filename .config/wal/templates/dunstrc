@@ -30,7 +30,7 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "0x0-20+64"
+    geometry = "600x4-10+98"
 
     # Show how many messages are currently hidden (because of geometry).
     indicate_hidden = yes
@@ -42,7 +42,7 @@
     # The transparency of the window.  Range: [0; 100].
     # This option will only work if a compositing window manager is
     # present (e.g. xcompmgr, compiz, etc.).
-    transparency = 30
+    transparency = 10
 
     # The height of the entire notification.  If the height is smaller
     # than the font height and padding combined, it will be raised
@@ -85,7 +85,7 @@
 
     ### Text ###
 
-    font = Anka/Coder 9
+    font = SF Pro Text 10
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
@@ -158,10 +158,10 @@
     icon_position = left
 
     # Scale larger icons down to this size, set to 0 to disable
-    max_icon_size = 64
+    max_icon_size = 128
 
     # Paths to default icons.
-    icon_path = /home/mk/.icons/oomox-Gruvbox-Oomox/32x32/status/:/home/mk/.icons/oomox-Gruvbox-Oomox/32x32/devices/:/home/mk/.icons/oomox-Gruvbox-Oomox/32x32/actions/
+    icon_path = /home/mk/.icons/oomox-Horizon-Oomox/48x48/status/:/home/mk/.icons/oomox-Horizon-Oomox/48x48/devices/:/home/mk/.icons/oomox-Horizon-Oomox/48x48/actions/
 
     ### History ###
 
@@ -330,12 +330,8 @@
   summary = "Now Playing"
 	timeout = 5
 
-[Firefox]
-  appname = Firefox
-  timeout = 5
-
-[Ferdi]
-  appname = Ferdi
-  timeout = 5
+[dunst_icon]
+  appname = dunst
+  new_icon = /home/mk/.icons/oomox-Horizon-Oomox/48x48/apps/bell.svg
 
 # vim: ft=cfg

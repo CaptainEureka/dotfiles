@@ -1,5 +1,5 @@
 <p align="center">
-  <b> CaptainEureka's configuration files </b>
+  <b> CaptainEureka's  dotfiles Bazaar </b>
 </p>
 
 <p align="center">
@@ -8,62 +8,48 @@
   <a href="https://github.com/CaptainEureka/dotfiles/wiki"><img width="150px" style="padding: 0 10px;" src=""></a>
 </p>
 
+## Hello! Welcome to my ~/!
+---
+These are my personal configuration files.
 
-## Preview
+In the [setup](#setup) section you can find a guide to replicate this on your own systems.
 
-![All](Screenshots/pic-full-200928-2035-51.png)
-
-![bspwm2](Screenshots/pic-full-200928-2022-19.png)
-
-### Some details about my setup:
+But first! Some details about my configs:
 
 - **OS**: Manjaro
-
 - **WMs**: 
-  - [bspwm-rounded-corners](https://github.com/dylanaraps/bspqwm) ([AUR](https://aur.archlinux.org/packages/bspwm-rounded-corners/)) patched by dylanaraps
-  - [qtile](https://qtile.org)
-  - [i3](i3wm.org)
-- **DE**: [KDE/Plasma](https://kde.org/plasma-desktop)
-- **Compositor**: ibhagwan's fork of [picom](https://github.com/ibhagwan/picom)
+  - [bspwm](https://github.com/baskerville/bspwm) 
+  - [Qtile](https://qtile.org) :arrow:
+  - [AwesomeWM](https://github.com/awesomeWM/awesome/)
+- **Compositor**: [jonaburg-picom](https://github.com/jonaburg/picom)
 - **Shell**: [zsh](https://wiki.archlinux.org/index.php/Zsh)
-  - Using: [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh) with the [Spaceship](https://github.com/denysdovhan/spaceship-prompt) prompt
-- **Terminal Emulator**: [kitty](https://github.com/kovidgoyal/kitty/) / [alacritty](https://github.com/alacritty/alacritty) / [konsole](https://github.com/KDE/konsole)
+  - With: [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh) framework
+  - Prompt: [Spaceship](https://github.com/denysdovhan/spaceship-prompt) 
+- **Terminal Emulator**:  [Alacritty](https://github.com/alacritty/alacritty)
 - **Editor**: [Neovim](https://github.com/neovim/neovim/)
-- **File Manager**: [ranger](https://github.com/ranger/ranger) / [dolphin](https://invent.kde.org/system/dolphin)
-- **Launcher/run**: [rofi](https://github.com/davatorium/rofi)
+- **File Manager**: [ranger](https://github.com/ranger/ranger)
+- **Launcher/Runner**: [rofi](https://github.com/davatorium/rofi)
 - **Bar**: [polybar](https://github.com/polybar/polybar)
 - **Browser**: [Qutebrowser](https://github.com/qutebrowser)
-- **Wallpaper**: [here](.wallpapers/ussf-wallp.jpg)
+- **Wallpaper**: 
 
-### Fonts
-
-- JetBrains Mono
-- Share Tech Mono
-- Anka/Coder
-- SF Pro
-- Icomoon - Feather
-- Material Icons
+## Changes
+*Changes here*
 
 ## Setup
+Here are instructions to replicate my setup.
+1. Install dependencies (**Arch Linux**)
+*[click here]() for a detailed list of dependencies*
+```bash
+yay -S ...
+```
 
-**Coming Soon!!**
+2. Install fonts
++ [Feather](.fonts/f/Feather.ttf)
++ [Material Icons](https://material.io/resources/icons/?style=baseline)
++ [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
+	Just pick your favorite, they all include the same icons
 
-###  Screenshots
+3. Install my configurations (**Dotbare**)
 
-![Fake Busy](Screenshots/pic-full-200928-2037-02.png)
-
-* Fake busy
-
-![2](Screenshots/pic-full-200928-2021-36.png)
-
-* Ranger
-
-![3](Screenshots/pic-full-200928-2019-28.png)
-
-* Qutebrowser w/ them GAPS!!
-
-![4](Screenshots/pic-full-200928-2056-38.png)
-
-* Clean
-
-[Actual daily driver](https://raw.githubusercontent.com/CaptainEureka/dotfiles/master/Screenshots/pic-full-200927-1556-24.png)
+   I use [`dotbare`](https://github.com/kazhala/dotbare) to manage my dotfiles.

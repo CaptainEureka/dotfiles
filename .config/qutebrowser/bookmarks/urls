@@ -1,0 +1,3 @@
+http://192.168.1.90:8096/web/index.html#!/login.html?serverid=8ea85adcdb7346268b68681a9c9fe5f1 Jellyfin
+http://192.168.1.90:8096/web/index.html#!/forgotpassword.html Jellyfin
+http://192.168.1.90/nextcloud/index.php/login Nextcloud

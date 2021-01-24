@@ -4,23 +4,24 @@
 
 #window {
     transparency: "real";
-    location: northwest;
-    anchor: northwest;
-    y-offset: 74px;
-    width: 20%;
-    border-radius: 0px 12px 0px 0px;
+    height: 100%;
+    width: 27.5%;
+    background-color: @background;
+    border-radius: 0px 48px 48px 0px;
 }
 
 #mainbox {
     children: [ inputbar , listview ];
-    background-color: @background;
+    background-color: transparent;
+    margin: 1% 1% 0% 4.5%;
 }
 
 #inputbar {
   children: [ prompt, textbox-prompt-colon, entry ];
-  /* background-color: @background-selected; */
-  /* border: 0px 0px 4px 0px; */
+  background-color: @background-selected;
   border-color: @background-selected;
+  border-radius: 25%;
+  margin: 0% 0% 5% 0%;
 }
 
 #prompt {
@@ -45,27 +46,24 @@
 }
 
 #listview {
-    lines: 17;
+    columns: 3;
+    layout: vertical;
     cycle: false;
-    /* margin: 1.78% 1%; */
-    /* padding: 0.5% 0%; */
 }
 
 #element {
-    /* border-radius: 12px; */
     padding: 1%;
+    orientation: vertical;
 }
 
 #element.selected {
     background-color: @background-selected;
-    border: 0px 8px 0px 0px;
-    border-color: @blue-normal;
     color: @text-color-t;
-    /* border-radius: 12; */
+    border-radius: 12px;
 }
 
 element-icon {
-    size: 3%;
+    size: 5%;
 }
 
 element-text {
@@ -73,4 +71,5 @@ element-text {
     padding: 10 0 10 0;
     text-color: @text-color-t;
     vertical-align: 0.5;
+    horizontal-align: 0.5;
 }

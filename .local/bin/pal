@@ -7,7 +7,6 @@ Usage:
     pal
     pal [ -s THEME ]
     pal [ -l ]
-    pal [ -e THEME ]
     pal (-h | --help)
     pal (-v | --version)
 
@@ -16,7 +15,6 @@ Arguments:
 
 Options:
     -s THEME        Sets theme located in ~/.config/pal/<theme>.json.
-    -e THEME        Edit theme in EDITOR.
     -l              List available themes.
     -h --help       Show this screen.
     -v --version    Show version.
@@ -50,15 +48,11 @@ def list_themes(includePywal=False):
         pywal.theme.list_out()
 
 
-def edit_theme(theme):
-    theme_path = os.path.expanduser("~/.config/pal/")+"{}.json".format(theme)
-    Popen("kitty --class pal-edit -e nvim {}".format(theme_path), shell=True)
-
-
 def write_themefile(theme):
     themefile=path.expanduser("~/.cache/pal/themefile")
     with open(themefile, "w") as t:
         t.write(theme)
+
 
 def set_theme(theme):
     """Main function."""
@@ -87,7 +81,5 @@ if __name__ == '__main__':
         set_theme(arguments['-s'])
     elif arguments['-l']:
         list_themes()
-    elif arguments['-e']:
-        edit_theme(arguments['-e'])
     else:
         print(arguments)

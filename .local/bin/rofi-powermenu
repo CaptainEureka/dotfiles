@@ -2,7 +2,7 @@
 
 function exec_shutdown() {
   sleep 1;
-  systemctl shutdown --now
+  systemctl poweroff --now
 }
 
 function exec_reboot() {
@@ -26,8 +26,8 @@ function exec_logoff() {
         bspc quit
         ;;
     "qtile")
-      sleep 1;
-      qshell --command shutdown\(\)
+        sleep 1;
+        qtile-logoff
   esac
 }
 

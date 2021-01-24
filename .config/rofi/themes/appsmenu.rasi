@@ -65,7 +65,8 @@ element-icon {
 }
 
 element-text {
-  font: "SF Pro Display 11";
+  /* font: "SF Pro Display 11"; */
+  font-size: 11;
   padding: 10 0 10 0;
   text-color: @text-color-t;
   horizontal-align: 0.5;

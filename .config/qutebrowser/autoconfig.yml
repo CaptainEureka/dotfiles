@@ -6,13 +6,14 @@
 
 config_version: 2
 settings:
-  aliases:
+  colors.webpage.bg:
+    global: white
+  colors.webpage.darkmode.enabled:
+    global: true
+  completion.open_categories:
     global:
-      q: close
-      qa: quit
-      w: session-save
-      wq: quit --save
-      wqa: quit --save
-  url.searchengines:
-    global:
-      DEFAULT: https://start.duckduckgo.com/?q={}
+    - searchengines
+    - quickmarks
+    - history
+  fonts.default_family:
+    global: SF Pro Display

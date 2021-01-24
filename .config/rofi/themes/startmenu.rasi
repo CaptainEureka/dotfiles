@@ -6,8 +6,7 @@
     transparency: "real";
     location: northwest;
     anchor: northwest;
-    x-offset: 20px;
-    y-offset: 74px;
+    y-offset: 3%;
     width: 15%;
 }
 
