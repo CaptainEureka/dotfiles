@@ -30,7 +30,6 @@ special_c = colors['special']
 normal_c = colors['colors']
 
 # Uncomment this to still load settings configured via autoconfig.yml
-config.load_autoconfig(False)
 
 # Aliases for commands. The keys of the given dictionary are the
 # aliases, while the values are the commands they map to.
@@ -401,7 +400,7 @@ c.tabs.tooltips = False
 # Page to open if :open -t/-b/-w is used without URL. Use `about:blank`
 # for a blank page.
 # Type: FuzzyUrl
-c.url.default_page = 'https://duckduckgo.com/'
+c.url.default_page = 'https://start.duckduckgo.com/'
 
 # Search engines which can be used via the address bar.  Maps a search
 # engine name (such as `DEFAULT`, or `ddg`) to a URL with a `{}`
@@ -476,15 +475,15 @@ c.colors.completion.item.selected.fg = special_c['foreground']
 
 # Background color of the selected completion item.
 # Type: QssColor
-c.colors.completion.item.selected.bg = normal_c['color8']
+c.colors.completion.item.selected.bg = normal_c['color0']
 
 # Top border color of the selected completion item.
 # Type: QssColor
-c.colors.completion.item.selected.border.top = normal_c['color8']
+c.colors.completion.item.selected.border.top = normal_c['color0']
 
 # Bottom border color of the selected completion item.
 # Type: QssColor
-c.colors.completion.item.selected.border.bottom = normal_c['color8']
+c.colors.completion.item.selected.border.bottom = normal_c['color0']
 
 # Foreground color of the matched text in the selected completion item.
 # Type: QtColor
@@ -729,15 +728,11 @@ c.colors.tabs.pinned.selected.even.fg = special_c['foreground']
 # Type: QtColor
 c.colors.tabs.pinned.selected.even.bg = normal_c['color0']
 
-# Force `prefers-color-scheme: dark` colors for websites.
-# Type: Bool
-c.colors.webpage.prefers_color_scheme_dark = True
-
 # Default font families to use. Whenever "default_family" is used in a
 # font setting, it's replaced with the fonts listed here. If set to an
 # empty value, a system-specific monospace default is used.
 # Type: List of Font, or Font
-c.fonts.default_family = 'SF Pro Display'
+c.fonts.default_family = 'Segoe UI'
 
 # Default font size to use. Whenever "default_size" is used in a font
 # setting, it's replaced with the size listed here. Valid values are

@@ -102,13 +102,6 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# QT5 config
-export QT_QPA_PLATFORMTHEME="qt5ct"
-export XDG_CURRENT_DESKTOP="KDE"
-
-# Ranger stop default
-export RANGER_LOAD_DEFAULT_RC=true
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -120,18 +113,16 @@ alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias ls="exa -l"
 alias la="exa -la"
 alias cat="bat"
-alias lh="ls -d .*"
+alias lh="exa -dl .*"
 alias vim="nvim"
 alias vi="nvim"
-alias yay="yay --aur --color=always"
-alias pacman="pacman --color=always"
-alias update="sudo pacman -Syu && yay -Su"
+alias update="paru"
 alias pacin="pacman -Slq | fzf --layout=reverse --multi --preview 'pacman -Si {}' | xargs -ro sudo pacman -S"
-alias yayin="yay -Slq | fzf  --layout=reverse --multi --preview 'yay -Si {}' | xargs -ro yay -S"
+alias paruin="paru -Slq | fzf  --layout=reverse --multi --preview 'paru -Si {}' | xargs -ro paru -S"
 alias pacrem="pacman -Qq | fzf  --layout=reverse --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
 alias pacexp="pacman -Qqe | fzf --layout=reverse --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rns"
-alias yayrem="pacman -Qqm | fzf --layout=reverse --multi --preview 'yay -Qi {}' | xargs -ro yay -Rns"
-
+alias parurem="pacman -Qqm | fzf --layout=reverse --multi --preview 'paru -Qi {}' | xargs -ro paru -Rns"
+alias ct="cointop"
 
 # shortcuts
 alias mozcfg="vim ~/.mozilla/firefox/"
@@ -142,3 +133,6 @@ alias cdconf="cd ~/.config"
 # alias config='/usr/bin/git --git-dir=/home/mk/.dotfiles/ --work-tree=/home/mk
 export DOTBARE_DIR="$HOME/.dotfiles"
 export DOTBARE_TREE="$HOME"
+
+# StarShip Prompt
+eval "$(starship init zsh)"

@@ -1,9 +1,6 @@
 configuration {
-  font: "SF Pro Display 12";
-  drun-display-format: "{name}";
   dpi: 192;
   show-icons: true;
-  modi: "drun";
   fixed-num-lines: true;
 }
 

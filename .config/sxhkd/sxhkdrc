@@ -19,7 +19,7 @@ super + {_, control} + Return
 
 # description: rofi runner
 super + shift + Return
-	rofi -show drun -theme appslist
+	rofi -show drun -modi drun,run,window -theme appslist
 
 # description: reload sxhkd config
 super + Escape

@@ -1,25 +1,38 @@
+configuration {
+  font: "Segoe UI 11";
+  drun-display-format: "{name} \n [<span weight='light' size='small'><i>{generic}</i></span>]";
+  display-drun: "Apps";
+  display-run: "Commands";
+  display-window: "Windows";
+  display-file-browser: "Files";
+  sidebar-mode: true;
+  window-format: "{c}\n==> {t}";
+  terminal: "alacritty";
+}
+
 * {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 #window {
-    transparency: "real";
-    location: center;
-    anchor: center;
-    /* y-offset: 74px; */
-    width: 35%;
+  transparency: "real";
+  location: center;
+  anchor: center;
+  width: 40%;
+  border-radius: 6px;
 }
 
 #mainbox {
-    children: [ inputbar , listview ];
-    background-color: @background;
+  children: [ inputbar, sidebar, listview ];
+  background-color: @background;
+  margin-bottom: 24px;
 }
 
 #inputbar {
   children: [ prompt, textbox-prompt-colon, entry ];
-  border: 0px 0px 4px 0px;
-  border-color: @background-selected;
-  margin: 12px;
+  background-color: @background-normal;
+  margin: 24px 24px 0px 24px;
+  border-radius: 6px;
 }
 
 #prompt { enabled: false; }
@@ -37,25 +50,40 @@
   expand: true;
   blink: true;
   padding: 1%;
-  placeholder: "Applications...";
+  placeholder: "Type here to search";
   placeholder-color: @text-color-t;
 }
 
+#sidebar {
+  margin: 24px 24px;
+}
+
+#button {
+  padding: 1%;
+  margin: 0% 1%;
+  border: 0px 0px 4px 0px;
+  border-color: transparent;
+}
+
+#button selected {
+  border: 0px 0px 4px 0px;
+  border-color: @blue-normal;
+}
+
 #listview {
-    padding: 8px 0px 0px 0px;
-    lines: 7;
-    cycle: false;
+  margin: 0px 24px 24px 24px;
+  lines: 7;
+  cycle: false;
 }
 
 #element {
-    padding: 1%;
+  padding: 1%;
 }
 
 #element.selected {
-    background-color: @background-selected;
-    border: 0px 0px 0px 8px;
-    border-color: @blue-normal;
-    color: @text-color-t;
+  background-color: @background-selected;
+  color: @text-color-t;
+  border-radius: 6px;
 }
 
 element-icon {
@@ -63,8 +91,8 @@ element-icon {
 }
 
 element-text {
-    font: "SF Pro Display 11";
-    padding: 10px;
-    text-color: @text-color-t;
-    vertical-align: 0.5;
+  font-size: 11;
+  padding: 10px;
+  text-color: @text-color-t;
+  vertical-align: 0.5;
 }

@@ -22,7 +22,7 @@ scrolling:
 # Font configuration
 font:
   normal:
-    family: 'MesloLG S'
+    family: 'Cascadia Mono'
     style: Regular
   size: 12.0
   offset:
@@ -30,9 +30,10 @@ font:
     y: 0
 
 background_opacity: 0.9
+decorations: none
 
 # Allow terminal applications to change Alacritty's window title.
-#dynamic_title: true
+dynamic_title: true
 
 cursor:
   style: Beam
