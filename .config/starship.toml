@@ -1,0 +1,11 @@
+format = """
+$jobs(bold blue)\
+$directory(bold cyan)\
+($git_branch$git_commit$git_state$git_status)\
+$python\
+$julia\
+$rust\
+$lua\
+[ζ](bold green) """
+
+add_newline = false

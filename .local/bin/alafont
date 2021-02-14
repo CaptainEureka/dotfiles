@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+sed -i "s/family: .*/family: '$1'/g" ~/.config/alacritty/alacritty.yml

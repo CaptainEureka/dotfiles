@@ -1,0 +1,92 @@
+#Bashtop gruvbox (https://github.com/morhetz/gruvbox) theme
+#by BachoSeven
+
+# Colors should be in 6 or 2 character hexadecimal or single spaced rgb decimal: "#RRGGBB", "#BW" or "0-255 0-255 0-255"
+# example for white: "#FFFFFF", "#ff" or "255 255 255".
+
+# All graphs and meters can be gradients
+# For single color graphs leave "mid" and "end" variable empty.
+# Use "start" and "end" variables for two color gradient
+# Use "start", "mid" and "end" for three color gradient
+
+# Main background, empty for terminal default, need to be empty if you want transparent background
+theme[main_bg]=""
+
+# Main text color
+theme[main_fg]="{foreground}"
+
+# Title color for boxes
+theme[title]="{color15}"
+
+# Higlight color for keyboard shortcuts
+theme[hi_fg]="{color3}"
+
+# Background color of selected items
+theme[selected_bg]="{color0}"
+
+# Foreground color of selected items
+theme[selected_fg]="{color6}"
+
+# Color of inactive/disabled text
+theme[inactive_fg]="{color0}"
+
+# Color of text appearing on top of graphs, i.e uptime and current network graph scaling
+theme[graph_text]="{color7}"
+
+# Misc colors for processes box including mini cpu graphs, details memory graph and details status text
+theme[proc_misc]="{color2}"
+
+# Cpu box outline color
+theme[cpu_box]="{color8}"
+
+# Memory/disks box outline color
+theme[mem_box]="{color8}"
+
+# Net up/down box outline color
+theme[net_box]="{color8}"
+
+# Processes box outline color
+theme[proc_box]="{color8}"
+
+# Box divider line and small boxes line color
+theme[div_line]="{color8}"
+
+# Temperature graph colors
+theme[temp_start]="{color4}"
+theme[temp_mid]="{color5}"
+theme[temp_end]="{color13}"
+
+# CPU graph colors
+theme[cpu_start]="{color2}"
+theme[cpu_mid]="{color3}"
+theme[cpu_end]="{color1}"
+
+# Mem/Disk free meter
+theme[free_start]="{color10}"
+theme[free_mid]=""
+theme[free_end]="{color2}"
+
+# Mem/Disk cached meter
+theme[cached_start]="{color4}"
+theme[cached_mid]=""
+theme[cached_end]="{color12}"
+
+# Mem/Disk available meter
+theme[available_start]="{color3}"
+theme[available_mid]=""
+theme[available_end]="{color11}"
+
+# Mem/Disk used meter
+theme[used_start]="{color1}"
+theme[used_mid]=""
+theme[used_end]="{color9}"
+
+# Download graph colors
+theme[download_start]="{color6}"
+theme[download_mid]=""
+theme[download_end]="{color14}"
+
+# Upload graph colors
+theme[upload_start]="{color5}"
+theme[upload_mid]=""
+theme[upload_end]="{color13}"

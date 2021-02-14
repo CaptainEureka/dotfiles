@@ -1,0 +1,11 @@
+#!/usr/bin/env python
+# This script will logout from qtile
+
+from libqtile.command import lazy
+import getpass
+import subprocess
+
+try:
+    lazy.shutdown()
+except:
+    subprocess.Popen(["loginctl", "terminate-user", getpass.getuser()])

@@ -1,0 +1,71 @@
+#!/bin/bash
+
+function confirm() {
+  ok=""
+  nok=""
+  ans=$(echo -en "$ok\n$nok" | rofi -dmenu -theme confirm)
+
+  case $ans in
+    $ok)
+      sleep 0.1
+      ;;
+    $nok)
+      exit 0
+      ;;
+    *)
+      exit 0
+      ;;
+  esac
+}
+
+function exec_poweroff() {
+  sleep 1;
+  systemctl poweroff --now
+}
+
+function exec_reboot() {
+  sleep 1;
+  systemctl reboot --now
+}
+
+function exec_lock() {
+  lockscreen-wrapper
+}
+
+function exec_logoff() {
+  session=$(echo $DESKTOP_SESSION | cut -d'/' -f5)
+  case $session in
+    "i3")
+        sleep 1;
+        i3exit logout
+        ;;
+    "bspwm")
+        sleep 1;
+        bspc quit
+        ;;
+    "qtile")
+        sleep 1;
+        qtile-logoff
+        ;;
+  esac
+}
+
+chosen="$1"
+
+case $chosen in
+    [Pp]oweroff)
+        confirm && exec_poweroff
+        ;;
+    [Rr]eboot)
+        confirm && exec_reboot
+        ;;
+    [Ll]ock)
+        confirm && exec_lock
+        ;;
+    [Ll]ogoff)
+        confirm && exec_logoff
+        ;;
+    *)
+        echo "Your options are: Poweroff, Reboot, Lock, Logoff"
+        ;;
+esac

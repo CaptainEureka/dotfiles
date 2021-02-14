@@ -1,0 +1,372 @@
+// @import "~/.cache/wal/colors.scss"
+
+* {
+  all: unset;
+}
+
+window {
+  border-radius: 6px;
+}
+
+box {
+  font-family: "Segoe UI";
+}
+
+// ############
+// CLOCK WIDGET
+// ############
+
+.fancy-clock {
+  background: rgba(28,30,39,0.6);
+  border-width: 2px;
+  border-style: solid;
+  border-color: rgba(46,48,64,0.6);
+}
+
+.hour, .minute {
+  font-family: "SF Mono";
+  font-size: 52px;
+  padding-top: 10px;
+  margin-bottom: -20px;
+}
+
+.hour {
+  color: #26bbd9;
+  font-weight: 600;
+}
+
+.minute {
+}
+
+.day {
+  color: #ee64ae;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+// ##############
+// BATTERY WIDGET
+// ##############
+
+.battery-widget {
+  background: rgba(28,30,39,0.6);
+  border-width: 2px;;
+  border-style: solid;
+  border-color: rgba(46,48,64,0.6);
+}
+
+.battery-widget-icon {
+  font-family: "Font Awesome";
+  font-size: 50px;
+  color: #29d398;
+}
+
+.battery-percentage-box {
+  margin-top: 40px;
+  margin-right: 20px;
+}
+
+.label-battery-percentage {
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.battery-percentage {
+  color: rgba(255,255,255,0.9);
+  font-weight: 400;
+  font-size: 24px;
+  margin-right: 55px;
+}
+
+// #############
+// VOLUME WIDGET
+// #############
+
+.volume-widget {
+  background: rgba(28,30,39,0.6);
+  border-width: 2px;;
+  border-style: solid;
+  border-color: rgba(46,48,64,0.6);
+}
+
+.label-volume-widget {
+  margin-left: 20px;
+  font-weight: 700;
+}
+
+.label-volume-slider {
+  font-family: "FluentSystemIcons-Regular";
+  margin-left: 20px;
+  color: rgba(216,222,233,0.6);
+  font-size: 35px;
+}
+
+.volume-slider scale trough {
+  background: rgba(216,222,233,0.15);
+	min-height: 16px;
+  min-width: 400px;
+  margin-left: 20px;
+  border-radius: 16px;
+}
+
+.volume-slider scale trough highlight {
+  background: #26bbd9;
+  border-radius: 16px;
+}
+
+.volume-slider button {
+  font-family: "FluentSystemIcons-Regular";
+  font-weight: bold;
+  font-size: 35px;
+  margin-left: 20px;
+  color: rgba(216,222,233,0.6);
+}
+
+.volume-slider button:hover {
+  color: #ffffff;
+}
+
+// #################
+// BRIGHTNESS WIDGET
+// #################
+
+.brightness-widget {
+  background: rgba(28,30,39,0.6);
+  border-width: 2px;;
+  border-style: solid;
+  border-color: rgba(46,48,64,0.6);
+}
+
+.label-brightness-widget {
+  margin-left: 20px;
+  font-weight: 700;
+}
+
+.label-brightness-slider {
+  font-family: "FluentSystemIcons-Regular";
+  margin-left: 20px;
+  color: rgba(216,222,233,0.6);
+  font-size: 35px;
+}
+
+.brightness-slider scale trough {
+  background: rgba(216,222,233,0.15);
+	min-height: 16px;
+  min-width: 400px;
+  margin-left: 20px;
+  border-radius: 16px;
+}
+
+.brightness-slider scale trough highlight {
+  background: #26bbd9;
+  border-radius: 16px;
+}
+
+.brightness-slider button {
+  font-family: "FluentSystemIcons-Regular";
+  font-weight: bold;
+  font-size: 35px;
+  margin-left: 20px;
+  color: rgba(216,222,233,0.6);
+}
+
+.brightness-slider button:hover {
+  color: #ffffff;
+}
+
+// ############
+// MUSIC WIDGET
+// ############
+
+.player-widget {
+  background: rgba(28,30,39,0.6);
+  border-width: 2px;;
+  border-style: solid;
+  border-color: rgba(46,48,64,0.6);
+}
+
+.music-info-widgetbox {
+  padding: 10px;
+}
+
+.music-info {
+  color: rgba(216,222,233,0.6);
+  font-size: 26px;
+  margin-top: 20px;
+}
+
+.album-art {
+  background-size: 500px;
+  background-repeat: no-repeat;
+  min-height: 500px;
+  min-width: 500px;
+  border-radius: 24px;
+  margin-top:20px;
+}
+
+.music-title {
+  font-weight: bold;
+  font-size: 32px;
+}
+
+.music-artist {
+  font-weight: 400;
+}
+
+.music-buttons {
+  margin-top: 40px;
+  font-family: 'FluentSystemIcons-Regular';
+}
+
+.music-buttons button {
+  font-size: 42px;
+  font-weight: 600;
+  color: rgba(216,222,233,0.6);
+}
+
+.music-buttons button:hover{
+  color: #d8dee9;
+}
+
+// #############
+// SYSTEM WIDGET
+// #############
+
+.systemctl-widget {
+  background: rgba(28,30,39,0.6);
+  font-family: "FluentSystemIcons-Regular";
+  font-size: 48px;
+  color: rgba(216,222,233,0.6);
+  border-width: 2px;;
+  border-style: solid;
+  border-color: rgba(46,48,64,0.6);
+}
+
+.systemctl-widget button:hover {
+  color: #d8dee9;
+}
+
+// #############
+// SYSTEM WIDGET
+// #############
+
+.quicksettings-widget {
+  background: rgba(28,30,39,0.6);
+  font-size: 48px;
+  border-width: 2px;;
+  border-style: solid;
+  border-color: rgba(46,48,64,0.6);
+}
+
+.qs-title {
+  font-weight: 700;
+  font-size: 30px;
+  margin: 20px;
+}
+
+.lockscreen-widget, .logoff-widget {
+  font-family: "Segoe MDL2 Assets";
+  font-size: 40px;
+}
+.quicksettings-widget button {
+  color: rgba(216,222,233,0.6);
+}
+
+.quicksettings-widget button:hover {
+  color: #d8dee9;
+}
+
+.network-widget, .bluetooth-widget, .picom-widget, .dunst-widget {
+  font-family: "FluentSystemIcons-Regular";
+}
+
+// #########################
+// COMMAND CENTER BACKGROUND
+// #########################
+
+.blur_command {
+  background: rgba(28,30,39,0.65);
+  border-width: 0px 4px 4px 0px;
+  border-style: solid;
+  border-color: rgba(46,48,62,0.6);
+}
+
+// #######
+// SIDEBAR
+// #######
+
+.sidebar {
+  background-color: rgba(28,30,39,0.6);
+  border-radius: 0px 12px 12px 0px;
+}
+
+.sidebar-icon-box {
+  color: rgba(216,222,233,0.6);
+}
+
+.sidebar-icon-box button {
+  margin: 10px;
+}
+
+.sidebar-icon-box button:hover {
+  background: rgba(216,222,233,0.05);
+  border-radius: 24px;
+}
+
+// ####
+// OSDs
+// ####
+
+.vol-osd {
+  background: rgba(28,30,39,0.6);
+  border-width: 2px;;
+  border-style: solid;
+  border-color: rgba(46,48,64,0.6);
+}
+
+.vol-osd-icon {
+  font-family: "FluentSystemIcons-Regular";
+  font-size: 60px;
+  color: #d8dee9;
+  margin: 20px;
+}
+
+.vol-osd-slider scale trough {
+  background: rgba(216,222,233,0.15);
+  min-height: 20px;
+  min-width: 400px;
+  border-radius: 20px;
+  margin-right: 20px;
+}
+
+.vol-osd-slider scale trough highlight {
+  background: #26bbd9;
+  border-radius: 20px;
+}
+
+.bright-osd {
+  background: rgba(28,30,39,0.6);
+  border-width: 2px;;
+  border-style: solid;
+  border-color: rgba(46,48,64,0.6);
+}
+
+.bright-osd-icon {
+  font-family: "FluentSystemIcons-Regular";
+  font-size: 60px;
+  color: #d8dee9;
+  margin: 20px;
+}
+
+.bright-osd-slider scale trough {
+  background: rgba(216,222,233,0.15);
+  min-height: 20px;
+  min-width: 400px;
+  border-radius: 20px;
+  margin-right: 20px;
+}
+
+.bright-osd-slider scale trough highlight {
+  background: #26bbd9;
+  border-radius: 20px;
+}

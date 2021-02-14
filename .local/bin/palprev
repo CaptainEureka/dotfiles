@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+pal -l | sed '/Themes:/d' | sed -e 's/  - //' | fzf --preview='pal -s {} && wal --preview' | xargs -ro pal -s
