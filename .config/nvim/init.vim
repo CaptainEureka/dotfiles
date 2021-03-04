@@ -11,7 +11,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'Yggdroot/indentLine'
 
 " Syntax
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'kovetskiy/sxhkd-vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'pearofducks/ansible-vim'
@@ -27,13 +26,10 @@ Plug 'junegunn/fzf.vim'
 Plug 'Chiel92/vim-autoformat'
 
 " Themes
-Plug 'drewtempelmeyer/palenight.vim'
-Plug 'CaptainEureka/moonlight.vim'
 Plug 'altercation/vim-colors-solarized'
-Plug 'arzg/vim-substrata'
-Plug 'ntk148v/vim-horizon'
-Plug 'dylanaraps/wal.vim'
+Plug 'arcticicestudio/nord-vim'
 Plug 'morhetz/gruvbox'
+Plug 'dylanaraps/wal.vim'
 
 " UltiSnips vim snippets
 Plug 'SirVer/ultisnips'
@@ -48,9 +44,9 @@ Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'tpope/vim-commentary'
 
 " Tabular (easy vertical alignment)
-Plug  'godlygeek/tabular'
+Plug 'godlygeek/tabular'
 
-" QuickScope easy hoirzontal motions
+" QuickScope easy horizontal motions
 Plug 'unblevable/quick-scope'
 
 " Goyo minimal distraction free writing (고요)
@@ -75,20 +71,9 @@ endif
 
 " colorscheme
 set background=dark
-colorscheme wal
-
-" Tokyo-Night
-" let g:tokyonight_style = 'night' " available: night, storm
-" let g:tokyonight_transparent_background = 1
-" colorscheme tokyonight
+colorscheme nord
 
 hi Normal guibg=NONE ctermbg=NONE
-
-" Italics for moonlight
-" let g:moonlight_terminal_italics = 1
-
-" Italics for palenight
-"let g:palenight_terminal_italics = 1
 
 " set number
 " set relativenumber
@@ -125,7 +110,7 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 
 " Lightline
 let g:lightline = {
-      \ 'colorscheme': 'wal',
+      \ 'colorscheme': 'nord',
       \ }
 
 " .rasi syntax
@@ -145,28 +130,10 @@ nmap <silent> <A-Right> :wincmd l<CR>
 
 " Hexokinase configuration
 let g:Hexokinase_highlighters = ['backgroundfull']
-" let g:Hexokinase_highlighters = [ 'virtual' ]
 let g:Hexokinase_optInPatterns = 'full_hex,rgb,rgba,hsl,hsla,colour_names'
-
-" Semshi semantic python syntax
-let g:semshi#filetypes = ['python']
-let g:semshi#excluded_hl_groups = ['local']
-let g:semshi#mark_selected_nodes = 1
-let g:semshi#no_default_builtin_highlight = v:true
-let g:semshi#simplify_markip = v:true
-let g:semshi#error_sign = v:true
-let g:semshi#error_sign_delay = 1.5
-let g:semshi#always_update_all_highlights = v:false
-let g:semshi#tolerate_syntax_errors = v:true
-let g:semshi#update_delat_factor = 0.0
 
 " QuickScope configuration
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-augroup qs_colors
-  autocmd!
-  autocmd ColorScheme * highlight QuickScopePrimary guifg='#c3e88d' gui=underline ctermfg=155 cterm=underline
-  autocmd ColorScheme * highlight QuickScopeSecondary guifg='#86e1fc' gui=underline ctermfg=81 cterm=underline
-augroup END
 
 " LUA syntax
 let g:lua_syntax_someoption = 1 

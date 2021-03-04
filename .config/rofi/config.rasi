@@ -1,5 +1,5 @@
 configuration {
-  dpi: 192;
+  dpi: 96;
   show-icons: true;
   fixed-num-lines: true;
 }

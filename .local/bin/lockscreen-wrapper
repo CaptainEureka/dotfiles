@@ -9,6 +9,17 @@ function process_color() {
   echo -n "$2"
 }
 
+function day_suffix() {
+  case `date +%-d` in
+    1|21|31) echo "st";;
+    2|22)    echo "nd";;
+    3|23)    echo "rd";;
+    *)       echo "th";;
+  esac
+}
+
+datestr="%A, %-d`day_suffix` of %B"
+
 bgr=$(process_color ${background} 50)
 base01=$(process_color ${color0} 80)
 base0=$(process_color ${color8} 50)
@@ -17,8 +28,8 @@ fgr_t=$(process_color ${foreground} 50)
 green=$(process_color ${color6} ff)
 red=$(process_color ${color1} ff)
 transparent=00000000
-font="SF Pro Rounded"
-tfont="SF Pro Rounded"
+font="Comfortaa"
+tfont="Rubik"
 
 i3lock -k --indicator \
   -c $bgr \
@@ -41,8 +52,11 @@ i3lock -k --indicator \
   --time-font="$tfont" \
   --timepos="w/2:h/2" \
   --timesize=120 \
+  --greetertext="____________________" \
+  --greetercolor=$fgr_t \
+  --greeterpos="tx:ty+20" \
   --datecolor=$fgr \
-  --datestr="%A, %b %-d" \
+  --datestr="$datestr" \
   --date-font="$font" \
   --datepos="tx:ty+60" \
-  --datesize=18
+  --datesize=22

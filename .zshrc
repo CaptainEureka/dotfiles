@@ -78,7 +78,6 @@ plugins=(
 	  themes
     colorize
     colored-man-pages
-    dotbare
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -130,9 +129,16 @@ alias cdbin="cd ~/.local/bin"
 alias cdconf="cd ~/.config"
 
 # dotbare
-# alias config='/usr/bin/git --git-dir=/home/mk/.dotfiles/ --work-tree=/home/mk
+alias db='dotbare'
 export DOTBARE_DIR="$HOME/.dotfiles"
 export DOTBARE_TREE="$HOME"
+
+# Bat
+export BAT_THEME=Nord
+export BAT_STYLE=changes,header,numbers
+
+# 'bat' as manpager
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # StarShip Prompt
 eval "$(starship init zsh)"

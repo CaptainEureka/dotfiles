@@ -16,32 +16,29 @@
       </box>
     </def>
 
-    <def name="battery-widget">
-      <box orientation="h" class="battery-widget-box" space-evenly="true">
-        <box class="battery-widget-icon">
-          
-        </box>
-        <box orientation="v" class="battery-percentage-box" space-evenly="false">
-          <box class="label-battery-percentage">
-            Battery
-          </box>
-          <box class="battery-percentage">
-            {{bat}}%
-          </box>
-      </box>
-      </box>
-    </def>
+    <!-- <def name="battery-widget"> -->
+    <!--   <box orientation="h" class="battery-widget-box" space-evenly="true"> -->
+    <!--     <box class="battery-widget-icon"> -->
+    <!--        -->
+    <!--     </box> -->
+    <!--     <box orientation="v" class="battery-percentage-box" space-evenly="false"> -->
+    <!--       <box class="label-battery-percentage"> -->
+    <!--         Battery -->
+    <!--       </box> -->
+    <!--       <box class="battery-percentage"> -->
+    <!--         {{if bat 'bat' else '0'}}% -->
+    <!--       </box> -->
+    <!--   </box> -->
+    <!--   </box> -->
+    <!-- </def> -->
 
     <def name="volume-widget">
       <box orientation="v" class="volume-widget-box" space-evenly="true">
         <box orientation="h" class="volume-slider" space-evenly="false">
-          <box class="label-volume-slider" onclick="pavucontrol-qt">
-            
-          </box>
-          <scale min="0" max="101" value="{{volume}}"/>
-          <button class="volume-action-arrow" onclick="notify-send 'Volume' 'Action'">
-            
+          <button class="volume-action-label" onclick="notify-send 'Volume' 'Action'">
+            {{volume-icon}}
           </button>
+          <scale min="0" max="101" value="{{volume}}"/>
         </box>
       </box>
     </def>
@@ -49,13 +46,23 @@
     <def name="brightness-widget">
       <box orientation="v" class="brightness-widget-box" space-evenly="true">
         <box orientation="h" class="brightness-slider" space-evenly="false">
-          <box class="label-brightness-slider" >
-            
-          </box>
-          <scale min="10" max="101" value="{{brightness}}"/>
-          <button class="brightness-action-arrow" onclick="notify-send 'Brightness' 'Action'">
-            
+          <button class="brightness-action-label" onclick="notify-send 'Brightness' 'Action'">
+             
           </button>
+          <scale min="10" max="101" value="{{brightness}}"/>
+        </box>
+      </box>
+    </def>
+      
+    <def name="ctl-widget">
+      <box orientation="v" hexpand="true" space-evently="false">
+        <player-widget/>
+        <box orientation="v" hexpand="true" space-evenly="true">
+          <box orientation="v" hexpand="true" space-evenly="false">
+            <volume-widget/>
+            <brightness-widget/>
+          </box>
+          <systemctl-widget/>
         </box>
       </box>
     </def>
@@ -90,16 +97,16 @@
     <def name="systemctl-widget">
       <box orientation="h" space-evenly="true">
         <button class="poweroff-widget" onclick="rofi-exit Poweroff">
-          
+          
         </button>
         <button class="reboot-widget" onclick="rofi-exit Reboot">
-          
+          
         </button>
         <button class="lockscreen-widget" onclick="rofi-exit Lock">
-          
+          
         </button>
         <button class="logoff-widget" onclick="rofi-exit Logoff">
-          
+          
         </button>
       </box>
     </def>
@@ -184,11 +191,15 @@
       date "+%A"
     </script-var>
 
-    <script-var name="volume" interval='15m'>
+    <script-var name="volume" interval='100ms'>
       pulsemixer --get-volume | awk '{print $1}'
     </script-var>
+      
+    <script-var name="volume-icon" interval='100ms'>
+      ./scripts/get-volumeicon
+    </script-var>
 
-    <script-var name="brightness" interval='15m'>
+    <script-var name="brightness" interval='100ms'>
       light | cut -d'.' -f1
     </script-var>
 
@@ -200,9 +211,9 @@
       echo 
     </script-var>
 
-    <script-var name="getart">
-      get-albumart
-    </script-var>
+    <!-- <script-var name="getart"> -->
+    <!--   get-albumart -->
+    <!-- </script-var> -->
 
     <script-var name="title" interval="3s">
       playerctl metadata --format '{{ title }}'
@@ -213,72 +224,48 @@
     </script-var>
 
     <script-var name="cover" interval="300ms">
-      echo "/tmp/eww/spotify/cover.png"
+      echo "/home/mk/.config/icons/qtile.png"
     </script-var>
   </variables>
 
   <windows>
-    <window name="clock-window" stacking="fg">
-      <geometry x="24px" y="84px"
-      width="270px" height="150px"/>
-        <widget>
-          <fancy-clock/>
-        </widget>
-    </window>
-    
-    <window name="battery-window" stacking="fg">
-      <geometry x="314px" y="84px"
-      width="270px" height="150px"/>
-      <widget>
-        <battery-widget/>
-      </widget>
-    </window>
-
     <window name="quicksettings-window">
-      <geometry x="24px" y="84px"
-        width="560px" height="100px"/>
+      <geometry x="1%" y="4%"
+        width="17%" height="5%"/>
         <widget>
           <quicksettings-widget/>
         </widget>
     </window>
 
-    <window name="music-window">
-      <geometry x="24px" y="204px"
-        width="560px" height="760px"/>
-        <widget>
-          <player-widget/>
-        </widget>
-    </window>
-
     <window name="volume-window" stacking="fg">
-      <geometry x="24px" y="984px"
-        width="560px" height="100px"/>
+      <geometry x="1%" y="10%"
+        width="17%" height="5%"/>
         <widget>
           <volume-widget/>
         </widget>
     </window>
 
+    <window name="ctl-window" stacking="fg">
+      <geometry x="1%" y="4%"
+        width="17%" height="30%"/>
+        <widget>
+          <ctl-widget/>
+        </widget>
+    </window>
+
     <window name="brightness-window" stacking="fg">
-      <geometry x="24px" y="1104px"
-        width="560px" height="100px"/>
+      <geometry x="1%" y="16%"
+        width="17%" height="5%"/>
         <widget>
           <brightness-widget/>
         </widget>
     </window>
 
     <window name="systemctl-window">
-      <geometry x="24px" y="1224px"
-        width="560px" height="100px"/>
+      <geometry x="1%" y="22%"
+        width="17%" height="5%"/>
         <widget>
           <systemctl-widget/>
-        </widget>
-    </window>
-
-    <window name="blur_command" stacking="fg">
-      <geometry x="0px" y="64px"
-        width="610px" height="894px"/>
-        <widget>
-          <blur_command/>
         </widget>
     </window>
 
@@ -288,6 +275,15 @@
         width="4%" height="40%"/>
         <widget>
           <sidebar/>
+        </widget>
+    </window>
+
+    <!-- Music Player Widget -->
+    <window name="music-window">
+      <geometry x="82%" y="4%"
+        width="17%" height="42%"/>
+        <widget>
+          <player-widget/>
         </widget>
     </window>
 

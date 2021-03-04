@@ -16,3 +16,6 @@ qb http://192.168.1.90:1340/
 jl http://192.168.1.90:8096/
 bup https://www.reddit.com/r/betterunixporn/
 usp https://www.reddit.com/r/UsabilityPorn/
+mpd http://192.168.1.90:6680/musicbox_webclient/index.html#home
+pistats http://192.168.1.90:8888/
+amzn https://www.amazon.nl/

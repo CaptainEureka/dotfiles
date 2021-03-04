@@ -10,7 +10,7 @@ with open(max_brightness_file, 'r') as f:
     maxvalue = int(f.read())
 
 def notify(file_path):
-    with open(file_path, 'r') as f: 
+    with open(file_path, 'r') as f:
         value = int(int(f.read())/maxvalue*100)
         print(value)
 

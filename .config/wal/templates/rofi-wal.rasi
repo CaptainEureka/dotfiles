@@ -1,6 +1,6 @@
 * {{
     /* Special values */
-    background: rgba({background.rgb}, 0.8);
+    background: rgba({background.rgb}, 0.75);
     background-selected: rgba({foreground.rgb}, 0.075);
     border-color: rgba({color7.rgb}, 0.2);
     text-color: {foreground};

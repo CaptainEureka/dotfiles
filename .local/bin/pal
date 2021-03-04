@@ -49,6 +49,12 @@ def list_themes(includePywal=False):
 
 
 def write_themefile(theme):
+    cache_dir = path.expanduser("~/.cache/")
+    try:
+        os.mkdir(cache_dir+'pal')
+    except FileExistsError:
+        pass
+
     themefile=path.expanduser("~/.cache/pal/themefile")
     with open(themefile, "w") as t:
         t.write(theme)

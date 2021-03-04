@@ -1,4 +1,5 @@
 import:
+  # - /home/mk/.config/alacritty/flavours.yml
   - /home/mk/.config/alacritty/colors.yml
 
 window:

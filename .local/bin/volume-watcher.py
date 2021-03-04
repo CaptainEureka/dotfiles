@@ -3,7 +3,7 @@ from pulsectl import Pulse, PulseLoopStop
 import sys
 
 # Adapt to your use-case
-sink_id = 0
+sink_id = 1
 
 with Pulse() as pulse:
   def callback(ev):

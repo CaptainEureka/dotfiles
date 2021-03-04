@@ -1,5 +1,5 @@
 configuration {
-  font: "Segoe UI 11";
+  font: "Rubik 11";
   drun-display-format: "{name} \n [<span weight='light' size='small'><i>{generic}</i></span>]";
   display-drun: "Apps";
   display-run: "Commands";

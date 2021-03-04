@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # Simple rofi menu for the maim screenshot utility
 
 # This is bound to PrintScreen by default. It lets you
@@ -18,38 +18,30 @@ fi
 
 ICON="applets-screenshooter"
 
-function countdown() {
-    for i in $(seq 3 -1 1); do
-      notify-send.py -i $ICON "Screenshot" "... in $i" \
-        --hint string:image-path:camera-photo \
-        --replaces-process "screenshot"
-      sleep 1  
-    done
-}
-
 function notifySaved() {
-  notify-send.py -i $ICON "Screenshot taken..." 'saving to '$dest_dir \
-    --hint string:image-path:camera-photo \
-    --replaces-process "screenshot"
+  notify-send -i $ICON "Screenshot taken..." 'saving to '$dest_dir \
+    --hint="string:image-path:"$screen_path
 }
 
 function notifyClipboard() {
-  notify-send.py -i $ICON "Screenshot taken..." 'copied to clipboard' \
-    --hint string:image-path:camera-photo \
-    --replaces-process "screenshot"
+  notify-send -i $ICON "Screenshot taken..." 'copied to clipboard' \
+    --hint="string:image-path:camera-photo"
 }
 
 case $choice in
   "Selection")
-        sleep 1 && maim -u -s $dest_dir/pic-selected-"$(date '+%y%m%d-%H%M-%S').png";
+        screen_path=$dest_dir/pic-selected-"$(date '+%y%m%d-%H%M-%S').png"
+        sleep 1 && maim -u -s $screen_path;
         notifySaved
         ;;
 	"Active Window") 
-        sleep 1 && maim -u -i $(xdotool getactivewindow) $dest_dir/pic-window-"$(date '+%y%m%d-%H%M-%S').png";
+        screen_path=$dest_dir/pic-window-"$(date '+%y%m%d-%H%M-%S').png"
+        sleep 1 &&  maim -u -i $(xdotool getactivewindow) $screen_path;
         notifySaved
         ;;
 	"Full Screen") 
-        sleep 1 &&maim -u $dest_dir/pic-full-"$(date '+%y%m%d-%H%M-%S').png";
+        screen_path=$dest_dir/pic-full-"$(date '+%y%m%d-%H%M-%S').png"
+        sleep 1 && maim -u $screen_path;
         notifySaved
         ;;
 	"Selection - Copy")
