@@ -1,15 +1,13 @@
 #!/bin/bash
 
 function confirm() {
-  ok=""
-  nok=""
-  ans=$(echo -en "$ok\n$nok" | rofi -dmenu -theme confirm)
+  ans=$(rofi -dmenu -i -no-fixed-num-lines -p "Are You Sure? (y/N) " -theme confirm)
 
   case $ans in
-    $ok)
+    Y|y|Yes|yes|YES)
       sleep 0.1
       ;;
-    $nok)
+    N|n|No|no|NO)
       exit 0
       ;;
     *)

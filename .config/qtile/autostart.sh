@@ -1,7 +1,7 @@
 #!/usr/bin/env bash 
 
 function run_once {
-  if [ ! $(pgrep -f $1) ];
+  if [[ ! $(pgrep -f $1) ]];
   then
     $@ &
   fi
@@ -15,6 +15,6 @@ run_once blueman-applet
 # run_once mopidy
 run_once eww daemon
 # run_once libinput-gestures -c ~/.config/qtile/configuration/libinput-gestures.conf
-# launch-dunst
-# volume-watcher.py | xob -s volume &
+launch-dunst
+pgrep xob || volume-watcher.py | xob -s volume &
 nitrogen --restore

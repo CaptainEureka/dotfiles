@@ -1,306 +1,228 @@
 <eww>
-  <definitions>
-    <def name="fancy-clock">
-      <box orientation="v" space-evenly="true">
-        <box orientation="h" space-evenly="false" halign="center">
-          <box class="hour">
-            {{hour}}
-          </box>
-          <box class="minute">
-            {{minute}}
-          </box>
-        </box>
-        <box class="day">
-          {{day}}
-        </box>
-      </box>
-    </def>
+    <definitions>
+        <def name="volume-widget">
+            <box orientation="h" halign="center" valign="center"
+                 class="volume-slider" vexpand="false" space-evenly="false" hexpand="false">
+                <label text="" valign="center" halign="center"/>
+                <scale min="0" max="101" value="{{volume}}" valign="center" halign="center"/>
+                <label text="" valign="center" halign="center"/>
+            </box>
+        </def>
 
-    <!-- <def name="battery-widget"> -->
-    <!--   <box orientation="h" class="battery-widget-box" space-evenly="true"> -->
-    <!--     <box class="battery-widget-icon"> -->
-    <!--        -->
-    <!--     </box> -->
-    <!--     <box orientation="v" class="battery-percentage-box" space-evenly="false"> -->
-    <!--       <box class="label-battery-percentage"> -->
-    <!--         Battery -->
-    <!--       </box> -->
-    <!--       <box class="battery-percentage"> -->
-    <!--         {{if bat 'bat' else '0'}}% -->
-    <!--       </box> -->
-    <!--   </box> -->
-    <!--   </box> -->
-    <!-- </def> -->
+        <def name="brightness-widget">
+            <box orientation="h" class="brightness-slider" space-evenly="false" visible="{{is_laptop}}">
+                <button class="brightness-action-label" onclick="notify-send 'Brightness' 'Action'">
+                     
+                </button>
+                <scale min="10" max="101" value="{{brightness}}" />
+            </box>
+        </def>
 
-    <def name="volume-widget">
-      <box orientation="v" class="volume-widget-box" space-evenly="true">
-        <box orientation="h" class="volume-slider" space-evenly="false">
-          <button class="volume-action-label" onclick="notify-send 'Volume' 'Action'">
-            {{volume-icon}}
-          </button>
-          <scale min="0" max="101" value="{{volume}}"/>
-        </box>
-      </box>
-    </def>
+        <def name="ctl-widget">
+            <box orientation="v" space-evenly="true"
+                 valign="center" xalign="center"
+                 hexpand="true" vexpand="false">
+                <player-widget />
+                <box orientation="v" hexpand="true" space-evenly="false">
+                    <box class="volume-brightness-box" orientation="v" hexpand="true" vexpand="true" space-evenly="true">
+                        <brightness-widget/>
+                        <monitor-widget/>
+                        <systemctl-widget/>
+                    </box>
+                </box>
+            </box>
+        </def>
 
-    <def name="brightness-widget">
-      <box orientation="v" class="brightness-widget-box" space-evenly="true">
-        <box orientation="h" class="brightness-slider" space-evenly="false">
-          <button class="brightness-action-label" onclick="notify-send 'Brightness' 'Action'">
-             
-          </button>
-          <scale min="10" max="101" value="{{brightness}}"/>
-        </box>
-      </box>
-    </def>
-      
-    <def name="ctl-widget">
-      <box orientation="v" hexpand="true" space-evently="false">
-        <player-widget/>
-        <box orientation="v" hexpand="true" space-evenly="true">
-          <box orientation="v" hexpand="true" space-evenly="false">
-            <volume-widget/>
-            <brightness-widget/>
-          </box>
-          <systemctl-widget/>
-        </box>
-      </box>
-    </def>
+        <def name="player-widget">
+            <box class="music-info-widgetbox" orientation="v" space-evenly="false">
+                <box class="music-info" orientation="v" valign="center" space-evenly="false">
+                    <label class="music-title" text="{{title}}" valign="center" halign="center"/>
+                    <label class="music-artist" text="{{artist-album}}" valign="center" halign="center"/>
+                </box>
+                <progress orientation="h" value="{{spotify-position}}"></progress>
+                <box orientation="h" class="music-buttons" space-evenly="false"
+                    halign="center">
+                    <button onclick="playerctl previous">
+                      
+                    </button>
+                    <button onclick="playerctl play-pause">
+                      {{spotify-status}}
+                    </button>
+                    <button onclick="playerctl next">
+                      
+                    </button>
+                </box>
+                <volume-widget/>
+            </box>
+        </def>
 
-    <def name="player-widget">
-      <box class="music-info-widgetbox" orientation="v" space-evenly="false">
-        <box class="album-art" valign="center" halign="center" style="background-image: url('{{cover}}');">
-        {{getart}}
-        </box>
-        <box class="music-info" orientation="v" valign="center" halign="center" space-evenly="false">
-          <box class="music-title" valign="center" halign="center">
-            {{title}}
-          </box>
-          <box class="music-artist" valign="center" halign="center">
-            {{artist-album}}
-          </box>
-        </box>
-        <box orientation="h" class="music-buttons" space-evenly="true">
-          <button onclick="playerctl previous">
-              
-          </button> 
-          <button onclick="playerctl play-pause">
-              
-          </button>
-          <button onclick="playerctl next">
-              
-          </button>
-        </box>
-      </box>
-    </def>
+        <def name="calendar-widget">
+            <calendar></calendar>
+        </def>
 
-    <def name="systemctl-widget">
-      <box orientation="h" space-evenly="true">
-        <button class="poweroff-widget" onclick="rofi-exit Poweroff">
-          
-        </button>
-        <button class="reboot-widget" onclick="rofi-exit Reboot">
-          
-        </button>
-        <button class="lockscreen-widget" onclick="rofi-exit Lock">
-          
-        </button>
-        <button class="logoff-widget" onclick="rofi-exit Logoff">
-          
-        </button>
-      </box>
-    </def>
+        <def name="systemctl-widget">
+            <box class="systemctl-box" orientation="h" space-evenly="true"
+                 valign="center" halign="center">
+                <button class="poweroff-widget" onclick="rofi-exit Poweroff">
+                  
+                </button>
+                <button class="reboot-widget" onclick="rofi-exit Reboot">
+                  
+                </button>
+                <button class="lockscreen-widget" onclick="rofi-exit Lock">
+                  
+                </button>
+                <button class="logoff-widget" onclick="rofi-exit Logoff">
+                  
+                </button>
+            </box>
+        </def>
 
-    <def name="quicksettings-widget">
-      <box orientation="v" space-evenly="true">
-        <box orientation="h" space-evenly="true">
-          <button class="network-widget" onclick="nm-connection-editor">
-            
-          </button>
-          <button class="bluetooth-widget" onclick="notify-send 'Bluetooth'">
-            
-          </button>
-          <button class="picom-widget" onclick="notify-send 'Picom'">
-             
-          </button>
-          <button class="dunst-widget" onclick="notify-send 'Dunst'">
-            
-          </button>
-        </box>
-      </box>
-    </def>
+        <def name="monitor-widget">
+            <box class="monitor-widgetbox" orientation="h"
+                 halign="center" valign="center" vexpand="false" hexpand="false" space-evenly="true">
+                <box class="ram-progress-box" orientation="v" space-evenly="false">
+                    <progress orientation="v" flipped="true" value="{{ram}}"></progress>
+                    <label text=""></label>
+                </box>
+                <box class="cpu-progress-box" orientation="v" space-evenly="false">
+                    <progress orientation="v" flipped="true" value="{{cpu}}"></progress>
+                    <label text=""></label>
+                </box>
+                <box class="du-progress-box" orientation="v" space-evenly="false">
+                    <progress orientation="v" flipped="true" value="{{fds}}"></progress>
+                    <label text=""></label>
+                </box>
+                <box class="tmp-progress-box" orientation="v" space-evenly="false">
+                    <progress orientation="v" flipped="true" value="{{tmp}}"></progress>
+                    <label text=""></label>
+                </box>
+            </box>
+        </def>
 
-    <def name="blur_command">
-      <box>
-      </box>
-    </def>
+        <def name="command_center">
+            <systemctl-widget/>
+        </def>
+    </definitions>
 
-    <def name="vol-osd">
-      <box orientation="x" space-evenly="false" class="vol-osd-slider">
-        <box class="vol-osd-icon">
-          
-        </box>
-        <scale min="0" max="101" active="false" value="{{volume}}"/>
-      </box>
-    </def>
+    <variables>
+        <script-var name="minute" interval="15s">
+              date "+%M"
+        </script-var>
 
-    <def name="bright-osd">
-      <box orientation="h" space-evenly="false" class="bright-osd-slider">
-        <box class="bright-osd-icon">
-          
-        </box>
-        <scale min="10" max="101" active="false" value="{{brightness}}"/>
-      </box>
-    </def>
+        <script-var name="hour" interval="15m">
+              date "+%H"
+        </script-var>
 
-    <def name="sidebar">
-      <box orientation="v" space-evenly="true" class="sidebar-icon-box">
-        <button onclick="notify-send 'Open' 'App A'">
-          A
-        </button>
-        <button onclick="notify-send 'Open' 'App B'">
-          B
-        </button>
-        <button onclick="notify-send 'Open' 'App C'">
-          C
-        </button>
-        <button onclick="notify-send 'Open' 'App D'">
-          D
-        </button>
-        <button onclick="notify-send 'Open' 'App E'">
-          E
-        </button>
-        <button onclick="notify-send 'Open' 'App F'">
-          F
-        </button>
-      </box>
-    </def>
+        <script-var name="day" interval="1h">
+              date "+%A"
+        </script-var>
 
-  </definitions>
+        <script-var name="volume" interval='100ms'>
+          pulsemixer --get-volume | awk '{print $1}'
+        </script-var>
 
-  <variables>
-    <script-var name="minute" interval="15s">
-      date "+%M"
-    </script-var>
+        <script-var name="volume-icon" interval='100ms'>
+          ./scripts/get-volumeicon
+        </script-var>
 
-    <script-var name="hour" interval="15m">
-      date "+%H"
-    </script-var>
+        <script-var name="brightness" interval='100ms'>
+          light | cut -d'.' -f1
+        </script-var>
 
-    <script-var name="day" interval="1h">
-      date "+%A"
-    </script-var>
+        <script-var name="ram" interval='100ms'>
+            printf "%.0f\n" $(free -m | grep Mem | awk '{print ($3/$2)*100}')
+        </script-var>
 
-    <script-var name="volume" interval='100ms'>
-      pulsemixer --get-volume | awk '{print $1}'
-    </script-var>
-      
-    <script-var name="volume-icon" interval='100ms'>
-      ./scripts/get-volumeicon
-    </script-var>
+        <script-var name="cpu" interval='100ms'>
+            echo $[100-$(vmstat 1 2|tail -1|awk '{print $15}')]
+        </script-var>
 
-    <script-var name="brightness" interval='100ms'>
-      light | cut -d'.' -f1
-    </script-var>
+        <script-var name="fds" interval='100ms'>
+            df --output=pcent / | tr -dc '0-9'
+        </script-var>
 
-    <script-var name="bat" interval="2s">
-      cat /sys/class/power_supply/BAT0/capacity
-    </script-var>
+        <script-var name="tmp" interval='100ms'>
+            sensors | grep 'Package' | awk '{print $4}' | cut -d'.' -f1 | tr -dc '0-9'
+        </script-var>
 
-    <script-var name="bat-icon">
-      echo 
-    </script-var>
+        <script-var name="is_laptop" interval='24h'>
+          echo $IS_LAPTOP
+        </script-var>
 
-    <!-- <script-var name="getart"> -->
-    <!--   get-albumart -->
-    <!-- </script-var> -->
+        <script-var name="spotify-update" interval="1s">
+            spotifystat > ~/.config/eww/spotifystat.json
+        </script-var>
 
-    <script-var name="title" interval="3s">
-      playerctl metadata --format '{{ title }}'
-    </script-var>
+        <script-var name="title" interval="1s">
+            cat ./spotifystat.json | jq --raw-output .track
+        </script-var>
 
-    <script-var name="artist-album" interval="3s">
-      playerctl metadata --format '{{ artist }}'
-    </script-var>
+        <script-var name="artist-album" interval="1s">
+            cat ./spotifystat.json | jq --raw-output '"\(.artist) - \(.album)"'
+        </script-var>
 
-    <script-var name="cover" interval="300ms">
-      echo "/home/mk/.config/icons/qtile.png"
-    </script-var>
-  </variables>
+        <script-var name="spotify-status" interval="1s">
+            cat ./spotifystat.json | jq --raw-output .status
+        </script-var>
 
-  <windows>
-    <window name="quicksettings-window">
-      <geometry x="1%" y="4%"
-        width="17%" height="5%"/>
-        <widget>
-          <quicksettings-widget/>
-        </widget>
-    </window>
+        <script-var name="spotify-position" interval="1s">
+            cat ./spotifystat.json | jq --raw-output .position_perc
+        </script-var>
+    </variables>
 
-    <window name="volume-window" stacking="fg">
-      <geometry x="1%" y="10%"
-        width="17%" height="5%"/>
-        <widget>
-          <volume-widget/>
-        </widget>
-    </window>
+    <windows>
+        <window name="ctl-window" stacking="fg">
+            <geometry x="1%" y="4%" />
+            <widget>
+                <ctl-widget />
+            </widget>
+        </window>
 
-    <window name="ctl-window" stacking="fg">
-      <geometry x="1%" y="4%"
-        width="17%" height="30%"/>
-        <widget>
-          <ctl-widget/>
-        </widget>
-    </window>
+        <window name="systemctl-window">
+            <geometry x="1%" y="22%" width="17%" height="5%" />
+            <widget>
+                <systemctl-widget />
+            </widget>
+        </window>
 
-    <window name="brightness-window" stacking="fg">
-      <geometry x="1%" y="16%"
-        width="17%" height="5%"/>
-        <widget>
-          <brightness-widget/>
-        </widget>
-    </window>
+        <!-- Calendar -->
+        <window name="calendar-widget">
+            <geometry x="85%" y="4%" />
+            <widget>
+                <calendar-widget />
+            </widget>
+        </window>
 
-    <window name="systemctl-window">
-      <geometry x="1%" y="22%"
-        width="17%" height="5%"/>
-        <widget>
-          <systemctl-widget/>
-        </widget>
-    </window>
+        <window name="eww-powermenu">
+            <geometry width="100%" height="100%" />
+            <widget>
+                <command_center/>
+            </widget>
+        </window>
 
-    <!-- Side dock -->
-    <window name="side_dock" anchor="left" stacking="fg">
-      <geometry x="20px" y="30%"
-        width="4%" height="40%"/>
-        <widget>
-          <sidebar/>
-        </widget>
-    </window>
+        <!-- Music Player Widget -->
+        <window name="music-window">
+            <geometry x="82%" y="4%" />
+            <widget>
+                <player-widget />
+            </widget>
+        </window>
 
-    <!-- Music Player Widget -->
-    <window name="music-window">
-      <geometry x="82%" y="4%"
-        width="17%" height="42%"/>
-        <widget>
-          <player-widget/>
-        </widget>
-    </window>
+        <!-- OSD Settings -->
+        <window name="volume_osd" anchor="center" stacking="fg">
+            <geometry height="6%" width="16%" x="42%" y="44%" />
+            <widget>
+                <vol-osd />
+            </widget>
+        </window>
 
-    <!-- OSD Settings -->
-    <window name="volume_osd" anchor="center" stacking="fg">
-      <geometry height="6%" width="16%" x="42%" y="44%"/>
-        <widget>
-          <vol-osd/>
-        </widget>
-    </window>
+        <window name="brightness_osd" anchor="center" stacking="fg">
+            <geometry height="6%" width="16%" x="42%" y="44%" />
+            <widget>
+                <bright-osd />
+            </widget>
+        </window>
 
-    <window name="brightness_osd" anchor="center" stacking="fg">
-      <geometry height="6%" width="16%" x="42%" y="44%"/>
-        <widget>
-          <bright-osd/>
-        </widget>
-    </window>
-
-  </windows>
+    </windows>
 </eww>

@@ -55,11 +55,6 @@ keys = [
         desc='Rofi Run Launcher'
     ),
     Key(
-        [mod, "control"], "q",
-        lazy.spawn("kill -s USR1 $(pidof deadd-notification-center)"),
-        desc='Testing deadd'
-    ),
-    Key(
         [mod], "Tab",
         lazy.next_layout(),
         desc='Toggle through layouts'
@@ -79,28 +74,33 @@ keys = [
         lazy.shutdown(),
         desc='Shutdown Qtile'
     ),
+    Key(
+        [mod, "shift"], "e",
+        lazy.hide_show_bar(),
+        desc='Toggle bar'
+    ),
     # Switch focus of monitors
     Key(
         [mod], "period",
         lazy.next_screen(),
         desc='Move focus to next monitor'
-        ),
+    ),
     Key(
         [mod], "comma",
         lazy.prev_screen(),
         desc='Move focus to prev monitor'
-        ),
+    ),
     # Move focus to next/prev group
     Key(
         [mod, "control"], "Right",
         lazy.screen.next_group(),
         desc='Move focus to next group'
-        ),
+    ),
     Key(
         [mod, "control"], "Left",
         lazy.screen.prev_group(),
         desc='Move focus to previous group'
-        ),
+    ),
     # Window controls
     Key(
         [mod], "k",
@@ -152,26 +152,25 @@ keys = [
     # Stack controls
     Key(
         [mod, "shift"], "space",
-        lazy.layout.toggle_floating(),
-        desc='toggle floating'
+        lazy.layout.rotate(),
+        lazy.layout.flip(),
+        desc='Switch which side main pane occupies (XmonadTall)'
     ),
-    # Key(
-    #     [mod, "shift"], "space",
-    #     lazy.layout.rotate(),
-    #     lazy.layout.flip(),
-    #     desc='Switch which side main pane occupies (XmonadTall)'
-    # ),
-    # Key(
-    #     [mod], "space",
-    #     lazy.layout.next(),
-    #     desc='Switch window focus to other pane(s) of stack'
-    # ),
+    Key(
+        [mod], "space",
+        lazy.layout.next(),
+        desc='Switch window focus to other pane(s) of stack'
+    ),
     Key(
         [mod, "control"], "Return",
         lazy.layout.toggle_split(),
         desc='Toggle between split and unsplit sides of stack'
     ),
     # Rofi scripts launched with ALT + CTRL + KEY
+    Key([alt, "control"], "e",
+        lazy.spawn("eww close-all"),
+        desc='Just in case I screw up Eww'
+    ),
     Key(
         [alt, "control"], "w",
         lazy.spawn("setbg /home/mk/Downloads"),
@@ -261,7 +260,7 @@ def init_colors():
     themefile = os.path.expanduser("~/.cache/pal/themefile")
     with open(themefile) as t:
         theme = t.read()
-    theme_dir = os.path.expanduser("~/.config/pal/"+theme+".json")
+    theme_dir = os.path.expanduser("~/.config/pal/{}.json".format(theme))
     with open(theme_dir) as c:
         colors = json.load(c)
 
@@ -276,6 +275,7 @@ def dpi(value):
     with open(Xresources) as X:
         xrdb = X.readlines()
 
+    dpi = 96
     for line in xrdb:
         if re.search('dpi',line):
             dpi = line.split(':')[1].strip()
@@ -283,7 +283,7 @@ def dpi(value):
     return int(value * int(dpi) / 96)
 
 # DEFAULT THEME SETTINGS FOR LAYOUTS
-layout_theme = {"border_width": dpi(2),
+layout_theme = {"border_width": dpi(4),
                 "margin": dpi(22),
                 "border_focus": theme_colors['color4'],
                 "border_normal": theme_colors['color8']
@@ -292,7 +292,7 @@ layout_theme = {"border_width": dpi(2),
 # THE LAYOUTS
 layouts = [
     # layout.MonadWide(**layout_theme),
-    # layout.Bsp(ratio=1.5, fair=False, lower_right=True, **layout_theme),
+    # layout.Bsp(ratio=1.5, fair=True, lower_right=False, **layout_theme),
     layout.MonadTall(**layout_theme),
     layout.Max(**layout_theme),
     layout.Floating(**layout_theme)
@@ -317,16 +317,16 @@ extension_defaults = widget_defaults.copy()
 # WIDGETS
 
 def run_eww():
-    qtile.cmd_spawn('eww open-many quicksettings-window volume-window brightness-window systemctl-window')
+    qtile.cmd_spawn('eww open ctl-window ')
 
 def close_eww():
-    qtile.cmd_spawn('eww close-all')
+    qtile.cmd_spawn('eww close ctl-window')
 
-def run_eww_music_widget():
-    qtile.cmd_spawn('eww open music-window')
+def eww_calendar_run():
+    qtile.cmd_spawn('eww open calendar-widget')
 
-def close_eww_music_widget():
-    qtile.cmd_spawn('eww close music-window')
+def eww_calendar_close():
+    qtile.cmd_spawn('eww close calendar-widget')
 
 def run_rofi():
     qtile.cmd_spawn('rofi -show drun -modi drun,run,window,file-browser -theme appslist')
@@ -372,7 +372,7 @@ def init_widgets():
             linewidth=2,
             padding=6,
             size_percent=60,
-            foreground=theme_colors['foreground'],
+            foreground=theme_colors['color8'],
             background=theme_colors['background']
         ),
         widget.Sep(
@@ -382,23 +382,25 @@ def init_widgets():
             background=theme_colors['background']
         ),
         widget.GroupBox(
+            active=theme_colors['foreground'],
+            background=theme_colors['background'],
+            block_highlight_text_color=theme_colors['background'],
+            borderwidth=2,
+            center_aligned=True,
             font=fontconfig['icon'],
             fontsize=18,
-            padding=10,
-            borderwidth=0,
-            block_highlight_text_color=theme_colors['background'],
-            active=theme_colors['color4'],
-            inactive=theme_colors['color8'],
-            rounded=True,
-            center_aligned=True,
+            foreground=theme_colors['foreground'],
+            highlight_color=theme_colors['color4'],
             highlight_method="block",
+            inactive=theme_colors['color8'],
+            margin=3,
+            padding=6,
+            rounded=True,
             this_current_screen_border=theme_colors['color4'],
             this_screen_border=theme_colors['color0'],
             urgent_alert_method="block",
             urgent_border=theme_colors['color1'],
-            urgent_text=theme_colors['background'],
-            foreground=theme_colors['foreground'],
-            background=theme_colors['background']
+            urgent_text=theme_colors['background']
         ),
         widget.Sep(
             linewidth=0,
@@ -413,14 +415,47 @@ def init_widgets():
             padding=0,
             scale=0.9
         ),
-        widget.WindowName(
+        widget.Sep(
+            linewidth=0,
+            padding=6,
             foreground=theme_colors['foreground'],
-            background=theme_colors['background'],
-            font=fontconfig['text'],
-            fontsize=14,
-            padding=10,
-            max_chars=35
+            background=theme_colors['background']
         ),
+        widget.Sep(
+            linewidth=2,
+            padding=6,
+            size_percent=60,
+            foreground=theme_colors['color8'],
+            background=theme_colors['background']
+        ),
+        widget.TaskList(
+            background=theme_colors['background'],
+            border=theme_colors['color8'],
+            borderwidth=2,
+            font=fontconfig['text']+' Medium',
+            fontsize=12,
+            foreground=theme_colors['foreground'],
+            highlight_method="block",
+            icon_size=0,
+            margin=3,
+            padding=6,
+            rounded=True,
+            spacing=2,
+            txt_floating='',
+            txt_maximized='',
+            txt_minimized='',
+            urgent_alert_method='border',
+            urgent_border=theme_colors['color1']
+        ),
+        # widget.WindowName(
+        #     foreground=theme_colors['foreground'],
+        #     background=theme_colors['background'],
+        #     font=fontconfig['text']+' Medium',
+        #     fontsize=14,
+        #     padding=10,
+        #     max_chars=35,
+        #     format='{name}'
+        # ),
         widget.Spacer(
             background=theme_colors['background']
         ),
@@ -431,19 +466,16 @@ def init_widgets():
         ),
         widget.Sep(
             linewidth=0,
-            padding=6,
-            foreground=theme_colors['background'],
+            padding=8,
+            foreground=theme_colors['foreground'],
             background=theme_colors['background'],
         ),
-        widget.TextBox(
+        widget.Sep(
+            linewidth=2,
+            padding=6,
+            size_percent=60,
+            foreground=theme_colors['color8'],
             background=theme_colors['background'],
-            foreground=theme_colors['foreground'],
-            text="ﰴ",
-            font="FluentSystemIcons-Regular Bold",
-            padding=10,
-            fontsize=18,
-            mouse_callbacks={'Button1': run_eww_music_widget,
-                             'Button3': close_eww_music_widget}
         ),
         widget.Clock(
             foreground=theme_colors['foreground'],
@@ -451,7 +483,9 @@ def init_widgets():
             font=fontconfig['text'],
             fontsize=14,
             padding=10,
-            format="%B %_d{}, %H:%M".format(day_suffix())
+            format="%B %_d{}, %H:%M".format(day_suffix()),
+            mouse_callbacks={'Button1': eww_calendar_run,
+                             'Button3': eww_calendar_close}
         ),
         widget.Sep(
             linewidth=0,
@@ -462,16 +496,15 @@ def init_widgets():
     ]
     return widgets_list
 
-
 # No bar config
 # def init_screens():
 #     return [Screen()]
 
 def init_screens():
     return [Screen(top=bar.Bar(widgets=init_widgets(),
-                               opacity=1,
-                               size=32,
-                               margin=0)
+                               opacity=0.9,
+                               size=dpi(32),
+                               margin=0),
                    )]
 
 
@@ -499,32 +532,35 @@ cursor_warp = False
 floating_layout = layout.Floating(
     **layout_theme,
     float_rules=[
-        Match(wm_type="utility"),
-        Match(wm_type="notification"),
-        Match(wm_type="toolbar"),
-        Match(wm_type="splash"),
-        Match(wm_type="dialog"),
-        Match(wm_class="confirm"),
-        Match(wm_class="dialog"),
-        Match(wm_class="download"),
-        Match(wm_class="error"),
-        Match(wm_class="file_progress"),
-        Match(wm_class="notification"),
-        Match(wm_class="splash"),
-        Match(wm_class="toolbar"),
-        Match(wm_class="confirmreset"),  # gitk
-        Match(wm_class="makebranch"),  # gitk
-        Match(wm_class="maketag"),  # gitk
-        Match(title="branchdialog"),  # gitk
-        Match(title="pinentry"),  # GPG key password entry
-        Match(wm_class="ssh-askpass"),  # ssh-askpass
-        Match(wm_class="thunar"),
+        *layout.Floating.default_float_rules,
+        # default_float_rules include: utility, notification, toolbar, splash, dialog,
+        # file_progress, confirm, download and error.
+        # Match(wm_type="utility"),
+        # Match(wm_type="notification"),
+        # Match(wm_type="toolbar"),
+        # Match(wm_type="splash"),
+        # Match(wm_type="dialog"),
+        # Match(wm_class="confirm"),
+        # Match(wm_class="dialog"),
+        # Match(wm_class="download"),
+        # Match(wm_class="error"),
+        # Match(wm_class="file_progress"),
+        # Match(wm_class="notification"),
+        # Match(wm_class="splash"),
+        # Match(wm_class="toolbar"),
+        # Match(wm_class="confirmreset"),  # gitk
+        # Match(wm_class="makebranch"),  # gitk
+        # Match(wm_class="maketag"),  # gitk
+        # Match(title="branchdialog"),  # gitk
+        # Match(title="pinentry"),  # GPG key password entry
+        # Match(wm_class="ssh-askpass"),  # ssh-askpass
+        # Match(wm_class="thunar"),
         Match(wm_class="pavucontrol"),
         Match(wm_class="nm-connection-editor"),
         Match(wm_class="sxiv"),
         Match(wm_class="feh"),
-        Match(wm_class="galculator"),
-        Match(wm_class="blueman-manager"),
+        # Match(wm_class="galculator"),
+        # Match(wm_class="blueman-manager"),
     ],
 )
 auto_fullscreen = True
@@ -539,7 +575,7 @@ def start_once():
 
 @hook.subscribe.restart
 def on_restart():
-    command=[ os.path.expanduser('~/.config/qtile/icons.sh'), theme_colors['color6'] ]
+    command=[ os.path.expanduser('~/.config/qtile/icons.sh'), theme_colors['color4'] ]
     subprocess.call(command)
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this

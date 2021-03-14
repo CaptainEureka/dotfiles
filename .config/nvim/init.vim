@@ -11,9 +11,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'Yggdroot/indentLine'
 
 " Syntax
-Plug 'kovetskiy/sxhkd-vim'
 Plug 'sheerun/vim-polyglot'
-Plug 'pearofducks/ansible-vim'
 
 " Intellisense Autocomplete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -26,10 +24,10 @@ Plug 'junegunn/fzf.vim'
 Plug 'Chiel92/vim-autoformat'
 
 " Themes
-Plug 'altercation/vim-colors-solarized'
 Plug 'arcticicestudio/nord-vim'
 Plug 'morhetz/gruvbox'
 Plug 'dylanaraps/wal.vim'
+Plug 'rayes0/blossom.vim'
 
 " UltiSnips vim snippets
 Plug 'SirVer/ultisnips'
@@ -70,8 +68,7 @@ if has("termguicolors")
 endif
 
 " colorscheme
-set background=dark
-colorscheme nord
+colorscheme blossom
 
 hi Normal guibg=NONE ctermbg=NONE
 
@@ -110,7 +107,7 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 
 " Lightline
 let g:lightline = {
-      \ 'colorscheme': 'nord',
+      \ 'colorscheme': 'wal',
       \ }
 
 " .rasi syntax
@@ -134,6 +131,3 @@ let g:Hexokinase_optInPatterns = 'full_hex,rgb,rgba,hsl,hsla,colour_names'
 
 " QuickScope configuration
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-
-" LUA syntax
-let g:lua_syntax_someoption = 1 

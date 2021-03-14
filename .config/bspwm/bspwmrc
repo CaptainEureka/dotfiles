@@ -16,15 +16,20 @@ function run_once {
   fi
 }
 
-[ -p /tmp/sxhkd-fifo ] || mkfifo /tmp/sxhkd-fifo
-run_once sxhkd -s /tmp/sxhkd-fifo
+# [ -p /tmp/sxhkd-fifo ] || mkfifo /tmp/sxhkd-fifo
+# run_once sxhkd -s /tmp/sxhkd-fifo
 run_once picom --experimental-backends
-run_once libinput-gestures
-run_once mopidy
+# run_once libinput-gestures
+# run_once mopidy
+run_once caffeine
+run_once volumeicon
+run_once blueman-applet
+run_once nm-applet --no-agent
+run_once eww daemon
 launch-polybar bspwm
 launch-dunst
-pgrep xob || xob-volume-watcher.py | xob -s amarena &
-setbg -r
+pgrep xob || volume-watcher.py | xob -s volume &
+nitrogen --restore
 
 #### MONITORS ####
 bspc monitor $(bspc query --monitors --names) -d 1 2 3 4 5
@@ -32,10 +37,10 @@ bspc config remove_disabled_monitors  true
 bspc config remove_unplugged_monitors true
 
 #### BSPWM CONFIG ####
-bspc config border_width        $(bspu dpi 2)
+bspc config border_width        $(bspu dpi 4)
 bspc config border_radius       0
-bspc config window_gap          $(bspu dpi 24)
-bspc config top_padding         $(bspu dpi 34)
+bspc config window_gap          $(bspu dpi 22)
+bspc config top_padding         $(bspu dpi 38)
 bspc config bottom_padding      0
 bspc config right_padding       0
 bspc config left_padding        0
@@ -50,7 +55,7 @@ bspc config split_ratio             0.5
 bspc config initial_polarity        second_child
 bspc config automatic_scheme        alternate
 bspc config borderless_monocle      true
-bspc config gapless_monocle         false
+bspc config gapless_monocle         true
 bspc config focus_follows_pointer   true
 bspc config click_to_focus          button1 
 bspc config single_monocle          true
@@ -59,20 +64,20 @@ bspc config single_monocle          true
 
 # source pywal colors
 . "${HOME}/.cache/wal/colors.sh"
-bspc config normal_border_color     "$color0"
-bspc config active_border_color     "$color0"
-bspc config focused_border_color    "$color8"
-bspc config presel_feedback_color   "$color8"
+bspc config normal_border_color     "$color8"
+bspc config active_border_color     "$color8"
+bspc config focused_border_color    "$color4"
+bspc config presel_feedback_color   "$color4"
 
 #### BSPWM WINDOW RULES ####
 bspc rule -a Gimp desktop='^7' state=floating follow=on
-bspc rule -a 'Firefox Beta' desktop='^2'
-bspc rule -a firefox desktop='^2'
-bspc rule -a Chromium desktop='^2'
+bspc rule -a librewolf desktop='^2'
+bspc rule -a qutebrowser desktop='^2'
 bspc rule -a ark state=floating
 bspc rule -a Screenkey manage=off
 bspc rule -a feh desktop='^4' state=floating
 bspc rule -a Thunar desktop='^4' state=floating
+bspc rule -a Nitrogen desktop='^4' state=floating
 bspc rule -a Sxiv state=floating rectangle=$(bspu rectangle $(bspu dpi 960) $(bspu dpi 540))
 bspc rule -a dolphin desktop='^4' state=floating rectangle=$(bspu rectangle $(bspu dpi 960) $(bspu dpi 540))
-bspc rule -a Xephyr desktop='^5'
+bspc rule -a Xephyr desktop='^3'

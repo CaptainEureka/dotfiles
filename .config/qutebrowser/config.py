@@ -15,7 +15,7 @@ import json
 
 
 def init_colors():
-    themefile = os.path.expanduser(".cache/pal/themefile")
+    themefile = os.path.expanduser("~/.cache/pal/themefile")
     with open(themefile) as t:
         theme = t.read()
     theme_dir = os.path.expanduser("~/.config/pal/{}.json".format(theme))
@@ -26,8 +26,7 @@ def init_colors():
 
 
 colors = init_colors()
-special_c = colors['special']
-normal_c = colors['colors']
+theme_c = colors['special'] | colors['colors']
 
 # Uncomment this to still load settings configured via autoconfig.yml
 config.load_autoconfig(False)
@@ -257,7 +256,7 @@ c.downloads.remove_finished = 3000
 
 # CSS border value for hints.
 # Type: String
-c.hints.border = '4px solid {}'.format(normal_c['color3'])
+c.hints.border = '4px solid {}'.format(theme_c['color3'])
 
 # Rounding radius (in pixels) for the edges of prompts.
 # Type: Int
@@ -444,87 +443,87 @@ c.zoom.default = '100%'
 # Text color of the completion widget. May be a single color to use for
 # all columns or a list of three colors, one for each column.
 # Type: List of QtColor, or QtColor
-c.colors.completion.fg = normal_c['color7']
+c.colors.completion.fg = theme_c['foreground']
 
 # Background color of the completion widget for odd rows.
 # Type: QssColor
-c.colors.completion.odd.bg = special_c['background']
+c.colors.completion.odd.bg = theme_c['background']
 
 # Background color of the completion widget for even rows.
 # Type: QssColor
-c.colors.completion.even.bg = special_c['background']
+c.colors.completion.even.bg = theme_c['background']
 
 # Foreground color of completion widget category headers.
 # Type: QtColor
-c.colors.completion.category.fg = normal_c['color7']
+c.colors.completion.category.fg = theme_c['foreground']
 
 # Background color of the completion widget category headers.
 # Type: QssColor
-c.colors.completion.category.bg = normal_c['color0']
+c.colors.completion.category.bg = theme_c['color8']
 
 # Top border color of the completion widget category headers.
 # Type: QssColor
-c.colors.completion.category.border.top = normal_c['color0']
+c.colors.completion.category.border.top = theme_c['color8']
 
 # Bottom border color of the completion widget category headers.
 # Type: QssColor
-c.colors.completion.category.border.bottom = normal_c['color0']
+c.colors.completion.category.border.bottom = theme_c['color8']
 
 # Foreground color of the selected completion item.
 # Type: QtColor
-c.colors.completion.item.selected.fg = special_c['background']
+c.colors.completion.item.selected.fg = theme_c['background']
 
 # Background color of the selected completion item.
 # Type: QssColor
-c.colors.completion.item.selected.bg = normal_c['color4']
+c.colors.completion.item.selected.bg = theme_c['color4']
 
 # Top border color of the selected completion item.
 # Type: QssColor
-c.colors.completion.item.selected.border.top = normal_c['color4']
+c.colors.completion.item.selected.border.top = theme_c['color4']
 
 # Bottom border color of the selected completion item.
 # Type: QssColor
-c.colors.completion.item.selected.border.bottom = normal_c['color4']
+c.colors.completion.item.selected.border.bottom = theme_c['color4']
 
 # Foreground color of the matched text in the selected completion item.
 # Type: QtColor
-c.colors.completion.item.selected.match.fg = normal_c['color1']
+c.colors.completion.item.selected.match.fg = theme_c['color1']
 
 # Foreground color of the matched text in the completion.
 # Type: QtColor
-c.colors.completion.match.fg = normal_c['color1']
+c.colors.completion.match.fg = theme_c['color1']
 
 # Color of the scrollbar handle in the completion view.
 # Type: QssColor
-c.colors.completion.scrollbar.fg = normal_c['color8']
+c.colors.completion.scrollbar.fg = theme_c['color8']
 
 # Color of the scrollbar in the completion view.
 # Type: QssColor
-c.colors.completion.scrollbar.bg = special_c['background']
+c.colors.completion.scrollbar.bg = theme_c['background']
 
 # Background color of the context menu. If set to null, the Qt default
 # is used.
 # Type: QssColor
-c.colors.contextmenu.menu.bg = special_c['background']
+c.colors.contextmenu.menu.bg = theme_c['background']
 
 # Foreground color of the context menu. If set to null, the Qt default
 # is used.
 # Type: QssColor
-c.colors.contextmenu.menu.fg = normal_c['color7']
+c.colors.contextmenu.menu.fg = theme_c['foreground']
 
 # Background color of the context menu's selected item. If set to null,
 # the Qt default is used.
 # Type: QssColor
-c.colors.contextmenu.selected.bg = normal_c['color8']
+c.colors.contextmenu.selected.bg = theme_c['color4']
 
 # Foreground color of the context menu's selected item. If set to null,
 # the Qt default is used.
 # Type: QssColor
-c.colors.contextmenu.selected.fg = special_c['foreground']
+c.colors.contextmenu.selected.fg = theme_c['background']
 
 # Background color for the download bar.
 # Type: QssColor
-c.colors.downloads.bar.bg = normal_c['color0']
+c.colors.downloads.bar.bg = theme_c['color0']
 
 # Color gradient start for download text.
 # Type: QtColor
@@ -532,7 +531,7 @@ c.colors.downloads.start.fg = 'black'
 
 # Color gradient start for download backgrounds.
 # Type: QtColor
-c.colors.downloads.start.bg = normal_c['color2']
+c.colors.downloads.start.bg = theme_c['color2']
 
 # Color gradient end for download text.
 # Type: QtColor
@@ -540,7 +539,7 @@ c.colors.downloads.stop.fg = 'black'
 
 # Color gradient stop for download backgrounds.
 # Type: QtColor
-c.colors.downloads.stop.bg = normal_c['color2']
+c.colors.downloads.stop.bg = theme_c['color2']
 
 # Foreground color for downloads with errors.
 # Type: QtColor
@@ -548,7 +547,7 @@ c.colors.downloads.error.fg = 'white'
 
 # Background color for downloads with errors.
 # Type: QtColor
-c.colors.downloads.error.bg = normal_c['color1']
+c.colors.downloads.error.bg = theme_c['color1']
 
 # Font color for hints.
 # Type: QssColor
@@ -557,51 +556,51 @@ c.colors.hints.fg = 'black'
 # Background color for hints. Note that you can use a `rgba(...)` value
 # for transparency.
 # Type: QssColor
-c.colors.hints.bg = '#C0{}'.format(normal_c['color11'][1:])
+c.colors.hints.bg = '#C0{}'.format(theme_c['color11'][1:])
 
 # Text color for the keyhint widget.
 # Type: QssColor
-c.colors.keyhint.fg = special_c['foreground']
+c.colors.keyhint.fg = theme_c['foreground']
 
 # Highlight color for keys to complete the current keychain.
 # Type: QssColor
-c.colors.keyhint.suffix.fg = normal_c['color4']
+c.colors.keyhint.suffix.fg = theme_c['color4']
 
 # Background color of the keyhint widget.
 # Type: QssColor
-c.colors.keyhint.bg = '#C0{}'.format(special_c['background'][1:])
+c.colors.keyhint.bg = '#C0{}'.format(theme_c['background'][1:])
 
 # Foreground color for prompts.
 # Type: QssColor
-c.colors.prompts.fg = special_c['foreground']
+c.colors.prompts.fg = theme_c['foreground']
 
 # Border used around UI elements in prompts.
 # Type: String
-c.colors.prompts.border = '1px solid {}'.format(normal_c['color8'])
+c.colors.prompts.border = '1px solid {}'.format(theme_c['color8'])
 
 # Background color for prompts.
 # Type: QssColor
-c.colors.prompts.bg = special_c['background']
+c.colors.prompts.bg = theme_c['background']
 
 # Background color for the selected item in filename prompts.
 # Type: QssColor
-c.colors.prompts.selected.bg = normal_c['color8']
+c.colors.prompts.selected.bg = theme_c['color8']
 
 # Foreground color of the statusbar.
 # Type: QssColor
-c.colors.statusbar.normal.fg = special_c['background']
+c.colors.statusbar.normal.fg = theme_c['background']
 
 # Background color of the statusbar.
 # Type: QssColor
-c.colors.statusbar.normal.bg = normal_c['color4']
+c.colors.statusbar.normal.bg = theme_c['color4']
 
 # Foreground color of the statusbar in insert mode.
 # Type: QssColor
-c.colors.statusbar.insert.fg = special_c['background']
+c.colors.statusbar.insert.fg = theme_c['background']
 
 # Background color of the statusbar in insert mode.
 # Type: QssColor
-c.colors.statusbar.insert.bg = normal_c['color2']
+c.colors.statusbar.insert.bg = theme_c['color2']
 
 # Foreground color of the statusbar in passthrough mode.
 # Type: QssColor
@@ -609,7 +608,7 @@ c.colors.statusbar.passthrough.fg = 'white'
 
 # Background color of the statusbar in passthrough mode.
 # Type: QssColor
-c.colors.statusbar.passthrough.bg = normal_c['color4']
+c.colors.statusbar.passthrough.bg = theme_c['color4']
 
 # Foreground color of the statusbar in private browsing mode.
 # Type: QssColor
@@ -617,44 +616,44 @@ c.colors.statusbar.private.fg = 'white'
 
 # Foreground color of the statusbar in command mode.
 # Type: QssColor
-c.colors.statusbar.command.fg = special_c['foreground']
+c.colors.statusbar.command.fg = theme_c['foreground']
 
 # Background color of the statusbar in command mode.
 # Type: QssColor
-c.colors.statusbar.command.bg = normal_c['color0']
+c.colors.statusbar.command.bg = theme_c['color0']
 
 # Default foreground color of the URL in the statusbar.
 # Type: QssColor
-c.colors.statusbar.url.fg = special_c['background']
+c.colors.statusbar.url.fg = theme_c['background']
 
 # Foreground color of the URL in the statusbar on error.
 # Type: QssColor
-c.colors.statusbar.url.error.fg = normal_c['color3']
+c.colors.statusbar.url.error.fg = theme_c['color3']
 
 # Foreground color of the URL in the statusbar for hovered links.
 # Type: QssColor
-c.colors.statusbar.url.hover.fg = normal_c['color6']
+c.colors.statusbar.url.hover.fg = theme_c['color6']
 
 # Foreground color of the URL in the statusbar on successful load
 # (https).
 # Type: QssColor
-c.colors.statusbar.url.success.https.fg = normal_c['color2']
+c.colors.statusbar.url.success.https.fg = theme_c['color2']
 
 # Background color of the tab bar.
 # Type: QssColor
-c.colors.tabs.bar.bg = normal_c['color0']
+c.colors.tabs.bar.bg = theme_c['color0']
 
 # Color gradient start for the tab indicator.
 # Type: QtColor
-c.colors.tabs.indicator.start = normal_c['color0']
+c.colors.tabs.indicator.start = theme_c['color0']
 
 # Color gradient end for the tab indicator.
 # Type: QtColor
-c.colors.tabs.indicator.stop = normal_c['color0']
+c.colors.tabs.indicator.stop = theme_c['color0']
 
 # Color for the tab indicator on errors.
 # Type: QtColor
-c.colors.tabs.indicator.error = normal_c['color1']
+c.colors.tabs.indicator.error = theme_c['color1']
 
 # Color gradient interpolation system for the tab indicator.
 # Type: ColorSystem
@@ -667,73 +666,78 @@ c.colors.tabs.indicator.system = 'rgb'
 
 # Foreground color of unselected odd tabs.
 # Type: QtColor
-c.colors.tabs.odd.fg = normal_c['color7']
+c.colors.tabs.odd.fg = theme_c['color7']
 
 # Background color of unselected odd tabs.
 # Type: QtColor
-c.colors.tabs.odd.bg = normal_c['color0']
+c.colors.tabs.odd.bg = theme_c['color8']
 
 # Foreground color of unselected even tabs.
 # Type: QtColor
-c.colors.tabs.even.fg = normal_c['color7']
+c.colors.tabs.even.fg = theme_c['foreground']
 
 # Background color of unselected even tabs.
 # Type: QtColor
-c.colors.tabs.even.bg = normal_c['color0']
+c.colors.tabs.even.bg = theme_c['color8']
 
 # Foreground color of selected odd tabs.
 # Type: QtColor
-c.colors.tabs.selected.odd.fg = normal_c['color7']
+c.colors.tabs.selected.odd.fg = theme_c['foreground']
 
 # Background color of selected odd tabs.
 # Type: QtColor
-c.colors.tabs.selected.odd.bg = special_c['background']
+c.colors.tabs.selected.odd.bg = theme_c['background']
 
 # Foreground color of selected even tabs.
 # Type: QtColor
-c.colors.tabs.selected.even.fg = normal_c['color7']
+c.colors.tabs.selected.even.fg = theme_c['foreground']
 
 # Background color of selected even tabs.
 # Type: QtColor
-c.colors.tabs.selected.even.bg = special_c['background']
+c.colors.tabs.selected.even.bg = theme_c['background']
 
 # Foreground color of pinned unselected odd tabs.
 # Type: QtColor
-c.colors.tabs.pinned.odd.fg = special_c['foreground']
+c.colors.tabs.pinned.odd.fg = theme_c['foreground']
 
 # Background color of pinned unselected odd tabs.
 # Type: QtColor
-c.colors.tabs.pinned.odd.bg = normal_c['color0']
+c.colors.tabs.pinned.odd.bg = theme_c['color0']
 
 # Foreground color of pinned unselected even tabs.
 # Type: QtColor
-c.colors.tabs.pinned.even.fg = special_c['foreground']
+c.colors.tabs.pinned.even.fg = theme_c['foreground']
 
 # Background color of pinned unselected even tabs.
 # Type: QtColor
-c.colors.tabs.pinned.even.bg = normal_c['color0']
+c.colors.tabs.pinned.even.bg = theme_c['color0']
 
 # Foreground color of pinned selected odd tabs.
 # Type: QtColor
-c.colors.tabs.pinned.selected.odd.fg = special_c['foreground']
+c.colors.tabs.pinned.selected.odd.fg = theme_c['foreground']
 
 # Background color of pinned selected odd tabs.
 # Type: QtColor
-c.colors.tabs.pinned.selected.odd.bg = normal_c['color0']
+c.colors.tabs.pinned.selected.odd.bg = theme_c['color0']
 
 # Foreground color of pinned selected even tabs.
 # Type: QtColor
-c.colors.tabs.pinned.selected.even.fg = special_c['foreground']
+c.colors.tabs.pinned.selected.even.fg = theme_c['foreground']
 
 # Background color of pinned selected even tabs.
 # Type: QtColor
-c.colors.tabs.pinned.selected.even.bg = normal_c['color0']
+c.colors.tabs.pinned.selected.even.bg = theme_c['color0']
 
 # Default font families to use. Whenever "default_family" is used in a
 # font setting, it's replaced with the fonts listed here. If set to an
 # empty value, a system-specific monospace default is used.
 # Type: List of Font, or Font
-c.fonts.default_family = ['Rubik','Merriweather','Monaco']
+c.fonts.default_family = ['Rubik','Monaco']
+c.fonts.web.family.cursive = 'Pacifico'
+c.fonts.web.family.fixed = 'Monaco'
+c.fonts.web.family.serif = 'Montserrat'
+c.fonts.web.family.sans_serif = 'Rubik'
+c.fonts.web.family.standard = 'Rubik'
 
 # Default font size to use. Whenever "default_size" is used in a font
 # setting, it's replaced with the size listed here. Valid values are

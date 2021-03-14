@@ -20,14 +20,6 @@ case "$1" in
         fi
         echo "Polybar launched..."
         ;;
-    multibar-bspwm)
-        polybar --reload start_widget -c $CONFIG > /dev/null &
-        polybar --reload workspaces-bspwm -c $CONFIG > /dev/null &
-        polybar --reload datetime -c $CONFIG > /dev/null &
-        polybar --reload systray -c $CONFIG > /dev/null &
-        polybar --reload sys_widget -c $CONFIG > /dev/null &
-        echo "Polybar launched..."
-        ;;
     i3)
         polybar i3-bar -c ~/.config/polybar/config.ini &
         echo "Polybar launched..."
@@ -36,7 +28,6 @@ case "$1" in
         echo "Please specify a bar"
         echo "Available bars:"
         echo "    bspwm"
-        echo "    multibar-bspwm"
         echo "    i3"
         echo " "
         echo "Usage:"

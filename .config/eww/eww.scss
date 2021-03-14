@@ -2,196 +2,254 @@
 
 * {
   all: unset;
-  transition-duration: 300ms;
+  transition-property: all, color, background-size ,background;
+  transition-duration: 75ms, 225ms, 300ms, 1200ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }
 
 window {
   font-family: "Rubik", "Feather";
-  background: $background;
+  background: rgba( $background, 0.9);
   color: $foreground;
-  opacity: 0.8;
+  border-radius: 3px;
 }
 
 box {
-  margin: 0px 2px;
-  padding: 2px;
   font-size: x-large;
 }
 
 button {
-  margin: 0px 4px;
-  padding: 4px;
   font-size: x-large;
-  color: $foreground;
-  opacity: 0.4;
+  color: rgba($foreground, 0.6);
+  border-radius: 100%;
+  padding: 10px;
+  transition-property: all, color, background-size ,background;
+  transition-duration: 75ms, 225ms, 300ms, 1200ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  outline: none;
+  background-image: radial-gradient(circle, transparent 10%, transparent 0%);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
 }
 
 button:hover {
   color: $foreground;
-  opacity: 1.0;
+}
+
+button:focus,
+button:active {
+  transition-duration: 300ms;
+  border-radius: 100%;
+  background: rgba( $foreground, 0.15);
+  padding: 10px;
 }
 
 scale trough {
-  background: rgba(255,255,255,0.15);
-  min-height: 15px;
-  min-width: 254px;
-  border-radius: 15px;
-  margin: 0px 6px;
+  background: rgba( $foreground,0.15);
+  min-height: 6px;
+  min-width: 184px;
+  border-radius: 6px;
+  margin: 0 8px;
 }
 
 scale trough highlight {
-  background: $color4;
+  background: $foreground;
   border-radius: inherit;
 }
 
+scale slider {
+	all: unset;
+	min-height: 8px;
+	margin: -8px;
+	border-radius: 100%;
+	background-color: lighten( $foreground, 10%);
+}
+
+progressbar {
+  padding: 0.4em 1.8em;
+}
+
+progressbar trough {
+  background: rgba($foreground, 0.15);
+  border-radius: 4px;
+}
+
+progressbar progress {
+  background: $color2;
+  border-radius: 4px;
+}
+
+calendar {
+  padding: 2px 2px 0px 2px;
+  font-size: 17px;
+}
+
+calendar:selected {
+  border-radius: 3px;
+  color: $background;
+  background-color: $color4;
+}
+
+calendar.header {
+  color: rgba( $foreground, 0.9);
+  font-weight: bold;
+}
+
+calendar.button {
+  color: rgba( $foreground, 0.30);
+}
+
+calendar.highlight {
+  font-weight: bold;
+  color: $color15;
+}
+
+calendar:indeterminate {
+  color: $color8;
+}
 // ############
 // CLOCK WIDGET
 // ############
-
-.fancy-clock {
-  border-style: solid;
-}
-
-.hour, .minute {
-  font-family: "Monaco";
-}
-
-.hour {
-  color: $color4;
-}
-
-.minute {
-}
-
-.day {
-  color: $color6;
-}
 
 // ##############
 // BATTERY WIDGET
 // ##############
 
-.battery-widget {
-  border-style: solid;
-}
-
-.battery-widget-icon {
-  font-family: "Font Awesome";
-  color: $color2;
-}
-
-.battery-percentage-box {
-}
-
-.label-battery-percentage {
-  color: $foreground;
-}
-
-.battery-percentage {
-}
-
 // ############
 // MUSIC WIDGET
 // ############
 
-.player-widget {
-}
-
 .music-info-widgetbox {
-  all: unset;
-  opacity: 1;
+  margin: 10px;
 }
 
-.music-info-widgetbox:hover {
+.music-info-widgetbox > .volume-widget {
+  margin: 10px;
+  background: #ff0;
 }
 
 .music-info {
-}
-
-.album-art {
-  background: $color0;
-  background-size: auto;
-  box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.35);
+  padding: 10px
 }
 
 .music-title {
+  margin-top: 10px;
+  border-bottom: 2px;
+  border-color: rgba( white, 0.1);
+  border-style: solid;
 }
 
 .music-artist {
+  font-weight: lighter;
+  font-size: small;
 }
 
-.music-buttons {
-}
-
-.music-buttons button {
-}
-
-.music-buttons button:hover{
-  color: $foreground;
+.music-buttons > * {
+  margin: 10px;
 }
 
 // #############
 // SYSTEM WIDGET
 // #############
 
-.systemctl-widget button {
+.systemctl-box > * {
+  margin: 10px;
+  padding: 10px;
+}
+
+.systemctl-box > * {
   font-family: 'Feather';
+}
+
+// CTL WIDGET
+.volume-brightness-box {
+  margin: 0px 10px;
+}
+
+.volume-brightness-box button {
+  padding: 4px;
+}
+
+.volume-slider label {
+  font-size: smaller;
+}
+
+.volume-slider {
+  margin: 10px;
+  color: rgba( $foreground, 0.4);
 }
 
 // #########################
 // COMMAND CENTER BACKGROUND
 // #########################
 
-.blur_command {
-  border-style: solid;
+.eww-powermenu {
+  margin: 20em 20em;
 }
 
-// #######
-// SIDEBAR
-// #######
-
-.sidebar {
+.eww-powermenu button {
+  margin: 0 1em;
+  font-size: 60px;
+  border-radius: 12px;
+  background: rgba( $foreground, 0.15);
 }
 
-.sidebar-icon-box {
+.eww-powermenu button:hover {
+  background: rgba( $foreground, 0.15);
 }
 
-.sidebar-icon-box button {
+.monitor-widgetbox box {
+  font-size: smaller;
 }
 
-.sidebar-icon-box button:hover {
+.monitor-widgetbox label {
+  color: rgba( $foreground, 0.6);
 }
 
-// ####
-// OSDs
-// ####
-
-.vol-osd {
-  border-style: solid;
+.monitor-widgetbox progressbar {
+  padding: 10px 20px;
 }
 
-.vol-osd-icon {
-  color: $foreground;
+.monitor-widgetbox progressbar trough {
+  min-width: 20px;
+  border-radius: 20px;
+}
+ 
+.monitor-widgetbox progressbar progress {
+  min-width: inherit;
+  border-radius: inherit;
 }
 
-.vol-osd-slider scale trough {
-}
-
-.vol-osd-slider scale trough highlight {
+.ram-progress-box progress {
   background: $color4;
 }
 
-.bright-osd {
-  border-style: solid;
+.ram-progress-box label {
+  color: $color4;
 }
 
-.bright-osd-icon {
-  color: $foreground;
+.cpu-progress-box progress {
+  background: $color3;
 }
 
-.bright-osd-slider scale trough {
+.cpi-progress-box label {
+  color: $color3;
 }
 
-.bright-osd-slider scale trough highlight {
-  background: $color4;
+.du-progress-box progress {
+  background: $color6;
 }
+
+.du-progress-box label {
+  color: $color6;
+}
+
+.tmp-progress-box progress {
+  background: $color1;
+}
+
+.tmp-progress-box label {
+  color: $color1;
+}
+

@@ -34,15 +34,15 @@ function exec_logoff() {
 function get_options() {
 
   power_off="Shutdown\0icon\x1fsystem-shutdown"
-  reboot="Reboot\0icon\x1fsystem-reboot"
-  lock="Lock\0icon\x1fsystem-lock-screen"
-  log_out="Logoff\0icon\x1fsystem-log-out"
+  reboot="Reboot\0icon\x1freload"
+  lock="Lock\0icon\x1flock"
+  log_out="Logoff\0icon\x1fexit"
   echo -en "$power_off\n$reboot\n$lock\n$log_out"
 
 }
 
 rofi_command="rofi -theme powermenu"
-chosen="$( get_options | $rofi_command -dmenu -selected-row 2)"
+chosen="$( get_options | $rofi_command -dmenu)"
 
 case $chosen in
     "Shutdown")

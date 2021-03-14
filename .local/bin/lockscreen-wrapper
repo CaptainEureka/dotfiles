@@ -28,8 +28,10 @@ fgr_t=$(process_color ${foreground} 50)
 green=$(process_color ${color6} ff)
 red=$(process_color ${color1} ff)
 transparent=00000000
-font="Comfortaa"
-tfont="Rubik"
+# font="Montserrat"
+# tfont="Roboto"
+font="Quicksand"
+tfont="Pacifico"
 
 i3lock -k --indicator \
   -c $bgr \

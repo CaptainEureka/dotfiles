@@ -76,6 +76,7 @@ export SPACESHIP_CHAR_SYMBOL='ζ '
 plugins=(
     git
 	  themes
+    fzf
     colorize
     colored-man-pages
 )
@@ -134,11 +135,19 @@ export DOTBARE_DIR="$HOME/.dotfiles"
 export DOTBARE_TREE="$HOME"
 
 # Bat
-export BAT_THEME=Nord
+export BAT_THEME=base16
 export BAT_STYLE=changes,header,numbers
 
 # 'bat' as manpager
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
+# Eww envs
+export IS_LAPTOP=false
+# Ranger config
+export RANGER_LOAD_DEFAULT_RC=false
+
 # StarShip Prompt
 eval "$(starship init zsh)"
+
+# Source .zshenv
+source .zshenv

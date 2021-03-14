@@ -16,16 +16,13 @@ if [[ -z ${choice} ]]; then
   exit 1
 fi
 
-ICON="applets-screenshooter"
-
 function notifySaved() {
-  notify-send -i $ICON "Screenshot taken..." 'saving to '$dest_dir \
-    --hint="string:image-path:"$screen_path
+  dunstify "Screenshot taken..." 'saving to '$dest_dir \
+    --hints="string:image-path:"$screen_path
 }
 
 function notifyClipboard() {
-  notify-send -i $ICON "Screenshot taken..." 'copied to clipboard' \
-    --hint="string:image-path:camera-photo"
+  dunstify --icon "diodon" "Screenshot taken..." 'copied to clipboard'
 }
 
 case $choice in
