@@ -1,0 +1,20 @@
+/* Confirm Dialog */
+
+* {
+  background-color: transparent;
+}
+
+#window {
+  width: 16%;
+  padding: 2%;
+  border-radius: 3px;
+  background-color: @background;
+  text-color: @text-color-t;
+  location: center;
+  y-offset: -2em;
+}
+
+#entry {
+  expand: true;
+  text-color: @text-color-t;
+}

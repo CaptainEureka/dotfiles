@@ -1,28 +1,28 @@
 @import "_colors.scss";
+@import "_colors_processed.scss";
 
 * {
   all: unset;
-  transition-property: all, color, background-size ,background;
-  transition-duration: 75ms, 225ms, 300ms, 1200ms;
-  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }
 
 window {
-  font-family: "Rubik", "Feather";
-  background: rgba( $background, 0.9);
+  font-family: "Inter", "Feather";
+  background: rgba( $background, 0.6);
   color: $foreground;
-  border-radius: 3px;
+  border-radius: 12px;
+  border: 1px solid $glassrim;
 }
 
 box {
   font-size: x-large;
+  // border: 1px solid $glassrim;
 }
 
 button {
   font-size: x-large;
-  color: rgba($foreground, 0.6);
+  color: $foreground;
   border-radius: 100%;
-  padding: 10px;
+  padding: 7px;
   transition-property: all, color, background-size ,background;
   transition-duration: 75ms, 225ms, 300ms, 1200ms;
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
@@ -34,21 +34,20 @@ button {
 }
 
 button:hover {
-  color: $foreground;
+  color: lighten( $foreground, 20%);
 }
 
 button:focus,
 button:active {
-  transition-duration: 300ms;
   border-radius: 100%;
-  background: rgba( $foreground, 0.15);
-  padding: 10px;
+  background: rgba( $foreground, 0.5);
+  padding: 7px;
 }
 
 scale trough {
   background: rgba( $foreground,0.15);
   min-height: 6px;
-  min-width: 184px;
+  min-width: 220px;
   border-radius: 6px;
   margin: 0 8px;
 }
@@ -60,14 +59,11 @@ scale trough highlight {
 
 scale slider {
 	all: unset;
-	min-height: 8px;
-	margin: -8px;
+	min-height: 6px;
+	margin: -6px;
 	border-radius: 100%;
 	background-color: lighten( $foreground, 10%);
-}
-
-progressbar {
-  padding: 0.4em 1.8em;
+  box-shadow: 0 0 2px 1px rgba( $background, 0.1);
 }
 
 progressbar trough {
@@ -76,8 +72,17 @@ progressbar trough {
 }
 
 progressbar progress {
-  background: $color2;
+  background: $foreground;
   border-radius: 4px;
+}
+
+.calendar-box {
+  margin: 10px;
+  background: rgba( $foreground, 0.1);
+  border-radius: 12px;
+  box-shadow: 0px 5px 10px 1px rgba( $background, 0.3);
+  border: 1px solid $glassrim;
+  padding: 0.3em;
 }
 
 calendar {
@@ -97,122 +102,167 @@ calendar.header {
 }
 
 calendar.button {
-  color: rgba( $foreground, 0.30);
+  color: rgba( $foreground, 0.3);
 }
 
 calendar.highlight {
   font-weight: bold;
-  color: $color15;
+  color: $foreground;
 }
 
 calendar:indeterminate {
-  color: $color8;
+  color: rgba( $foreground, 0.6);
 }
-// ############
-// CLOCK WIDGET
-// ############
 
-// ##############
-// BATTERY WIDGET
-// ##############
+.ctl-widgetbox {
+  padding: 10px;
+}
 
-// ############
-// MUSIC WIDGET
-// ############
+.ctl-widgetbox > *:not(:last-child) {
+  margin-bottom: 10px; 
+} 
 
 .music-info-widgetbox {
-  margin: 10px;
+  padding: 10px;
+  background: rgba( $foreground, 0.1);
+  border: 1px solid $glassrim;
+  border-radius: 12px;
+  box-shadow: 0px 5px 10px 1px rgba( $background, 0.3);
+  margin-bottom: 10px;
 }
 
-.music-info-widgetbox > .volume-widget {
-  margin: 10px;
-  background: #ff0;
+.music-info-widgetbox button {
+  margin: 0 15px;
 }
 
-.music-info {
-  padding: 10px
+.music-info-widgetbox > box.music-buttons {
+  padding: 10px 30px;
 }
 
-.music-title {
-  margin-top: 10px;
-  border-bottom: 2px;
-  border-color: rgba( white, 0.1);
-  border-style: solid;
+.album-art {
+  min-width: 80px;
+  min-height: 80px;
+  border-radius: 12px;
+  background-size: contain;
+  box-shadow: 0px 5px 10px 1px rgba( $background, 0.3);
 }
 
-.music-artist {
-  font-weight: lighter;
-  font-size: small;
+.mini-volume-box {
+  color: rgba( $foreground, 0.4);
 }
 
-.music-buttons > * {
-  margin: 10px;
+.mini-volume-box label {
+  font-size: smaller;
+}
+
+// Mini Player
+.mini-player-widgetbox {
+  margin-bottom: 10px;
+  background: rgba( $foreground, 0.1);
+  border: 1px solid $glassrim;
+  border-radius: 12px;
+  box-shadow: 0px 5px 10px 1px rgba( $background, 0.3);
+  // border: 1px solid rgba( $foreground, 0.1);
+}
+
+.mini-player-widgetbox button {
+  font-size: smaller;
+}
+
+.mini-album-art {
+  min-width: 50px;
+  min-height: 50px;
+  border-radius: 12px;
+  background-size: contain;
+  box-shadow: 0px 5px 10px 1px rgba( $background, 0.3);
 }
 
 // #############
 // SYSTEM WIDGET
 // #############
 
+.systemctl-box {
+  background: rgba( $foreground, 0.1);
+  border-radius: 12px;
+  border: 1px solid $glassrim;
+  box-shadow: 0px 5px 10px 1px rgba( $background, 0.3);
+}
+
 .systemctl-box > * {
   margin: 10px;
   padding: 10px;
-}
-
-.systemctl-box > * {
   font-family: 'Feather';
 }
 
-// CTL WIDGET
-.volume-brightness-box {
-  margin: 0px 10px;
+// VOLUME WIDGET
+.volume-widgetbox {
+  padding: 5px 10px;
+  background: rgba( $foreground, 0.1);
+  border-radius: 12px;
+  border: 1px solid $glassrim;
+  box-shadow: 0px 5px 10px 1px rgba( $background, 0.3);
 }
 
-.volume-brightness-box button {
-  padding: 4px;
+.volume-widgetbox scale trough {
+  min-height: 14px;
+  min-width: 230px;
+  border-radius: 14px;
 }
 
-.volume-slider label {
-  font-size: smaller;
+.volume-widgetbox scale slider {
+	min-height: 10px;
+	margin: -10px;
 }
 
-.volume-slider {
-  margin: 10px;
-  color: rgba( $foreground, 0.4);
+// brightness WIDGET
+.brightness-widgetbox {
+  padding: 5px 10px;
+  background: rgba( $foreground, 0.1);
+  border-radius: 12px;
+  border: 1px solid $glassrim;
+  box-shadow: 0px 5px 10px 1px rgba( $background, 0.3);
+}
+
+.brightness-widgetbox scale trough {
+  min-height: 14px;
+  min-width: 230px;
+  border-radius: 14px;
+}
+
+.brightness-widgetbox scale slider {
+	min-height: 10px;
+	margin: -10px;
 }
 
 // #########################
 // COMMAND CENTER BACKGROUND
 // #########################
 
-.eww-powermenu {
-  margin: 20em 20em;
-}
-
-.eww-powermenu button {
-  margin: 0 1em;
-  font-size: 60px;
+.monitor-widgetbox {
+  padding: 0px 15px;
+  background: rgba( $foreground, 0.1);
   border-radius: 12px;
-  background: rgba( $foreground, 0.15);
+  border: 1px solid $glassrim;
+  box-shadow: 0px 5px 10px 1px rgba( $background, 0.3);
 }
 
-.eww-powermenu button:hover {
-  background: rgba( $foreground, 0.15);
-}
-
-.monitor-widgetbox box {
+.monitor-widgetbox > box {
   font-size: smaller;
+  padding: 5px 0px;
 }
 
 .monitor-widgetbox label {
-  color: rgba( $foreground, 0.6);
+  padding: 6px;
+  background: rgba( $foreground, 0.1);
+  border-radius: 8px;
 }
 
 .monitor-widgetbox progressbar {
-  padding: 10px 20px;
+  padding: 10px;
 }
 
 .monitor-widgetbox progressbar trough {
-  min-width: 20px;
+  min-width: 12px;
   border-radius: 20px;
 }
  
@@ -221,35 +271,124 @@ calendar:indeterminate {
   border-radius: inherit;
 }
 
-.ram-progress-box progress {
-  background: $color4;
+.monitor-widgetbox progress {
+  background: $foreground;
 }
 
-.ram-progress-box label {
-  color: $color4;
+.monitor-widgetbox label {
+  color: $foreground;
 }
 
-.cpu-progress-box progress {
-  background: $color3;
+.user-widgetbox {
+  font-size: small;
 }
 
-.cpi-progress-box label {
-  color: $color3;
+.user-box {
+  margin-left: 5px;
+  padding: 5px;
+  background: rgba( $foreground, 0.1);
+  border-radius: 12px;
+  border: 1px solid $glassrim;
+  box-shadow: 0px 5px 10px 1px rgba( $background, 0.3);
 }
 
-.du-progress-box progress {
-  background: $color6;
+.user-image {
+  border-radius: 50%;
+  min-width: 35px;
+  min-height: 35px;
+  background-size: contain;
+  box-shadow: 0px 5px 10px 1px rgba( $background, 0.3);
 }
 
-.du-progress-box label {
-  color: $color6;
+.user-box label {
+  font-size: small;
+  padding-left: 5px;
 }
 
-.tmp-progress-box progress {
-  background: $color1;
+.power-settings-box {
+  margin-right: 5px;
+  padding: 5px;
+  border: 1px solid $glassrim;
+  background: rgba( $foreground, 0.1);
+  border-radius: 12px;
+  box-shadow: 0px 5px 10px 1px rgba( $background, 0.3);
 }
 
-.tmp-progress-box label {
-  color: $color1;
+.power-settings-box button {
+  font-size: smaller;
 }
 
+.power-settings-box > .sep {
+  font-size: large;
+  padding: 0px 5px;
+  color: rgba( $foreground, 0.2);
+}
+
+.state-module {
+  margin-right: 5px;
+  padding: 5px;
+  border: 1px solid $glassrim;
+  border-radius: 12px;
+  background: rgba( $foreground, 0.1);
+  box-shadow: 0px 5px 10px 1px rgba( $background, 0.3);
+}
+
+.state-module-box box.button-box {
+  padding-right: 5px;
+}
+
+.sub-module label.header,
+.sub-module label.status {
+  font-size: x-small;
+}
+
+.sub-module label.header {
+  font-weight: bold;
+}
+
+.sub-module button {
+  font-size: smaller;
+}
+
+.state-module-2 > *:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.state-module-2 box.sub-module {
+  margin-left: 5px;
+  padding-left: 5px;
+  border: 1px solid $glassrim;
+  border-radius: 12px;
+  background: rgba( $foreground, 0.1);
+  box-shadow: 0px 5px 10px 1px rgba( $background, 0.3);
+}
+// BAR //
+
+.groups-box,
+.clock-box {
+  border: 1px solid $glassrim;
+  border-radius: 12px;
+  background: rgba( $foreground, 0.1);
+  padding: 0px 10px;
+  box-shadow: 0px 5px 10px 1px rgba( $background, 0.3);
+}
+
+.groups-box button {
+  font-size: smaller;
+}
+
+.clock-box label {
+  font-size: small;
+}
+
+.ctl-cluster-box button {
+  font-size: smaller;
+}
+.ctl-widget-launcher,
+.ctl-rofi-launcher {
+  border: 1px solid $glassrim;
+  border-radius: 30%;
+  background: rgba( $foreground, 0.1);
+  margin-right: 10px;
+  box-shadow: 0px 5px 10px 1px rgba( $background, 0.3);
+}

@@ -33,12 +33,14 @@ from datetime import date
 from libqtile.config import Key, Screen, Group, Drag, Click, Match
 from libqtile.command import lazy
 from libqtile import qtile, layout, bar, widget, hook
+from libqtile.command.client import CommandClient
+c = CommandClient()
 from typing import List  # noqa: F401
 
 # DEFINING SOME VARIABLES
 mod = "mod4"                                     # Sets mod key to SUPER/WINDOWS
 alt = "mod1"                                     # Sets Alt key
-myTerm = "alacritty"                                 # My terminal of choice
+myTerm = "kitty"                                 # My terminal of choice
 myConfig = "/home/mk/.config/qtile/config.py"    # The Qtile config file location
 
 # KEYBINDINGS
@@ -283,8 +285,8 @@ def dpi(value):
     return int(value * int(dpi) / 96)
 
 # DEFAULT THEME SETTINGS FOR LAYOUTS
-layout_theme = {"border_width": dpi(4),
-                "margin": dpi(22),
+layout_theme = {"border_width": dpi(2),
+                "margin": dpi(11),
                 "border_focus": theme_colors['color4'],
                 "border_normal": theme_colors['color8']
                 }
@@ -302,7 +304,7 @@ layouts = [
 
 fontconfig = {
     "mono": "Monaco",
-    "text": "Rubik",
+    "text": "Inter",
     "icon": "Feather"
 }
 widget_defaults = dict(
@@ -316,20 +318,14 @@ extension_defaults = widget_defaults.copy()
 
 # WIDGETS
 
-def run_eww():
-    qtile.cmd_spawn('eww open ctl-window ')
+def toggle_eww_ctl_window():
+    qtile.cmd_spawn('eww-toggle ctl-window ')
 
-def close_eww():
-    qtile.cmd_spawn('eww close ctl-window')
-
-def eww_calendar_run():
-    qtile.cmd_spawn('eww open calendar-widget')
-
-def eww_calendar_close():
-    qtile.cmd_spawn('eww close calendar-widget')
+def toggle_eww_calendar():
+    qtile.cmd_spawn('eww-toggle calendar-widget')
 
 def run_rofi():
-    qtile.cmd_spawn('rofi -show drun -modi drun,run,window,file-browser -theme appslist')
+    qtile.cmd_spawn('rofi -show drun -modi drun,file-browser,window,run -theme appslist')
 
 def day_suffix():
     today = date.today()
@@ -352,18 +348,17 @@ def init_widgets():
         widget.TextBox(
             background=theme_colors['background'],
             foreground=theme_colors['foreground'],
-            text="",
-            font="FluentSystemIcons-Filled",
+            text="",
+            font=fontconfig['icon'],
             padding=10,
             fontsize=18,
-            mouse_callbacks={'Button1': run_eww,
-                             'Button3': close_eww}
+            mouse_callbacks={'Button1': toggle_eww_ctl_window}
         ),
         widget.TextBox(
             background=theme_colors['background'],
             foreground=theme_colors['foreground'],
-            text="",
-            font="FluentSystemIcons-Regular",
+            text="",
+            font=fontconfig['icon'],
             padding=10,
             fontsize=18,
             mouse_callbacks={'Button1': run_rofi}
@@ -430,7 +425,7 @@ def init_widgets():
         ),
         widget.TaskList(
             background=theme_colors['background'],
-            border=theme_colors['color8'],
+            border=theme_colors['color4'],
             borderwidth=2,
             font=fontconfig['text']+' Medium',
             fontsize=12,
@@ -438,6 +433,8 @@ def init_widgets():
             highlight_method="block",
             icon_size=0,
             margin=3,
+            markup=True,
+            markup_focused='<span color="'+theme_colors['background']+'">{}</span>',
             padding=6,
             rounded=True,
             spacing=2,
@@ -445,17 +442,9 @@ def init_widgets():
             txt_maximized='',
             txt_minimized='',
             urgent_alert_method='border',
-            urgent_border=theme_colors['color1']
+            urgent_border=theme_colors['color1'],
+            unfocused_border=theme_colors['color8']
         ),
-        # widget.WindowName(
-        #     foreground=theme_colors['foreground'],
-        #     background=theme_colors['background'],
-        #     font=fontconfig['text']+' Medium',
-        #     fontsize=14,
-        #     padding=10,
-        #     max_chars=35,
-        #     format='{name}'
-        # ),
         widget.Spacer(
             background=theme_colors['background']
         ),
@@ -484,8 +473,7 @@ def init_widgets():
             fontsize=14,
             padding=10,
             format="%B %_d{}, %H:%M".format(day_suffix()),
-            mouse_callbacks={'Button1': eww_calendar_run,
-                             'Button3': eww_calendar_close}
+            mouse_callbacks={'Button1': toggle_eww_calendar}
         ),
         widget.Sep(
             linewidth=0,
@@ -502,9 +490,13 @@ def init_widgets():
 
 def init_screens():
     return [Screen(top=bar.Bar(widgets=init_widgets(),
-                               opacity=0.9,
+                               opacity=1.0,
                                size=dpi(32),
                                margin=0),
+                   # bottom=bar.Bar([],
+                   #                size=dpi(66),
+                   #                opacity=0.0,
+                   #                margin=0),
                    )]
 
 
@@ -528,9 +520,12 @@ follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
 
+floating_layout_theme = layout_theme.copy()
+floating_layout_theme.update({ "border_width": 0 })
+
 ##### FLOATING WINDOWS #####
 floating_layout = layout.Floating(
-    **layout_theme,
+    **floating_layout_theme,
     float_rules=[
         *layout.Floating.default_float_rules,
         # default_float_rules include: utility, notification, toolbar, splash, dialog,
@@ -565,6 +560,11 @@ floating_layout = layout.Floating(
 )
 auto_fullscreen = True
 focus_on_window_activation = "smart"
+
+##### HOOKS #####
+# @hook.subscribe.layout_change
+# def disable_rcorners(qtile):
+#     c.screen.info()['`
 
 ##### STARTUP APPLICATIONS #####
 

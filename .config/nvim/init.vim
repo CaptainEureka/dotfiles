@@ -68,7 +68,7 @@ if has("termguicolors")
 endif
 
 " colorscheme
-colorscheme blossom
+colorscheme nord
 
 hi Normal guibg=NONE ctermbg=NONE
 
@@ -107,7 +107,7 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 
 " Lightline
 let g:lightline = {
-      \ 'colorscheme': 'wal',
+      \ 'colorscheme': 'nord',
       \ }
 
 " .rasi syntax

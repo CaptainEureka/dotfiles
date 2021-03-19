@@ -20,7 +20,7 @@ function day_suffix() {
 
 datestr="%A, %-d`day_suffix` of %B"
 
-bgr=$(process_color ${background} 50)
+bgr=$(process_color ${background} 99)
 base01=$(process_color ${color0} 80)
 base0=$(process_color ${color8} 50)
 fgr=$(process_color ${foreground} ff)

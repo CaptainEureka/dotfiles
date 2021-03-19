@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+window="$1"
+
+windowpid=$(xdotool search --class "$window" getwindowpid %@)
+
+#TODO:
+# - Verify window is valid
+
+if [ -z "$windowpid" ]; then
+  eww open "$window"
+else
+  eww close "$window"
+fi

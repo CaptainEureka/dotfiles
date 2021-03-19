@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+input="$1"
+color="$2"
+
+convert $input -fill $color +opaque transparent $input

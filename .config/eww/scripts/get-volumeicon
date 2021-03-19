@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+cur_vol=$(pulsemixer --get-volume | awk '{print $1}')
+
+vol_icon=""
+if [ "$cur_vol" -ge "75" ]; then
+	vol_icon=""
+elif [ "$cur_vol" -ge "25" ]; then
+	vol_icon=""
+elif [ "$cur_vol" -ge "0" ] ; then
+	vol_icon=""
+fi
+
+mute=$(pulsemixer --get-mute)
+if [ "$mute" == "1" ]; then
+	vol_icon=""
+fi
+
+echo "$vol_icon"

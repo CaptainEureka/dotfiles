@@ -732,12 +732,12 @@ c.colors.tabs.pinned.selected.even.bg = theme_c['color0']
 # font setting, it's replaced with the fonts listed here. If set to an
 # empty value, a system-specific monospace default is used.
 # Type: List of Font, or Font
-c.fonts.default_family = ['Rubik','Monaco']
+c.fonts.default_family = ['Inter','Monaco']
 c.fonts.web.family.cursive = 'Pacifico'
 c.fonts.web.family.fixed = 'Monaco'
 c.fonts.web.family.serif = 'Montserrat'
-c.fonts.web.family.sans_serif = 'Rubik'
-c.fonts.web.family.standard = 'Rubik'
+c.fonts.web.family.sans_serif = 'Inter'
+c.fonts.web.family.standard = 'Inter'
 
 # Default font size to use. Whenever "default_size" is used in a font
 # setting, it's replaced with the size listed here. Valid values are

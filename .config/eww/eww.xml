@@ -1,228 +1,294 @@
 <eww>
-    <definitions>
-        <def name="volume-widget">
-            <box orientation="h" halign="center" valign="center"
-                 class="volume-slider" vexpand="false" space-evenly="false" hexpand="false">
-                <label text="" valign="center" halign="center"/>
-                <scale min="0" max="101" value="{{volume}}" valign="center" halign="center"/>
-                <label text="" valign="center" halign="center"/>
+  <definitions>
+    <def name="user-widget">
+      <box class="user-widgetbox" space-evenly="false" orientation="h">
+        <box class="power-settings-box" orientation="h" hexpand="false" vexpand="false" space-evenly="false" halign="start">
+          <button onclick="rofi-powermenu &"></button>
+          <label class="sep" text="|"/>
+          <button onclick="lxappearance &"></button>
+        </box>
+        <box class="user-box" orientation="h" hexpand="true" vexpand="false" halign="fill" valign="fill" space-evenly="false">
+          <box class="user-image" hexpand="false" vexpand="false" style="background-image: url('/home/mk/.config/eww/images/profile.png')"></box>
+          <label text="CaptainEureka"/>
+        </box>
+      </box>
+    </def>
+      
+    <def name="state-cluster">
+      <box class="state-module-box" orientation="h">
+        <box class="state-module" orientation="v">
+          <box class="sub-module" orientation="h" space-evenly="false">
+            <box class="button-box">
+              <button onclick="dunstify Bluetooth action"></button>
             </box>
-        </def>
-
-        <def name="brightness-widget">
-            <box orientation="h" class="brightness-slider" space-evenly="false" visible="{{is_laptop}}">
-                <button class="brightness-action-label" onclick="notify-send 'Brightness' 'Action'">
-                     
-                </button>
-                <scale min="10" max="101" value="{{brightness}}" />
+              <box orientation="v" valign="center" hexpand="true" space-evenly="false">
+                <label halign="start" class="header" text="Bluetooth"/>
+                <label halign="start" class="status" text="on"/>
+              </box>
+          </box>
+          <box class="sub-module" orientation="h" space-evenly="false">
+            <box class="button-box">
+              <button onclick="dunstify Caffeine action"></button>
             </box>
-        </def>
-
-        <def name="ctl-widget">
-            <box orientation="v" space-evenly="true"
-                 valign="center" xalign="center"
-                 hexpand="true" vexpand="false">
-                <player-widget />
-                <box orientation="v" hexpand="true" space-evenly="false">
-                    <box class="volume-brightness-box" orientation="v" hexpand="true" vexpand="true" space-evenly="true">
-                        <brightness-widget/>
-                        <monitor-widget/>
-                        <systemctl-widget/>
-                    </box>
-                </box>
+              <box orientation="v" valign="center" hexpand="true" space-evenly="false">
+                <label halign="start" class="header" text="Caffeine"/>
+                <label halign="start" class="status" text="on"/>
+              </box>
+          </box>
+          <box class="sub-module" orientation="h" space-evenly="false">
+            <box class="button-box">
+              <button onclick="dunstify Nightlight action"></button>
             </box>
-        </def>
+              <box orientation="v" valign="center" hexpand="true" space-evenly="false">
+                <label halign="start" class="header" text="Nightlight"/>
+                <label halign="start" class="status" text="on"/>
+              </box>
+          </box>
+        </box>
 
-        <def name="player-widget">
-            <box class="music-info-widgetbox" orientation="v" space-evenly="false">
-                <box class="music-info" orientation="v" valign="center" space-evenly="false">
-                    <label class="music-title" text="{{title}}" valign="center" halign="center"/>
-                    <label class="music-artist" text="{{artist-album}}" valign="center" halign="center"/>
-                </box>
-                <progress orientation="h" value="{{spotify-position}}"></progress>
-                <box orientation="h" class="music-buttons" space-evenly="false"
-                    halign="center">
-                    <button onclick="playerctl previous">
-                      
-                    </button>
-                    <button onclick="playerctl play-pause">
-                      {{spotify-status}}
-                    </button>
-                    <button onclick="playerctl next">
-                      
-                    </button>
-                </box>
-                <volume-widget/>
+        <box class="state-module-2" orientation="v" space-evenly="false">
+          <box class="sub-module" orientation="h" valign="fill" vexpand="true" space-evenly="false">
+            <box class="button-box" valign="center">
+              <button onclick="dunstify 'Turn off Dunst'"></button>
             </box>
-        </def>
-
-        <def name="calendar-widget">
-            <calendar></calendar>
-        </def>
-
-        <def name="systemctl-widget">
-            <box class="systemctl-box" orientation="h" space-evenly="true"
-                 valign="center" halign="center">
-                <button class="poweroff-widget" onclick="rofi-exit Poweroff">
-                  
-                </button>
-                <button class="reboot-widget" onclick="rofi-exit Reboot">
-                  
-                </button>
-                <button class="lockscreen-widget" onclick="rofi-exit Lock">
-                  
-                </button>
-                <button class="logoff-widget" onclick="rofi-exit Logoff">
-                  
-                </button>
+            <box orientation="v" valign="center" space-evenly="false">
+              <label halign="start" class="header" text="Do not disturb"/>
+              <label halign="start" class="status" text="on"/>
             </box>
-        </def>
-
-        <def name="monitor-widget">
-            <box class="monitor-widgetbox" orientation="h"
-                 halign="center" valign="center" vexpand="false" hexpand="false" space-evenly="true">
-                <box class="ram-progress-box" orientation="v" space-evenly="false">
-                    <progress orientation="v" flipped="true" value="{{ram}}"></progress>
-                    <label text=""></label>
-                </box>
-                <box class="cpu-progress-box" orientation="v" space-evenly="false">
-                    <progress orientation="v" flipped="true" value="{{cpu}}"></progress>
-                    <label text=""></label>
-                </box>
-                <box class="du-progress-box" orientation="v" space-evenly="false">
-                    <progress orientation="v" flipped="true" value="{{fds}}"></progress>
-                    <label text=""></label>
-                </box>
-                <box class="tmp-progress-box" orientation="v" space-evenly="false">
-                    <progress orientation="v" flipped="true" value="{{tmp}}"></progress>
-                    <label text=""></label>
-                </box>
+          </box>
+          <box class="sub-module" orientation="h" valign="fill" vexpand="true" space-evenly="false">
+            <box class="button-box" valign="center">
+              <button onclick="dunstify 'Turn off Blur'"></button>
             </box>
-        </def>
+            <box orientation="v" valign="center" space-evenly="false">
+              <label halign="start" class="header" text="Blur effects"/>
+              <label halign="start" class="status" text="on"/>
+            </box>
+          </box>
+        </box>
+      </box>
+    </def>
 
-        <def name="command_center">
-            <systemctl-widget/>
-        </def>
-    </definitions>
+    <def name="mini-volume-widget">
+      <box style="padding: 10px" orientation="h" valign="center" class="mini-volume-box" vexpand="false" hexpand="true" space-evenly="false">
+        <label text="" valign="center" halign="center"/>
+        <scale min="0" max="101" value="{{volume}}" valign="center" halign="center" onchange="amixer -D pulse sset Master {}%"/>
+        <label text="" valign="center" halign="center"/>
+      </box>
+    </def>
 
-    <variables>
-        <script-var name="minute" interval="15s">
-              date "+%M"
-        </script-var>
+    <def name="volume-widget">
+      <box orientation="h" class="volume-widgetbox" valign="center" space-evenly="false">
+        <button class="volume-action-label" valign="center" onclick="pavucontrol &"></button>
+        <scale halign="end" min="0" max="101" value="{{volume}}" onchange="amixer -D pulse sset Master {}%"/>
+      </box>
+    </def>
 
-        <script-var name="hour" interval="15m">
-              date "+%H"
-        </script-var>
+    <def name="brightness-widget">
+      <box orientation="h" class="brightness-widgetbox" space-evenly="false">
+        <button class="brightness-action-label" onclick="notify-send 'Brightness' 'Action'"></button>
+        <scale min="10" max="101" value="50" />
+      </box>
+    </def>
 
-        <script-var name="day" interval="1h">
-              date "+%A"
-        </script-var>
+    <def name="ctl-widget">
+      <box class="ctl-widgetbox" orientation="v" space-evenly="false" hexpand="false" vexpand="true">
+        <state-cluster/>
+        <brightness-widget/>
+        <volume-widget/>
+        <mini-player-widget/>
+        <user-widget/>
+      </box>
+    </def>
 
-        <script-var name="volume" interval='100ms'>
-          pulsemixer --get-volume | awk '{print $1}'
-        </script-var>
+    <def name="mini-player-widget">
+      <box class="mini-player-widgetbox" orientation="v" space-evenly="false" style="padding: 10px" vexpand="false" valign="start">
+        <box orientation="h" space-evenly="false">
+          <box class="mini-album-art" hexpand="false" vexpand="false" halign="start" style="background-image: url('/tmp/cover.png')">{{ eww-music-update }}</box>
+          <box style="padding-left: 10px; font-size: small" orientation="v" hexpand="true" valign="center">
+            <label class="music-title" style="font-weight: bold" text="{{ title }}" halign="start"/>
+            <label class="music-artist" text="{{ artist-album }}" halign="start"/>
+          </box>
+          <box space-evenly="true" halign="end" valign="center">
+            <button onclick="playerctl play-pause && eww-music-update.sh">{{ mus-status }}</button>
+            <button onclick="playerctl next && eww-music-update.sh"></button>
+          </box>
+        </box>
+      </box>
+    </def>
 
-        <script-var name="volume-icon" interval='100ms'>
-          ./scripts/get-volumeicon
-        </script-var>
+    <def name="player-widget">
+      <box class="music-info-widgetbox" orientation="v" space-evenly="false" valign="start">
+        <box orientation="h" space-evenly="false" style="margin-bottom: 10px">
+          <box class="album-art" hexpand="false" halign="start" style="background-image: url('/tmp/cover.png')">{{ eww-music-update.sh }}</box>
+          <box style="padding-left: 10px; font-size: smaller;" orientation="v" hexpand="true" valign="center">
+            <label class="music-title" style="font-weight: bold" text="{{ title }}" halign="start"/>
+            <label class="music-artist" text="{{ artist-album }}" halign="start"/>
+          </box>
+        </box>
+        <progress orientation="h" value="{{ mus-position }}"/>
+        <box orientation="h" class="music-buttons" space-evenly="false" halign="center" hexpand="true">
+          <button onclick="playerctl previous && eww-music-update.sh"></button>
+          <button onclick="playerctl play-pause && eww-music-update.sh">{{ mus-status }}</button>
+          <button onclick="playerctl next && eww-music-update.sh"></button>
+        </box>
+        <mini-volume-widget/>
+      </box>
+    </def>
 
-        <script-var name="brightness" interval='100ms'>
-          light | cut -d'.' -f1
-        </script-var>
+    <def name="calendar-widget">
+      <box class="calendar-box">
+        <calendar/>
+      </box>
+    </def>
 
-        <script-var name="ram" interval='100ms'>
-            printf "%.0f\n" $(free -m | grep Mem | awk '{print ($3/$2)*100}')
-        </script-var>
+    <def name="systemctl-widget">
+      <box class="systemctl-box" orientation="h">
+        <button class="poweroff-widget" onclick="rofi-exit Poweroff"></button>
+        <button class="reboot-widget" onclick="rofi-exit Reboot"></button>
+        <button class="lockscreen-widget" onclick="rofi-exit Lock"></button>
+        <button class="logoff-widget" onclick="rofi-exit Logoff"></button>
+      </box>
+    </def>
 
-        <script-var name="cpu" interval='100ms'>
-            echo $[100-$(vmstat 1 2|tail -1|awk '{print $15}')]
-        </script-var>
+    <def name="monitor-widget">
+      <box class="monitor-widgetbox" orientation="h" vexpand="true" hexpand="true" space-evenly="true" valign="fill" halign="fill">
+        <box class="ram-progress-box" orientation="v" space-evenly="false" valign="center" halign="center">
+          <progress orientation="v" flipped="true" value="{{ram}}"></progress>
+          <label text=""></label>
+        </box>
+        <box class="cpu-progress-box" orientation="v" space-evenly="false" valign="center" halign="center">
+          <progress orientation="v" flipped="true" value="{{cpu}}"></progress>
+          <label text=""></label>
+        </box>
+        <box class="du-progress-box" orientation="v" space-evenly="false" valign="center" halign="center">
+          <progress orientation="v" flipped="true" value="{{fds}}"></progress>
+          <label text=""></label>
+        </box>
+        <box class="tmp-progress-box" orientation="v" space-evenly="false" valign="center" halign="center">
+          <progress orientation="v" flipped="true" value="{{tmp}}"></progress>
+          <label text=""></label>
+        </box>
+      </box>
+    </def>
 
-        <script-var name="fds" interval='100ms'>
-            df --output=pcent / | tr -dc '0-9'
-        </script-var>
+    <def name="powermenu">
+      <box class="powermenu-box" style="margin: 1em" valign="center" orientation="v">
+        <box style="margin: 3em 9em;"
+            halign="center" valign="center">
+          <systemctl-widget/>
+        </box>
+      </box>
+    </def>
 
-        <script-var name="tmp" interval='100ms'>
-            sensors | grep 'Package' | awk '{print $4}' | cut -d'.' -f1 | tr -dc '0-9'
-        </script-var>
+    <def name="groups">
+      <box class="groups-box" orientation="h" space-evenly="true" hexpand="true" halign="center">
+        <button onclick="wmctrl -s 0"></button>
+        <button onclick="wmctrl -s 1"></button>
+        <button onclick="wmctrl -s 2"></button>
+        <button onclick="wmctrl -s 3"></button>
+        <button onclick="wmctrl -s 4"></button>
+      </box>
+    </def>
 
-        <script-var name="is_laptop" interval='24h'>
-          echo $IS_LAPTOP
-        </script-var>
+    <def name="clock">
+      <box class="clock-box">
+        <label text="{{time}}"/>
+      </box>
+    </def>
 
-        <script-var name="spotify-update" interval="1s">
-            spotifystat > ~/.config/eww/spotifystat.json
-        </script-var>
+    <def name="ctl-cluster">
+      <box class="ctl-cluster-box" halign="start">
+        <box class="ctl-widget-launcher">
+          <button onclick="eww-toggle ctl-window-bottom"></button>
+        </box>
+        <box class="ctl-rofi-launcher">
+          <button onclick="rofi -show drun -modi drun,file-browser,window,run -theme appslist &"></button>
+        </box>
+      </box>
+    </def>
 
-        <script-var name="title" interval="1s">
-            cat ./spotifystat.json | jq --raw-output .track
-        </script-var>
+    <def name="bar">
+      <box class="bar-box" orientation="h" hexpand="true" space-evenly="false" style="padding: 10px;">
+        <ctl-cluster/>
+        <groups/>
+        <clock/>
+      </box>
+    </def>
 
-        <script-var name="artist-album" interval="1s">
-            cat ./spotifystat.json | jq --raw-output '"\(.artist) - \(.album)"'
-        </script-var>
+  </definitions>
 
-        <script-var name="spotify-status" interval="1s">
-            cat ./spotifystat.json | jq --raw-output .status
-        </script-var>
+  <variables>
+    <!-- clock -->
+    <script-var name="time" interval="15s">date "+%B %-d, %_I:%M %p" </script-var>
+    <script-var name="hour" interval="15m">date "+%H"</script-var>
+    <script-var name="day" interval="1h">date "+%A"</script-var>
+  
+    <!-- scales -->
+    <script-var name="volume" interval='3ms'>pulsemixer --get-volume | awk '{print $1}'</script-var>
+    <script-var name="volumeicon" interval='100ms'>scripts/get_volumeicon</script-var>
+    <script-var name="brightness" interval='1ms'>light | cut -d'.' -f1 || echo 0</script-var>
+      
+    <!-- system -->
+    <script-var name="ram" interval='100ms'>printf "%.0f\n" $(free -m | grep Mem | awk '{print ($3/$2)*100}')</script-var>
+    <script-var name="cpu" interval='100ms'>echo $[100-$(vmstat 1 2|tail -1|awk '{print $15}')]</script-var>
+    <script-var name="fds" interval='100ms'>df --output=pcent / | tr -dc '0-9'</script-var>
+    <script-var name="tmp" interval='100ms'>sensors | grep 'Package' | awk '{print $4}' | cut -d'.' -f1 | tr -dc '0-9'</script-var>
+    <script-var name="is_laptop">command -v light && echo true || echo false</script-var>
+      
+    <!-- music -->
+    <script-var name="eww-music-update">eww-music-update.sh</script-var>
+    <script-var name="mus-position" interval="500ms">jq -n "$(playerctl metadata --format '{{ default(position, 0)}}')/$(playerctl metadata --format '{{ default(mpris:length, 100) }}')*100" | cut -d'.' -f1</script-var>
+    <var name="title">Not playing</var>
+    <var name="artist-album">--</var>
+    <var name="mus-status"></var>
 
-        <script-var name="spotify-position" interval="1s">
-            cat ./spotifystat.json | jq --raw-output .position_perc
-        </script-var>
-    </variables>
+  </variables>
 
-    <windows>
-        <window name="ctl-window" stacking="fg">
-            <geometry x="1%" y="4%" />
-            <widget>
-                <ctl-widget />
-            </widget>
-        </window>
+  <windows>
+    <window name="ctl-window" stacking="fg">
+      <geometry x="1%" y="4%" />
+      <widget>
+        <ctl-widget />
+      </widget>
+    </window>
 
-        <window name="systemctl-window">
-            <geometry x="1%" y="22%" width="17%" height="5%" />
-            <widget>
-                <systemctl-widget />
-            </widget>
-        </window>
+    <window name="ctl-window-bottom" stacking="fg">
+      <geometry x="1%" y="56%" />
+      <widget>
+        <ctl-widget />
+      </widget>
+    </window>
 
-        <!-- Calendar -->
-        <window name="calendar-widget">
-            <geometry x="85%" y="4%" />
-            <widget>
-                <calendar-widget />
-            </widget>
-        </window>
+    <!-- Calendar -->
+    <window name="calendar-widget">
+      <geometry x="83%" y="4%" />
+      <widget>
+        <calendar-widget />
+      </widget>
+    </window>
 
-        <window name="eww-powermenu">
-            <geometry width="100%" height="100%" />
-            <widget>
-                <command_center/>
-            </widget>
-        </window>
+    <!-- Music Player Widget -->
+    <window name="music-window">
+      <geometry x="81%" y="4%" />
+      <widget>
+        <player-widget />
+      </widget>
+    </window>
 
-        <!-- Music Player Widget -->
-        <window name="music-window">
-            <geometry x="82%" y="4%" />
-            <widget>
-                <player-widget />
-            </widget>
-        </window>
+    <window name="bar-bottom">
+      <geometry x="1%" y="94%" width="98%"/>
+      <reserve side="bottom" distance="6%"/>
+      <widget>
+        <bar/>
+      </widget>
+    </window>
 
-        <!-- OSD Settings -->
-        <window name="volume_osd" anchor="center" stacking="fg">
-            <geometry height="6%" width="16%" x="42%" y="44%" />
-            <widget>
-                <vol-osd />
-            </widget>
-        </window>
-
-        <window name="brightness_osd" anchor="center" stacking="fg">
-            <geometry height="6%" width="16%" x="42%" y="44%" />
-            <widget>
-                <bright-osd />
-            </widget>
-        </window>
-
-    </windows>
+    <window name="powermenu">
+      <geometry height="100%" width="100%"/>
+        <widget>
+          <powermenu/>
+        </widget>
+    </window>
+  </windows>
 </eww>

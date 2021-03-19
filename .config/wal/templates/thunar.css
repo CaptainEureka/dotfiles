@@ -1,0 +1,35 @@
+.window-frame, .window-frame:backdrop {{
+  box-shadow: 0 0 0 black;
+  border-style: none;
+  margin: 0;
+  border-radius: 0;
+}}
+
+window.thunar {{
+  background: rgba({background.rgb},0.6);
+}}
+
+window.thunar grid *:selected,
+window.thunar grid *:active {{
+  background: {color4};
+  color: {background};
+  border-radius: 3px;
+}}
+window.thunar .sidebar {{
+  padding: 1rem;
+  border: 0px;
+}}
+window.thunar treeview {{
+  padding: 3px;
+  border: 0px;
+}}
+window.thunar .frame {{
+  background: transparent;
+  border: 0px;
+}}
+window.thunar toolbar box {{
+  padding: 5px;
+}}
+window.thunar toolbar {{
+  padding: 5px 0;
+}}

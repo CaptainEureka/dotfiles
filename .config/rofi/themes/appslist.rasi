@@ -26,6 +26,8 @@ configuration {
   children: [ inputbar, sidebar, listview ];
   background-color: @background;
   margin-bottom: 24px;
+  border: 1px;
+  border-color: @background-selected;
 }
 
 #inputbar {
@@ -33,6 +35,8 @@ configuration {
   background-color: @background-normal;
   margin: 24px 24px 0px 24px;
   border-radius: 6px;
+  border: 1px;
+  border-color: @background-selected;
 }
 
 #prompt { enabled: false; }
@@ -84,6 +88,8 @@ configuration {
   background-color: @background-selected;
   color: @text-color-t;
   border-radius: 6px;
+  border: 1px;
+  border-color: @background-selected;
 }
 
 element-icon {

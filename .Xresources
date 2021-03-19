@@ -1,0 +1,2 @@
+#include ".colors.Xresources"
+Xft.dpi: 96

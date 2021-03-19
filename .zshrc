@@ -136,13 +136,14 @@ export DOTBARE_TREE="$HOME"
 
 # Bat
 export BAT_THEME=base16
-export BAT_STYLE=changes,header,numbers
+export BAT_STYLE=changes,header
 
 # 'bat' as manpager
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # Eww envs
 export IS_LAPTOP=false
+
 # Ranger config
 export RANGER_LOAD_DEFAULT_RC=false
 
@@ -150,4 +151,4 @@ export RANGER_LOAD_DEFAULT_RC=false
 eval "$(starship init zsh)"
 
 # Source .zshenv
-source .zshenv
+source $HOME/.zshenv
